@@ -9,6 +9,8 @@ import SwiftUI
 
 struct StartView: View {
     
+    @Binding var isLoggedIn: Bool
+
     let buttonImage = ["start_1", "start_2"]
     let logo_Image = ["logo"]
     
@@ -54,5 +56,6 @@ extension Color {
 }
 
 #Preview {
-    StartView()
+    StartView(isLoggedIn: .constant(false))
 }
+

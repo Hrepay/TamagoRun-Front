@@ -9,26 +9,45 @@ import SwiftUI
 import CoreData
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+    @State private var sessionID: String? = UserDefaults.standard.string(forKey: "sessionID")
+    @State private var isLoggedIn: Bool = false
+    @State private var isCheckingSession: Bool = true // 세션 확인 중 여부
 
     var body: some View {
-        VStack {
-            StartView()
+        if isCheckingSession {
+            // 세션 확인 중일 때 로딩 스피너 표시
+            ProgressView("Checking session...")
+                .onAppear {
+                    checkSession()
+                }
+        } else {
+            if isLoggedIn {
+                MainView()
+            } else {
+                StartView(isLoggedIn: $isLoggedIn)
+            }
+        }
+    }
+    
+    // 세션 확인을 위한 메서드 추출
+    private func checkSession() {
+        if let storedSessionID = sessionID {
+            UserService().checkSessionID(storedSessionID) { isValid in
+                DispatchQueue.main.async {
+                    if isValid {
+                        self.isLoggedIn = true
+                    } else {
+                        UserDefaults.standard.removeObject(forKey: "sessionID")
+                    }
+                    self.isCheckingSession = false // 세션 확인 완료
+                }
+            }
+        } else {
+            // 세션 ID가 없으면 바로 로그인 화면으로 이동
+            self.isCheckingSession = false
         }
     }
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 #Preview {
     ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)

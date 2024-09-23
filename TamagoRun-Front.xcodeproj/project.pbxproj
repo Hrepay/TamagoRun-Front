@@ -24,6 +24,7 @@
 		07551A5E2CA13B2400EAF936 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A5C2CA13B2400EAF936 /* SignUpViewModel.swift */; };
 		07551A5F2CA13B2400EAF936 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */; };
 		07551A622CA14B3C00EAF936 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A612CA14B3C00EAF936 /* MainView.swift */; };
+		07551A642CA14E2F00EAF936 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A632CA14E2F00EAF936 /* KeychainHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		07551A5C2CA13B2400EAF936 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		07551A612CA14B3C00EAF936 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		07551A632CA14E2F00EAF936 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		078057552C9EBE4200110D93 /* TamagoRun-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TamagoRun-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0780576A2C9EBE4500110D93 /* TamagoRun-FrontTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		078057742C9EBE4500110D93 /* TamagoRun-FrontUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				07551A5A2CA13AE900EAF936 /* UserService.swift */,
+				07551A632CA14E2F00EAF936 /* KeychainHelper.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -339,6 +342,7 @@
 				07551A5B2CA13AE900EAF936 /* UserService.swift in Sources */,
 				07551A572CA13AD200EAF936 /* EmailView.swift in Sources */,
 				07551A5E2CA13B2400EAF936 /* SignUpViewModel.swift in Sources */,
+				07551A642CA14E2F00EAF936 /* KeychainHelper.swift in Sources */,
 				07551A5F2CA13B2400EAF936 /* LoginViewModel.swift in Sources */,
 				07551A582CA13AD200EAF936 /* SignUpView.swift in Sources */,
 				07551A622CA14B3C00EAF936 /* MainView.swift in Sources */,
