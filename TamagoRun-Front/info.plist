@@ -2,24 +2,32 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>CFBundleName</key>
-    <string>TamagoRun-Front</string>
-    
-    <key>CFBundleIdentifier</key>
-    <string>edu.soongsil.cs.20213583.TamagoRun-Front</string>
-    
-    <key>CFBundleVersion</key>
-    <string>1</string>
-    
-    <key>CFBundleShortVersionString</key>
-    <string>1.0</string>
-    
-    <key>CFBundleExecutable</key>
-    <string>TamagoRun-Front</string>
-    
-    <key>UIAppFonts</key>
-    <array>
-        <string>DungGeunMo.otf</string>
-    </array>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>54.180.217.101</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>CFBundleName</key>
+	<string>TamagoRun-Front</string>
+	<key>CFBundleIdentifier</key>
+	<string>edu.soongsil.cs.20213583.TamagoRun-Front</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleExecutable</key>
+	<string>TamagoRun-Front</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>DungGeunMo.otf</string>
+	</array>
 </dict>
 </plist>

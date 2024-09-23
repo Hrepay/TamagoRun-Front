@@ -6,6 +6,26 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		07551A452CA1348B00EAF936 /* DungGeunMo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07551A392CA1348B00EAF936 /* DungGeunMo.otf */; };
+		07551A462CA1348B00EAF936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07551A3D2CA1348B00EAF936 /* Assets.xcassets */; };
+		07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A362CA1348B00EAF936 /* TextFieldModifier.swift */; };
+		07551A492CA1348B00EAF936 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A3E2CA1348B00EAF936 /* ContentView.swift */; };
+		07551A4A2CA1348B00EAF936 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A402CA1348B00EAF936 /* Persistence.swift */; };
+		07551A4B2CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 07551A412CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld */; };
+		07551A4C2CA1348B00EAF936 /* TamagoRun_FrontApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A422CA1348B00EAF936 /* TamagoRun_FrontApp.swift */; };
+		07551A542CA13AD200EAF936 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A4F2CA13AD200EAF936 /* LoginView.swift */; };
+		07551A552CA13AD200EAF936 /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A4D2CA13AD200EAF936 /* StartView.swift */; };
+		07551A562CA13AD200EAF936 /* forgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A512CA13AD200EAF936 /* forgotPasswordView.swift */; };
+		07551A572CA13AD200EAF936 /* EmailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A502CA13AD200EAF936 /* EmailView.swift */; };
+		07551A582CA13AD200EAF936 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A4E2CA13AD200EAF936 /* SignUpView.swift */; };
+		07551A592CA13AD200EAF936 /* ResetPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A522CA13AD200EAF936 /* ResetPasswordView.swift */; };
+		07551A5B2CA13AE900EAF936 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A5A2CA13AE900EAF936 /* UserService.swift */; };
+		07551A5E2CA13B2400EAF936 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A5C2CA13B2400EAF936 /* SignUpViewModel.swift */; };
+		07551A5F2CA13B2400EAF936 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */; };
+		07551A622CA14B3C00EAF936 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A612CA14B3C00EAF936 /* MainView.swift */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0780576B2C9EBE4500110D93 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -24,31 +44,28 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		07551A362CA1348B00EAF936 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
+		07551A392CA1348B00EAF936 /* DungGeunMo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DungGeunMo.otf; sourceTree = "<group>"; };
+		07551A3D2CA1348B00EAF936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		07551A3E2CA1348B00EAF936 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		07551A3F2CA1348B00EAF936 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
+		07551A402CA1348B00EAF936 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		07551A422CA1348B00EAF936 /* TamagoRun_FrontApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagoRun_FrontApp.swift; sourceTree = "<group>"; };
+		07551A442CA1348B00EAF936 /* TamagoRun_Front.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TamagoRun_Front.xcdatamodel; sourceTree = "<group>"; };
+		07551A4D2CA13AD200EAF936 /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
+		07551A4E2CA13AD200EAF936 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		07551A4F2CA13AD200EAF936 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		07551A502CA13AD200EAF936 /* EmailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailView.swift; sourceTree = "<group>"; };
+		07551A512CA13AD200EAF936 /* forgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = forgotPasswordView.swift; sourceTree = "<group>"; };
+		07551A522CA13AD200EAF936 /* ResetPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordView.swift; sourceTree = "<group>"; };
+		07551A5A2CA13AE900EAF936 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		07551A5C2CA13B2400EAF936 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
+		07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		07551A612CA14B3C00EAF936 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		078057552C9EBE4200110D93 /* TamagoRun-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TamagoRun-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0780576A2C9EBE4500110D93 /* TamagoRun-FrontTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		078057742C9EBE4500110D93 /* TamagoRun-FrontUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
-
-/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		07551A1F2CA1337D00EAF936 /* Exceptions for "TamagoRun-Front" folder in "TamagoRun-Front" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				info.plist,
-			);
-			target = 078057542C9EBE4200110D93 /* TamagoRun-Front */;
-		};
-/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
-
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		078057572C9EBE4200110D93 /* TamagoRun-Front */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			exceptions = (
-				07551A1F2CA1337D00EAF936 /* Exceptions for "TamagoRun-Front" folder in "TamagoRun-Front" target */,
-			);
-			path = "TamagoRun-Front";
-			sourceTree = "<group>";
-		};
-/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		078057522C9EBE4200110D93 /* Frameworks */ = {
@@ -75,10 +92,91 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07551A372CA1348B00EAF936 /* CssCustom */ = {
+			isa = PBXGroup;
+			children = (
+				07551A362CA1348B00EAF936 /* TextFieldModifier.swift */,
+			);
+			path = CssCustom;
+			sourceTree = "<group>";
+		};
+		07551A382CA1348B00EAF936 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				07551A5A2CA13AE900EAF936 /* UserService.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		07551A3A2CA1348B00EAF936 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				07551A392CA1348B00EAF936 /* DungGeunMo.otf */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		07551A3B2CA1348B00EAF936 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				07551A602CA14B3900EAF936 /* Main */,
+				07551A3E2CA1348B00EAF936 /* ContentView.swift */,
+				07551A532CA13AD200EAF936 /* login */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		07551A3C2CA1348B00EAF936 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				07551A5C2CA13B2400EAF936 /* SignUpViewModel.swift */,
+				07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		07551A432CA1348B00EAF936 /* TamagoRun-Front */ = {
+			isa = PBXGroup;
+			children = (
+				07551A382CA1348B00EAF936 /* Model */,
+				07551A3C2CA1348B00EAF936 /* ViewModel */,
+				07551A3B2CA1348B00EAF936 /* View */,
+				07551A372CA1348B00EAF936 /* CssCustom */,
+				07551A3A2CA1348B00EAF936 /* Resources */,
+				07551A402CA1348B00EAF936 /* Persistence.swift */,
+				07551A3F2CA1348B00EAF936 /* info.plist */,
+				07551A422CA1348B00EAF936 /* TamagoRun_FrontApp.swift */,
+				07551A412CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld */,
+				07551A3D2CA1348B00EAF936 /* Assets.xcassets */,
+			);
+			path = "TamagoRun-Front";
+			sourceTree = "<group>";
+		};
+		07551A532CA13AD200EAF936 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				07551A4D2CA13AD200EAF936 /* StartView.swift */,
+				07551A4E2CA13AD200EAF936 /* SignUpView.swift */,
+				07551A4F2CA13AD200EAF936 /* LoginView.swift */,
+				07551A502CA13AD200EAF936 /* EmailView.swift */,
+				07551A512CA13AD200EAF936 /* forgotPasswordView.swift */,
+				07551A522CA13AD200EAF936 /* ResetPasswordView.swift */,
+			);
+			path = login;
+			sourceTree = "<group>";
+		};
+		07551A602CA14B3900EAF936 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				07551A612CA14B3C00EAF936 /* MainView.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
 		0780574C2C9EBE4200110D93 = {
 			isa = PBXGroup;
 			children = (
-				078057572C9EBE4200110D93 /* TamagoRun-Front */,
+				07551A432CA1348B00EAF936 /* TamagoRun-Front */,
 				078057562C9EBE4200110D93 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -107,9 +205,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				078057572C9EBE4200110D93 /* TamagoRun-Front */,
 			);
 			name = "TamagoRun-Front";
 			packageProductDependencies = (
@@ -207,6 +302,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07551A452CA1348B00EAF936 /* DungGeunMo.otf in Resources */,
+				07551A462CA1348B00EAF936 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,6 +328,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */,
+				07551A492CA1348B00EAF936 /* ContentView.swift in Sources */,
+				07551A4A2CA1348B00EAF936 /* Persistence.swift in Sources */,
+				07551A4B2CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld in Sources */,
+				07551A4C2CA1348B00EAF936 /* TamagoRun_FrontApp.swift in Sources */,
+				07551A542CA13AD200EAF936 /* LoginView.swift in Sources */,
+				07551A552CA13AD200EAF936 /* StartView.swift in Sources */,
+				07551A562CA13AD200EAF936 /* forgotPasswordView.swift in Sources */,
+				07551A5B2CA13AE900EAF936 /* UserService.swift in Sources */,
+				07551A572CA13AD200EAF936 /* EmailView.swift in Sources */,
+				07551A5E2CA13B2400EAF936 /* SignUpViewModel.swift in Sources */,
+				07551A5F2CA13B2400EAF936 /* LoginViewModel.swift in Sources */,
+				07551A582CA13AD200EAF936 /* SignUpView.swift in Sources */,
+				07551A622CA14B3C00EAF936 /* MainView.swift in Sources */,
+				07551A592CA13AD200EAF936 /* ResetPasswordView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,7 +514,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -433,7 +545,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -559,6 +671,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		07551A412CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				07551A442CA1348B00EAF936 /* TamagoRun_Front.xcdatamodel */,
+			);
+			currentVersion = 07551A442CA1348B00EAF936 /* TamagoRun_Front.xcdatamodel */;
+			path = TamagoRun_Front.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0780574D2C9EBE4200110D93 /* Project object */;
 }
