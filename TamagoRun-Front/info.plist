@@ -15,16 +15,6 @@
 			</dict>
 		</dict>
 	</dict>
-	<key>CFBundleName</key>
-	<string>TamagoRun-Front</string>
-	<key>CFBundleIdentifier</key>
-	<string>edu.soongsil.cs.20213583.TamagoRun-Front</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
-	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
-	<key>CFBundleExecutable</key>
-	<string>TamagoRun-Front</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>DungGeunMo.otf</string>

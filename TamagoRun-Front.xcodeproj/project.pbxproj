@@ -25,6 +25,8 @@
 		07551A5F2CA13B2400EAF936 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */; };
 		07551A622CA14B3C00EAF936 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A612CA14B3C00EAF936 /* MainView.swift */; };
 		07551A642CA14E2F00EAF936 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A632CA14E2F00EAF936 /* KeychainHelper.swift */; };
+		07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */; };
+		07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		0780576A2C9EBE4500110D93 /* TamagoRun-FrontTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		078057742C9EBE4500110D93 /* TamagoRun-FrontUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		07C5FB7A2CA2A29600BC0079 /* TamagoRun-Front.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TamagoRun-Front.entitlements"; sourceTree = "<group>"; };
+		07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPermissionView.swift; sourceTree = "<group>"; };
+		07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,7 @@
 			children = (
 				07551A5A2CA13AE900EAF936 /* UserService.swift */,
 				07551A632CA14E2F00EAF936 /* KeychainHelper.swift */,
+				07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -123,6 +128,7 @@
 		07551A3B2CA1348B00EAF936 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				07C5FB7B2CA2A3DD00BC0079 /* Health */,
 				07551A602CA14B3900EAF936 /* Main */,
 				07551A3E2CA1348B00EAF936 /* ContentView.swift */,
 				07551A532CA13AD200EAF936 /* login */,
@@ -194,6 +200,14 @@
 				078057742C9EBE4500110D93 /* TamagoRun-FrontUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		07C5FB7B2CA2A3DD00BC0079 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */,
+			);
+			path = Health;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -336,10 +350,12 @@
 				07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */,
 				07551A492CA1348B00EAF936 /* ContentView.swift in Sources */,
 				07551A4A2CA1348B00EAF936 /* Persistence.swift in Sources */,
+				07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */,
 				07551A4B2CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld in Sources */,
 				07551A4C2CA1348B00EAF936 /* TamagoRun_FrontApp.swift in Sources */,
 				07551A542CA13AD200EAF936 /* LoginView.swift in Sources */,
 				07551A552CA13AD200EAF936 /* StartView.swift in Sources */,
+				07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */,
 				07551A562CA13AD200EAF936 /* forgotPasswordView.swift in Sources */,
 				07551A5B2CA13AE900EAF936 /* UserService.swift in Sources */,
 				07551A572CA13AD200EAF936 /* EmailView.swift in Sources */,
@@ -529,7 +545,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.soongsil.cs.20213583.TamagoRun-Front";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.soongsil.cs.20213583.TamagoRunFront;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -563,7 +579,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "edu.soongsil.cs.20213583.TamagoRun-Front";
+				PRODUCT_BUNDLE_IDENTIFIER = edu.soongsil.cs.20213583.TamagoRunFront;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
