@@ -67,6 +67,7 @@
 		078057552C9EBE4200110D93 /* TamagoRun-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TamagoRun-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0780576A2C9EBE4500110D93 /* TamagoRun-FrontTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		078057742C9EBE4500110D93 /* TamagoRun-FrontUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		07C5FB7A2CA2A29600BC0079 /* TamagoRun-Front.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TamagoRun-Front.entitlements"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +142,7 @@
 		07551A432CA1348B00EAF936 /* TamagoRun-Front */ = {
 			isa = PBXGroup;
 			children = (
+				07C5FB7A2CA2A29600BC0079 /* TamagoRun-Front.entitlements */,
 				07551A382CA1348B00EAF936 /* Model */,
 				07551A3C2CA1348B00EAF936 /* ViewModel */,
 				07551A3B2CA1348B00EAF936 /* View */,
@@ -506,6 +508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "TamagoRun-Front/TamagoRun-Front.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -513,6 +516,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TamagoRun-Front/info.plist";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 운동 데이터를 건강 앱에 저장하기 위해 필요합니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 운동 데이터를 앱에서 불러오기 위해 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -537,6 +542,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "TamagoRun-Front/TamagoRun-Front.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
@@ -544,6 +550,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TamagoRun-Front/info.plist";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 운동 데이터를 건강 앱에 저장하기 위해 필요합니다.";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 운동 데이터를 앱에서 불러오기 위해 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
