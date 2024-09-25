@@ -27,6 +27,7 @@
 		07551A642CA14E2F00EAF936 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A632CA14E2F00EAF936 /* KeychainHelper.swift */; };
 		07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */; };
 		07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */; };
+		07C5FB932CA39EF000BC0079 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB922CA39EF000BC0079 /* SideMenuView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +73,7 @@
 		07C5FB7A2CA2A29600BC0079 /* TamagoRun-Front.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TamagoRun-Front.entitlements"; sourceTree = "<group>"; };
 		07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPermissionView.swift; sourceTree = "<group>"; };
 		07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
+		07C5FB922CA39EF000BC0079 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				07551A612CA14B3C00EAF936 /* MainView.swift */,
+				07C5FB922CA39EF000BC0079 /* SideMenuView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -351,6 +354,7 @@
 				07551A492CA1348B00EAF936 /* ContentView.swift in Sources */,
 				07551A4A2CA1348B00EAF936 /* Persistence.swift in Sources */,
 				07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */,
+				07C5FB932CA39EF000BC0079 /* SideMenuView.swift in Sources */,
 				07551A4B2CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld in Sources */,
 				07551A4C2CA1348B00EAF936 /* TamagoRun_FrontApp.swift in Sources */,
 				07551A542CA13AD200EAF936 /* LoginView.swift in Sources */,

@@ -159,14 +159,14 @@ struct MainView: View {
                     }
             }
             
-//            SideMenuView()
-//                .frame(width: UIScreen.main.bounds.width * 0.7)
-//                .background(Color.white)
-//                .offset(x: isShowingMenu ? 0 : -UIScreen.main.bounds.width * 0.7)
+            SideMenuView()
+                .frame(width: UIScreen.main.bounds.width * 0.7)
+                .background(Color.white)
+                .offset(x: isShowingMenu ? 0 : -UIScreen.main.bounds.width * 0.7)
         }
-        .fullScreenCover(isPresented: $isShowingStartRunning) {
+//        .fullScreenCover(isPresented: $isShowingStartRunning) {
 //            StartRunning(isPresented: $isShowingStartRunning)
-        }
+//        }
     }
 }
 
