@@ -11,7 +11,12 @@ struct MainView: View {
     
     @State private var progress: Double = 0.5
     let eggImg = ["egg_1", "egg_2", "egg_3", "egg_4","egg_5"]
-    let sprout = ["sprout_fill", "sprout_fill", "sprout_fill", "sprout_empty", "sprout_empty","sprout_empty","sprout_fill"]
+
+    // 일주일 러닝 데이터 끌어오기
+    let sprout = ["sprout_fill", "sprout_empty"]
+    @State private var weeklyRunningData: [Bool] = Array(repeating: false, count: 7)
+
+    
     let TestImage = ["mangna", "jiwo"]
     
     let running = ["run_1", "run_2", "run_3", "run_4"]
@@ -100,8 +105,9 @@ struct MainView: View {
                     
                     HStack {
                         Spacer()
-                        ForEach(sprout, id: \.self) { imageName in
-                            Image(imageName)
+                        // 일주일 데이터를 기반으로 sprout_fill 또는 sprout_empty를 표시
+                        ForEach(0..<7, id: \.self) { index in
+                            Image(weeklyRunningData[index] ? sprout[0] : sprout[1])
                                 .resizable()
                                 .frame(width: 40, height: 30)
                         }
@@ -148,7 +154,6 @@ struct MainView: View {
                 Spacer()
             }
             .padding()
-            
             if isShowingMenu {
                 Color.black.opacity(0.5)
                     .edgesIgnoringSafeArea(.all)
@@ -163,6 +168,14 @@ struct MainView: View {
                 .frame(width: UIScreen.main.bounds.width * 0.7)
                 .background(Color.white)
                 .offset(x: isShowingMenu ? 0 : -UIScreen.main.bounds.width * 0.7)
+        }
+        .onAppear {
+            // 주간 러닝 데이터 불러오기
+            HealthKitManager.shared.fetchWeeklyRunningData { data in
+                DispatchQueue.main.async {
+                    self.weeklyRunningData = data
+                }
+            }
         }
 //        .fullScreenCover(isPresented: $isShowingStartRunning) {
 //            StartRunning(isPresented: $isShowingStartRunning)

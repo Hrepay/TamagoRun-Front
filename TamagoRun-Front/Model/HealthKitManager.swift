@@ -165,3 +165,52 @@ extension HealthKitManager {
     }
 }
 
+extension HealthKitManager {
+    // 주간 러닝 데이터를 가져오는 메서드
+    func fetchWeeklyRunningData(completion: @escaping ([Bool]) -> Void) {
+        // 현재 날짜를 기준으로 일주일 전 월요일부터 일요일까지를 확인
+        var runningData: [Bool] = Array(repeating: false, count: 7) // 초기값은 false로 설정
+        
+        let calendar = Calendar.current
+        let now = Date()
+        
+        // 현재 주의 시작일을 구함 (월요일부터 시작)
+        guard let startOfWeek = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now)) else {
+            completion(runningData)
+            return
+        }
+        
+        let endDate = calendar.date(byAdding: .day, value: 7, to: startOfWeek) ?? now
+        
+        // 운동 타입은 달리기로 한정
+        let workoutType = HKObjectType.workoutType()
+        let predicate = HKQuery.predicateForSamples(withStart: startOfWeek, end: endDate, options: .strictStartDate)
+        
+        let query = HKSampleQuery(sampleType: workoutType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (_, samples, error) in
+            guard let workouts = samples as? [HKWorkout], error == nil else {
+                DispatchQueue.main.async {
+                    completion(runningData)
+                }
+                return
+            }
+            
+            // 각 운동 기록의 날짜를 분석하여 주간 데이터에 반영
+            for workout in workouts {
+                let workoutDate = workout.startDate
+                
+                if calendar.isDate(workoutDate, inSameDayAs: startOfWeek) {
+                    runningData[0] = true
+                } else if let index = calendar.dateComponents([.day], from: startOfWeek, to: workoutDate).day, index >= 0, index < 7 {
+                    runningData[index] = true
+                }
+            }
+            
+            DispatchQueue.main.async {
+                completion(runningData)
+            }
+        }
+        
+        healthStore.execute(query)
+    }
+}
+
