@@ -177,9 +177,9 @@ struct MainView: View {
                 }
             }
         }
-//        .fullScreenCover(isPresented: $isShowingStartRunning) {
-//            StartRunning(isPresented: $isShowingStartRunning)
-//        }
+        .fullScreenCover(isPresented: $isShowingStartRunning) {
+            StartRunning(isPresented: $isShowingStartRunning)
+        }
     }
 }
 

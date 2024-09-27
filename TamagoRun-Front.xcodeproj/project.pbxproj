@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		070632312CA68FA7001F884B /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 070632302CA68FA7001F884B /* config.plist */; };
+		070632332CA69C00001F884B /* StartRunning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070632322CA69C00001F884B /* StartRunning.swift */; };
 		07551A452CA1348B00EAF936 /* DungGeunMo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07551A392CA1348B00EAF936 /* DungGeunMo.otf */; };
 		07551A462CA1348B00EAF936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07551A3D2CA1348B00EAF936 /* Assets.xcassets */; };
 		07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A362CA1348B00EAF936 /* TextFieldModifier.swift */; };
@@ -53,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		070632302CA68FA7001F884B /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
+		070632322CA69C00001F884B /* StartRunning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunning.swift; sourceTree = "<group>"; };
 		07551A362CA1348B00EAF936 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
 		07551A392CA1348B00EAF936 /* DungGeunMo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DungGeunMo.otf; sourceTree = "<group>"; };
 		07551A3D2CA1348B00EAF936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -161,20 +163,20 @@
 		07551A432CA1348B00EAF936 /* TamagoRun-Front */ = {
 			isa = PBXGroup;
 			children = (
-				07F1A5F72CA596F00001BF50 /* AppDelegate.swift */,
 				07C5FB7A2CA2A29600BC0079 /* TamagoRun-Front.entitlements */,
+				07F1A5F72CA596F00001BF50 /* AppDelegate.swift */,
+				07551A402CA1348B00EAF936 /* Persistence.swift */,
 				07551A382CA1348B00EAF936 /* Model */,
 				07551A3C2CA1348B00EAF936 /* ViewModel */,
 				07551A3B2CA1348B00EAF936 /* View */,
 				07551A372CA1348B00EAF936 /* CssCustom */,
 				07551A3A2CA1348B00EAF936 /* Resources */,
-				07551A402CA1348B00EAF936 /* Persistence.swift */,
-				07551A3F2CA1348B00EAF936 /* info.plist */,
 				07551A422CA1348B00EAF936 /* TamagoRun_FrontApp.swift */,
+				07F1A5F92CA5983C0001BF50 /* MapView.swift */,
+				07551A3F2CA1348B00EAF936 /* info.plist */,
+				070632302CA68FA7001F884B /* config.plist */,
 				07551A412CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld */,
 				07551A3D2CA1348B00EAF936 /* Assets.xcassets */,
-				07F1A5F92CA5983C0001BF50 /* MapView.swift */,
-				070632302CA68FA7001F884B /* config.plist */,
 			);
 			path = "TamagoRun-Front";
 			sourceTree = "<group>";
@@ -195,6 +197,7 @@
 		07551A602CA14B3900EAF936 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				070632322CA69C00001F884B /* StartRunning.swift */,
 				07551A612CA14B3C00EAF936 /* MainView.swift */,
 				07C5FB922CA39EF000BC0079 /* SideMenuView.swift */,
 			);
@@ -433,6 +436,7 @@
 				07551A552CA13AD200EAF936 /* StartView.swift in Sources */,
 				07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */,
 				07551A562CA13AD200EAF936 /* forgotPasswordView.swift in Sources */,
+				070632332CA69C00001F884B /* StartRunning.swift in Sources */,
 				07551A5B2CA13AE900EAF936 /* UserService.swift in Sources */,
 				07F1A5FA2CA5983C0001BF50 /* MapView.swift in Sources */,
 				07551A572CA13AD200EAF936 /* EmailView.swift in Sources */,
