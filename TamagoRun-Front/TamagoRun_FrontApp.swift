@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import NMapsMap
 
 @main
 struct TamagoRun_FrontApp: App {
@@ -19,11 +20,28 @@ struct TamagoRun_FrontApp: App {
                 if isAuthorized {
                     ContentView()
                         .environment(\.managedObjectContext, persistenceController.container.viewContext)
+
+                    // 네이버 맵 테스트
+//                    MapView(
+//                        coordinates: .constant([NMGLatLng(lat: 37.5665, lng: 126.9780)]), // 서울의 위도, 경도
+//                        mapView: .constant(nil)
+//                    )
+//                    .edgesIgnoringSafeArea(.all)
+                    
+                    
                 } else {
                     HealthPermissionView() // 권한 허용을 위한 뷰
                 }
             }
             .onAppear {
+                
+                // config.plist에서 NMFClientId 가져오기
+                if let path = Bundle.main.path(forResource: "config", ofType: "plist"),
+                   let config = NSDictionary(contentsOfFile: path) as? [String: Any],
+                   let clientId = config["NMFClientId"] as? String {
+                    NMFAuthManager.shared().clientId = clientId
+                }
+                
                 checkHealthKitAuthorization()
             }
             .onChange(of: scenePhase) {

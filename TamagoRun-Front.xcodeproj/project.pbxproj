@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 77;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070632312CA68FA7001F884B /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 070632302CA68FA7001F884B /* config.plist */; };
 		07551A452CA1348B00EAF936 /* DungGeunMo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07551A392CA1348B00EAF936 /* DungGeunMo.otf */; };
 		07551A462CA1348B00EAF936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07551A3D2CA1348B00EAF936 /* Assets.xcassets */; };
 		07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A362CA1348B00EAF936 /* TextFieldModifier.swift */; };
@@ -28,6 +29,9 @@
 		07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */; };
 		07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */; };
 		07C5FB932CA39EF000BC0079 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB922CA39EF000BC0079 /* SideMenuView.swift */; };
+		07F1A5F82CA596F00001BF50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1A5F72CA596F00001BF50 /* AppDelegate.swift */; };
+		07F1A5FA2CA5983C0001BF50 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1A5F92CA5983C0001BF50 /* MapView.swift */; };
+		FFAEF1E3F6820C9A34E6B8F7 /* Pods_TamagoRun_Front.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79523B75E368641D95CD30E1 /* Pods_TamagoRun_Front.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		070632302CA68FA7001F884B /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		07551A362CA1348B00EAF936 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
 		07551A392CA1348B00EAF936 /* DungGeunMo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DungGeunMo.otf; sourceTree = "<group>"; };
 		07551A3D2CA1348B00EAF936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,6 +79,11 @@
 		07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPermissionView.swift; sourceTree = "<group>"; };
 		07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		07C5FB922CA39EF000BC0079 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		07F1A5F72CA596F00001BF50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		07F1A5F92CA5983C0001BF50 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		65A409A71AF44F31D06C6703 /* Pods-TamagoRun-Front.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TamagoRun-Front.debug.xcconfig"; path = "Target Support Files/Pods-TamagoRun-Front/Pods-TamagoRun-Front.debug.xcconfig"; sourceTree = "<group>"; };
+		79523B75E368641D95CD30E1 /* Pods_TamagoRun_Front.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TamagoRun_Front.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EC25744311EDC9B6670B10AC /* Pods-TamagoRun-Front.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TamagoRun-Front.release.xcconfig"; path = "Target Support Files/Pods-TamagoRun-Front/Pods-TamagoRun-Front.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFAEF1E3F6820C9A34E6B8F7 /* Pods_TamagoRun_Front.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,9 +141,9 @@
 		07551A3B2CA1348B00EAF936 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				07551A3E2CA1348B00EAF936 /* ContentView.swift */,
 				07C5FB7B2CA2A3DD00BC0079 /* Health */,
 				07551A602CA14B3900EAF936 /* Main */,
-				07551A3E2CA1348B00EAF936 /* ContentView.swift */,
 				07551A532CA13AD200EAF936 /* login */,
 			);
 			path = View;
@@ -150,6 +161,7 @@
 		07551A432CA1348B00EAF936 /* TamagoRun-Front */ = {
 			isa = PBXGroup;
 			children = (
+				07F1A5F72CA596F00001BF50 /* AppDelegate.swift */,
 				07C5FB7A2CA2A29600BC0079 /* TamagoRun-Front.entitlements */,
 				07551A382CA1348B00EAF936 /* Model */,
 				07551A3C2CA1348B00EAF936 /* ViewModel */,
@@ -161,6 +173,8 @@
 				07551A422CA1348B00EAF936 /* TamagoRun_FrontApp.swift */,
 				07551A412CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld */,
 				07551A3D2CA1348B00EAF936 /* Assets.xcassets */,
+				07F1A5F92CA5983C0001BF50 /* MapView.swift */,
+				070632302CA68FA7001F884B /* config.plist */,
 			);
 			path = "TamagoRun-Front";
 			sourceTree = "<group>";
@@ -192,6 +206,8 @@
 			children = (
 				07551A432CA1348B00EAF936 /* TamagoRun-Front */,
 				078057562C9EBE4200110D93 /* Products */,
+				D919EFECCD662BBA1DB217A5 /* Pods */,
+				E71E189BA68C1C256CB01734 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -213,6 +229,23 @@
 			path = Health;
 			sourceTree = "<group>";
 		};
+		D919EFECCD662BBA1DB217A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				65A409A71AF44F31D06C6703 /* Pods-TamagoRun-Front.debug.xcconfig */,
+				EC25744311EDC9B6670B10AC /* Pods-TamagoRun-Front.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E71E189BA68C1C256CB01734 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				79523B75E368641D95CD30E1 /* Pods_TamagoRun_Front.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -220,17 +253,17 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 0780577E2C9EBE4500110D93 /* Build configuration list for PBXNativeTarget "TamagoRun-Front" */;
 			buildPhases = (
+				5EB392CF4206DE743005B5A7 /* [CP] Check Pods Manifest.lock */,
 				078057512C9EBE4200110D93 /* Sources */,
 				078057522C9EBE4200110D93 /* Frameworks */,
 				078057532C9EBE4200110D93 /* Resources */,
+				19790FC0A6FBE5D95E43ED68 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = "TamagoRun-Front";
-			packageProductDependencies = (
-			);
 			productName = "TamagoRun-Front";
 			productReference = 078057552C9EBE4200110D93 /* TamagoRun-Front.app */;
 			productType = "com.apple.product-type.application";
@@ -249,8 +282,6 @@
 				0780576C2C9EBE4500110D93 /* PBXTargetDependency */,
 			);
 			name = "TamagoRun-FrontTests";
-			packageProductDependencies = (
-			);
 			productName = "TamagoRun-FrontTests";
 			productReference = 0780576A2C9EBE4500110D93 /* TamagoRun-FrontTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -269,8 +300,6 @@
 				078057762C9EBE4500110D93 /* PBXTargetDependency */,
 			);
 			name = "TamagoRun-FrontUITests";
-			packageProductDependencies = (
-			);
 			productName = "TamagoRun-FrontUITests";
 			productReference = 078057742C9EBE4500110D93 /* TamagoRun-FrontUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
@@ -299,6 +328,7 @@
 				};
 			};
 			buildConfigurationList = 078057502C9EBE4200110D93 /* Build configuration list for PBXProject "TamagoRun-Front" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -306,8 +336,6 @@
 				Base,
 			);
 			mainGroup = 0780574C2C9EBE4200110D93;
-			minimizedProjectReferenceProxies = 1;
-			preferredProjectObjectVersion = 77;
 			productRefGroup = 078057562C9EBE4200110D93 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -326,6 +354,7 @@
 			files = (
 				07551A452CA1348B00EAF936 /* DungGeunMo.otf in Resources */,
 				07551A462CA1348B00EAF936 /* Assets.xcassets in Resources */,
+				070632312CA68FA7001F884B /* config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,6 +374,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		19790FC0A6FBE5D95E43ED68 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TamagoRun-Front/Pods-TamagoRun-Front-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-TamagoRun-Front/Pods-TamagoRun-Front-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-TamagoRun-Front/Pods-TamagoRun-Front-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5EB392CF4206DE743005B5A7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TamagoRun-Front-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		078057512C9EBE4200110D93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -358,10 +429,12 @@
 				07551A4B2CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld in Sources */,
 				07551A4C2CA1348B00EAF936 /* TamagoRun_FrontApp.swift in Sources */,
 				07551A542CA13AD200EAF936 /* LoginView.swift in Sources */,
+				07F1A5F82CA596F00001BF50 /* AppDelegate.swift in Sources */,
 				07551A552CA13AD200EAF936 /* StartView.swift in Sources */,
 				07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */,
 				07551A562CA13AD200EAF936 /* forgotPasswordView.swift in Sources */,
 				07551A5B2CA13AE900EAF936 /* UserService.swift in Sources */,
+				07F1A5FA2CA5983C0001BF50 /* MapView.swift in Sources */,
 				07551A572CA13AD200EAF936 /* EmailView.swift in Sources */,
 				07551A5E2CA13B2400EAF936 /* SignUpViewModel.swift in Sources */,
 				07551A642CA14E2F00EAF936 /* KeychainHelper.swift in Sources */,
@@ -439,7 +512,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -503,7 +576,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -525,6 +598,7 @@
 		};
 		0780577F2C9EBE4500110D93 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65A409A71AF44F31D06C6703 /* Pods-TamagoRun-Front.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -534,6 +608,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BBVZV8T99P;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TamagoRun-Front/info.plist";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 운동 데이터를 건강 앱에 저장하기 위해 필요합니다.";
@@ -559,6 +634,7 @@
 		};
 		078057802C9EBE4500110D93 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EC25744311EDC9B6670B10AC /* Pods-TamagoRun-Front.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -568,6 +644,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = BBVZV8T99P;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TamagoRun-Front/info.plist";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 운동 데이터를 건강 앱에 저장하기 위해 필요합니다.";

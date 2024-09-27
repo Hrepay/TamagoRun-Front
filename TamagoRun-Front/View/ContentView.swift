@@ -7,6 +7,8 @@
 
 import SwiftUI
 import CoreData
+import NMapsMap
+
 
 struct ContentView: View {
     @State private var sessionID: String? = UserDefaults.standard.string(forKey: "sessionID")
@@ -25,6 +27,7 @@ struct ContentView: View {
                 MainView()
             } else {
                 StartView(isLoggedIn: $isLoggedIn)
+                
             }
         }
     }
