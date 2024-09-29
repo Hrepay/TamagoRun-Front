@@ -14,6 +14,13 @@ struct ContentView: View {
     @State private var sessionID: String? = UserDefaults.standard.string(forKey: "sessionID")
     @State private var isLoggedIn: Bool = false
     @State private var isCheckingSession: Bool = true // 세션 확인 중 여부
+    
+    // 맵 테스트용
+    @State private var coordinates: [NMGLatLng] = []
+    @State private var mapView: NMFMapView? = nil
+    @ObservedObject private var locationManager = LocationManager()
+    @ObservedObject var runningData = RunningData() // RunningData 인스턴스
+
 
     var body: some View {
         if isCheckingSession {
@@ -27,8 +34,8 @@ struct ContentView: View {
                 MainView()
             } else {
                 StartView(isLoggedIn: $isLoggedIn)
-                
-            }
+                    .edgesIgnoringSafeArea(.all)
+           }
         }
     }
     

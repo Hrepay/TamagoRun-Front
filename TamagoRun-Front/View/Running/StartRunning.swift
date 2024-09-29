@@ -61,10 +61,12 @@ struct StartRunning: View {
             }
             Spacer()
         }
+        // RunningView로 넘어가기
         .fullScreenCover(isPresented: $showNextView) {
-//            MapView(coordinates: $coordinates, mapView: $mapView) // mapView를 바인딩으로 전달
-//                .edgesIgnoringSafeArea(.all)
+            RunningView() // RunningView가 매개변수가 없으므로 그대로 호출
+                .edgesIgnoringSafeArea(.all)
         }
+
     }
     
     func startCountdown() {

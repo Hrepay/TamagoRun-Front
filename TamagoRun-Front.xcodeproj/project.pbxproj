@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		070632312CA68FA7001F884B /* config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 070632302CA68FA7001F884B /* config.plist */; };
 		070632332CA69C00001F884B /* StartRunning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070632322CA69C00001F884B /* StartRunning.swift */; };
+		070C941D2CA943B7007C92C6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C941C2CA943B7007C92C6 /* LocationManager.swift */; };
+		070C94202CA94647007C92C6 /* RunningSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C941F2CA94647007C92C6 /* RunningSummaryView.swift */; };
+		070C94212CA94647007C92C6 /* RunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C941E2CA94647007C92C6 /* RunningView.swift */; };
 		07551A452CA1348B00EAF936 /* DungGeunMo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07551A392CA1348B00EAF936 /* DungGeunMo.otf */; };
 		07551A462CA1348B00EAF936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07551A3D2CA1348B00EAF936 /* Assets.xcassets */; };
 		07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A362CA1348B00EAF936 /* TextFieldModifier.swift */; };
@@ -27,6 +30,7 @@
 		07551A5F2CA13B2400EAF936 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */; };
 		07551A622CA14B3C00EAF936 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A612CA14B3C00EAF936 /* MainView.swift */; };
 		07551A642CA14E2F00EAF936 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A632CA14E2F00EAF936 /* KeychainHelper.swift */; };
+		077ADFD82CA935FA00003481 /* RunningData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077ADFD72CA935FA00003481 /* RunningData.swift */; };
 		07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */; };
 		07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */; };
 		07C5FB932CA39EF000BC0079 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB922CA39EF000BC0079 /* SideMenuView.swift */; };
@@ -55,11 +59,14 @@
 /* Begin PBXFileReference section */
 		070632302CA68FA7001F884B /* config.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = config.plist; sourceTree = "<group>"; };
 		070632322CA69C00001F884B /* StartRunning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRunning.swift; sourceTree = "<group>"; };
+		070C941A2CA93F10007C92C6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		070C941C2CA943B7007C92C6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		070C941E2CA94647007C92C6 /* RunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningView.swift; sourceTree = "<group>"; };
+		070C941F2CA94647007C92C6 /* RunningSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSummaryView.swift; sourceTree = "<group>"; };
 		07551A362CA1348B00EAF936 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
 		07551A392CA1348B00EAF936 /* DungGeunMo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DungGeunMo.otf; sourceTree = "<group>"; };
 		07551A3D2CA1348B00EAF936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		07551A3E2CA1348B00EAF936 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		07551A3F2CA1348B00EAF936 /* info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = info.plist; sourceTree = "<group>"; };
 		07551A402CA1348B00EAF936 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		07551A422CA1348B00EAF936 /* TamagoRun_FrontApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TamagoRun_FrontApp.swift; sourceTree = "<group>"; };
 		07551A442CA1348B00EAF936 /* TamagoRun_Front.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TamagoRun_Front.xcdatamodel; sourceTree = "<group>"; };
@@ -74,6 +81,7 @@
 		07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		07551A612CA14B3C00EAF936 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		07551A632CA14E2F00EAF936 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		077ADFD72CA935FA00003481 /* RunningData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningData.swift; sourceTree = "<group>"; };
 		078057552C9EBE4200110D93 /* TamagoRun-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TamagoRun-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0780576A2C9EBE4500110D93 /* TamagoRun-FrontTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		078057742C9EBE4500110D93 /* TamagoRun-FrontUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,9 +133,11 @@
 		07551A382CA1348B00EAF936 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				077ADFD72CA935FA00003481 /* RunningData.swift */,
 				07551A5A2CA13AE900EAF936 /* UserService.swift */,
 				07551A632CA14E2F00EAF936 /* KeychainHelper.swift */,
 				07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */,
+				070C941C2CA943B7007C92C6 /* LocationManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -144,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				07551A3E2CA1348B00EAF936 /* ContentView.swift */,
+				077ADFCE2CA9355300003481 /* Running */,
 				07C5FB7B2CA2A3DD00BC0079 /* Health */,
 				07551A602CA14B3900EAF936 /* Main */,
 				07551A532CA13AD200EAF936 /* login */,
@@ -172,9 +183,8 @@
 				07551A372CA1348B00EAF936 /* CssCustom */,
 				07551A3A2CA1348B00EAF936 /* Resources */,
 				07551A422CA1348B00EAF936 /* TamagoRun_FrontApp.swift */,
-				07F1A5F92CA5983C0001BF50 /* MapView.swift */,
-				07551A3F2CA1348B00EAF936 /* info.plist */,
 				070632302CA68FA7001F884B /* config.plist */,
+				070C941A2CA93F10007C92C6 /* Info.plist */,
 				07551A412CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld */,
 				07551A3D2CA1348B00EAF936 /* Assets.xcassets */,
 			);
@@ -197,11 +207,21 @@
 		07551A602CA14B3900EAF936 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				070632322CA69C00001F884B /* StartRunning.swift */,
 				07551A612CA14B3C00EAF936 /* MainView.swift */,
 				07C5FB922CA39EF000BC0079 /* SideMenuView.swift */,
 			);
 			path = Main;
+			sourceTree = "<group>";
+		};
+		077ADFCE2CA9355300003481 /* Running */ = {
+			isa = PBXGroup;
+			children = (
+				070C941E2CA94647007C92C6 /* RunningView.swift */,
+				070C941F2CA94647007C92C6 /* RunningSummaryView.swift */,
+				070632322CA69C00001F884B /* StartRunning.swift */,
+				07F1A5F92CA5983C0001BF50 /* MapView.swift */,
+			);
+			path = Running;
 			sourceTree = "<group>";
 		};
 		0780574C2C9EBE4200110D93 = {
@@ -431,6 +451,8 @@
 				07C5FB932CA39EF000BC0079 /* SideMenuView.swift in Sources */,
 				07551A4B2CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld in Sources */,
 				07551A4C2CA1348B00EAF936 /* TamagoRun_FrontApp.swift in Sources */,
+				070C94202CA94647007C92C6 /* RunningSummaryView.swift in Sources */,
+				070C94212CA94647007C92C6 /* RunningView.swift in Sources */,
 				07551A542CA13AD200EAF936 /* LoginView.swift in Sources */,
 				07F1A5F82CA596F00001BF50 /* AppDelegate.swift in Sources */,
 				07551A552CA13AD200EAF936 /* StartView.swift in Sources */,
@@ -443,6 +465,8 @@
 				07551A5E2CA13B2400EAF936 /* SignUpViewModel.swift in Sources */,
 				07551A642CA14E2F00EAF936 /* KeychainHelper.swift in Sources */,
 				07551A5F2CA13B2400EAF936 /* LoginViewModel.swift in Sources */,
+				077ADFD82CA935FA00003481 /* RunningData.swift in Sources */,
+				070C941D2CA943B7007C92C6 /* LocationManager.swift in Sources */,
 				07551A582CA13AD200EAF936 /* SignUpView.swift in Sources */,
 				07551A622CA14B3C00EAF936 /* MainView.swift in Sources */,
 				07551A592CA13AD200EAF936 /* ResetPasswordView.swift in Sources */,
@@ -613,8 +637,8 @@
 				DEVELOPMENT_TEAM = BBVZV8T99P;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "TamagoRun-Front/info.plist";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "TamagoRun-Front/Info.plist";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 운동 데이터를 건강 앱에 저장하기 위해 필요합니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 운동 데이터를 앱에서 불러오기 위해 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -649,8 +673,8 @@
 				DEVELOPMENT_TEAM = BBVZV8T99P;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "TamagoRun-Front/info.plist";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "TamagoRun-Front/Info.plist";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "사용자의 운동 데이터를 건강 앱에 저장하기 위해 필요합니다.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "사용자의 운동 데이터를 앱에서 불러오기 위해 필요합니다.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

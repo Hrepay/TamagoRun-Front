@@ -10,15 +10,12 @@ import SwiftUI
 struct MainView: View {
     
     @State private var progress: Double = 0.5
-    let eggImg = ["egg_1", "egg_2", "egg_3", "egg_4","egg_5"]
-
+    
     // 일주일 러닝 데이터 끌어오기
     let sprout = ["sprout_fill", "sprout_empty"]
     @State private var weeklyRunningData: [Bool] = Array(repeating: false, count: 7)
 
-    
-    let TestImage = ["mangna", "jiwo"]
-    
+    // 캐릭터 정보
     let running = ["run_1", "run_2", "run_3", "run_4"]
 
     @State private var currentImageIndex = 0
@@ -29,7 +26,8 @@ struct MainView: View {
     var body: some View {
         ZStack(alignment: .leading) {
             VStack {
-                // 상단 메뉴 (필요 시 추가)
+                Spacer()
+                // 사이드바
                 HStack {
                     Button(action: {
                         withAnimation(.easeInOut(duration: 0.3)) {
@@ -46,23 +44,29 @@ struct MainView: View {
                 
                 Spacer()
                 
+                // 유저 정보
                 VStack {
+                    
+                    // 유저 닉네임
                     Text("Tamago01")
                         .font(.custom("DungGeunMo", size: 30))
                         .padding()
                     
+                    // 캐릭터 경험치
                     HStack {
                         
                         Text("0 / 10000000m")
                             .font(.custom("DungGeunMo", size: 20))
                             .padding(.leading, 25)
                         
-                        Image("more_info_bt")
-                            .resizable()
-                            .frame(width: 20, height: 20)
-                        
+//                        Image("more_info_bt")
+//                            .resizable()
+//                            .frame(width: 20, height: 20)
+//                        
 
                     }
+                    
+                    // 경험치 바 게이지
                     HStack(alignment: .center) {
                         Text("[")
                             .font(.custom("DungGeunMo", size: 24))
@@ -77,6 +81,7 @@ struct MainView: View {
                     }
                     .padding(.horizontal)
                     
+                    // 캐릭터 정보
                     VStack {
                         Image(running[currentImageIndex])
                             .resizable()
@@ -90,6 +95,7 @@ struct MainView: View {
                             .padding(.top, 30)
                     }
                     
+                    // 캐릭터 레벨
                     Text("level.0")
                         .font(.custom("DungGeunMo", size: 20))
                         .foregroundColor(.gray)
