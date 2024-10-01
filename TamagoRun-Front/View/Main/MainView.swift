@@ -16,7 +16,9 @@ struct MainView: View {
     @State private var weeklyRunningData: [Bool] = Array(repeating: false, count: 7)
 
     // 캐릭터 정보
-    let running = ["run_1", "run_2", "run_3", "run_4"]
+    @StateObject var characterViewModel = CharacterViewModel()
+
+    
 
     @State private var currentImageIndex = 0
     @State private var isShowingMenu = false
@@ -30,7 +32,7 @@ struct MainView: View {
                 // 사이드바
                 HStack {
                     Button(action: {
-                        withAnimation(.easeInOut(duration: 0.3)) {
+                        withAnimation(.easeOut(duration: 0.1)) {
                             isShowingMenu.toggle()
                         }
                     }) {
@@ -48,30 +50,24 @@ struct MainView: View {
                 VStack {
                     
                     // 유저 닉네임
-                    Text("Tamago01")
+                    Text(characterViewModel.loginId)
                         .font(.custom("DungGeunMo", size: 30))
                         .padding()
                     
                     // 캐릭터 경험치
                     HStack {
-                        
-                        Text("0 / 10000000m")
+                        Spacer()
+                        Text("\(characterViewModel.experience) / \(characterViewModel.maxExperience)")
                             .font(.custom("DungGeunMo", size: 20))
-                            .padding(.leading, 25)
-                        
-//                        Image("more_info_bt")
-//                            .resizable()
-//                            .frame(width: 20, height: 20)
-//                        
-
+                        Spacer()
                     }
-                    
+
                     // 경험치 바 게이지
                     HStack(alignment: .center) {
                         Text("[")
                             .font(.custom("DungGeunMo", size: 24))
                         
-                        ProgressView(value: progress)
+                        ProgressView(value: Double(characterViewModel.experience), total: Double(characterViewModel.maxExperience))
                             .progressViewStyle(LinearProgressViewStyle(tint: .black))
                             .frame(width: 200, height: 10)
                             .padding(.top, 5)
@@ -81,22 +77,29 @@ struct MainView: View {
                     }
                     .padding(.horizontal)
                     
+                     
                     // 캐릭터 정보
                     VStack {
-                        Image(running[currentImageIndex])
-                            .resizable()
-                            .frame(width: 100, height: 100)
-                            .onAppear {
-                                Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
-                                    currentImageIndex = (currentImageIndex + 1) % running.count
+                        if !characterViewModel.characterImages.isEmpty {
+                            Image(characterViewModel.characterImages[characterViewModel.currentImageIndex])
+                                .resizable()
+                                .frame(width: 170, height: 170)
+                                .onAppear {
+                                    characterViewModel.startImageAnimation()
                                 }
-                            }
-                            .padding()
-                            .padding(.top, 30)
+                                .padding()
+                                .padding(.top, 30)
+                        } else {
+                            Text("캐릭터 이미지 로딩 중...")
+                                .font(.custom("DungGeunMo", size: 10))
+                                .frame(width: 170, height: 170)
+                                .padding()
+                                .padding(.top, 30)
+                        }
                     }
                     
                     // 캐릭터 레벨
-                    Text("level.0")
+                    Text("level.\(characterViewModel.evolutionLevel)")
                         .font(.custom("DungGeunMo", size: 20))
                         .foregroundColor(.gray)
                 }
@@ -115,7 +118,7 @@ struct MainView: View {
                         ForEach(0..<7, id: \.self) { index in
                             Image(weeklyRunningData[index] ? sprout[0] : sprout[1])
                                 .resizable()
-                                .frame(width: 40, height: 30)
+                                .frame(width: 35, height: 25)
                         }
                         Spacer()
                     }
@@ -164,24 +167,29 @@ struct MainView: View {
                 Color.black.opacity(0.5)
                     .edgesIgnoringSafeArea(.all)
                     .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.3)) {
+                        withAnimation(.easeInOut(duration: 0.0)) {
                             isShowingMenu.toggle()
                         }
                     }
             }
             
-            SideMenuView()
+            SideMenuView(characterViewModel: characterViewModel)
                 .frame(width: UIScreen.main.bounds.width * 0.7)
                 .background(Color.white)
                 .offset(x: isShowingMenu ? 0 : -UIScreen.main.bounds.width * 0.7)
+                
         }
         .onAppear {
+            
             // 주간 러닝 데이터 불러오기
             HealthKitManager.shared.fetchWeeklyRunningData { data in
                 DispatchQueue.main.async {
                     self.weeklyRunningData = data
                 }
             }
+            
+            characterViewModel.fetchCharacterInfo()
+
         }
         .fullScreenCover(isPresented: $isShowingStartRunning) {
             StartRunning(isPresented: $isShowingStartRunning)

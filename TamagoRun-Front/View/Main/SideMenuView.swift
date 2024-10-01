@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct SideMenuView: View {
+        
+    // 캐릭터 정보
+    @ObservedObject var characterViewModel: CharacterViewModel
+
     @State private var isAlarmExpanded = false // Alarm 섹션의 확장 상태를 관리하는 변수
     @State private var isRunningAlertEnabled = false // 러닝 닭달 알림 스위치 상태
     @State private var isMissionAlertEnabled = false // 미션 알림 스위치 상태
@@ -17,33 +21,41 @@ struct SideMenuView: View {
             
             // 닫기 버튼
             VStack {
+                
                 // 메뉴 아이템들
                 Button(action: {
                     print("My page clicked")
                     // My page 버튼 클릭 시 동작 추가
                 }) {
-                    Text("Tamago01")
+                    Text(characterViewModel.loginId) // 여기에 아이디 표시
                         .font(.custom("DungGeunMo", size: 20))
                         .padding(.bottom, 5)
                         .underline() // 텍스트에 밑줄 추가
                         .background(Color.white)
                         .foregroundColor(.black)
                 }
-                HStack{
+                // 캐릭터 이미지 표시
+                HStack {
                     Spacer()
-                    Image("run_1")
-                        .resizable()
-                        .frame(width: 100, height: 100)
-                        .clipShape(Circle()) // 이미지를 동그랗게 클립
-                        .padding()
-                        .overlay(
-                            Circle().stroke(Color.black, lineWidth: 2) // 테두리 추가
-                        )
-                        .padding()
+                    if let characterImage = characterViewModel.characterImages.first {
+                        Image(characterImage)
+                            .resizable()
+                            .frame(width: 100, height: 100)
+                            .clipShape(Circle()) // 이미지를 동그랗게 클립
+                            .padding()
+                            .overlay(
+                                Circle().stroke(Color.black, lineWidth: 2) // 테두리 추가
+                            )
+                            .padding()
+                    } else {
+                        Text("캐릭터 이미지 로딩 중...")
+                            .font(.custom("DungGeunMo", size: 10))
+                            .padding()
+                    }
                     Spacer()
                 }
             }
-            .padding(.top, 30)
+            .padding(.top, 50)
             
             
             
@@ -88,22 +100,24 @@ struct SideMenuView: View {
                     .foregroundColor(.black)
                 }
                 
-                // 슬라이드 애니메이션 구현
-                VStack(alignment: .leading) {
-                    Toggle("러닝 닥달 알림 받기", isOn: $isRunningAlertEnabled)
-                        .font(.custom("DungGeunMo", size: 15))
-                        .padding(.horizontal)
-                    
-                    Toggle("미션 알림", isOn: $isMissionAlertEnabled)
-                        .font(.custom("DungGeunMo", size: 15))
-                        .padding(.horizontal)
+                // 터치 시 나타났다 없어지는 효과로 수정
+                if isAlarmExpanded {
+                    VStack(alignment: .leading) {
+                        Toggle("러닝 닥달 알림 받기", isOn: $isRunningAlertEnabled)
+                            .font(.custom("DungGeunMo", size: 15))
+                            .padding(.horizontal)
+                        
+                        Toggle("미션 알림", isOn: $isMissionAlertEnabled)
+                            .font(.custom("DungGeunMo", size: 15))
+                            .padding(.horizontal)
+                    }
+                    .padding(.leading, 20)
+                    .padding(.bottom, 10)
+                    .transition(.opacity) // 부드러운 나타남/사라짐 효과
+                    .animation(.easeInOut(duration: 0.3), value: isAlarmExpanded) // 애니메이션 적용
                 }
-                .padding(.leading, 20)
-                .padding(.bottom, 10)
-                .offset(y: isAlarmExpanded ? 0 : -100) // 슬라이드 효과
-                .opacity(isAlarmExpanded ? 1 : 0) // 부드러운 나타남/사라짐 효과
-                .animation(.easeInOut(duration: 0.3), value: isAlarmExpanded) // 애니메이션 적용
             }
+                
             
             // 로그아웃 버튼
             Spacer()
@@ -135,5 +149,12 @@ struct SideMenuView: View {
 }
 
 #Preview {
-    SideMenuView()
+    let mockCharacterViewModel = CharacterViewModel()
+    // 미리보기에서 테스트할 데이터를 설정해줍니다.
+    mockCharacterViewModel.loginId = "Tamago01"
+    mockCharacterViewModel.experience = 5000
+    mockCharacterViewModel.evolutionLevel = 3
+    mockCharacterViewModel.characterImages = ["fire_dragon_1", "fire_dragon_2", "fire_dragon_3", "fire_dragon_4"]
+    
+    return SideMenuView(characterViewModel: mockCharacterViewModel)
 }

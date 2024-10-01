@@ -20,8 +20,7 @@ struct ContentView: View {
     @State private var mapView: NMFMapView? = nil
     @ObservedObject private var locationManager = LocationManager()
     @ObservedObject var runningData = RunningData() // RunningData 인스턴스
-
-
+    
     var body: some View {
         if isCheckingSession {
             // 세션 확인 중일 때 로딩 스피너 표시

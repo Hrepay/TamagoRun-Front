@@ -21,8 +21,6 @@ struct TamagoRun_FrontApp: App {
                     ContentView()
                         .ignoresSafeArea() // 여기에 추가
                         .environment(\.managedObjectContext, persistenceController.container.viewContext)
-
-
                     
                 } else {
                     HealthPermissionView() // 권한 허용을 위한 뷰

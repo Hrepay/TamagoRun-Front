@@ -11,7 +11,7 @@ struct LoginView: View {
     
     @StateObject private var viewModel = LoginViewModel() // 뷰 모델 사용
     @Environment(\.presentationMode) var presentationMode
-    @State private var navigateToMainView: Bool = false // MainView로 이동하기 위한 상태 변수
+    @State private var navigateToMainView: Bool = false // MainView로 이동하기 위한 상태 변수ㅋ
     
     let btList = ["email_bt", "ok_bt"]
     
