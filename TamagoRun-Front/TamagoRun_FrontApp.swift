@@ -13,6 +13,9 @@ struct TamagoRun_FrontApp: App {
     let persistenceController = PersistenceController.shared
     @State private var isAuthorized = false // 권한 상태를 추적하는 State 변수
     @Environment(\.scenePhase) private var scenePhase // ScenePhase 모니터링을 위한 환경 변수
+    
+    // loginViewModel 전역에서 관리
+    @StateObject private var loginViewModel = LoginViewModel()
 
     var body: some Scene {
         WindowGroup {
@@ -21,6 +24,7 @@ struct TamagoRun_FrontApp: App {
                     ContentView()
                         .ignoresSafeArea() // 여기에 추가
                         .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                        .environmentObject(loginViewModel) // 로그인 상태를 전역으로 공유
                     
                 } else {
                     HealthPermissionView() // 권한 허용을 위한 뷰

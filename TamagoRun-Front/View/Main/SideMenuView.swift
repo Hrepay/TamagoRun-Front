@@ -11,6 +11,10 @@ struct SideMenuView: View {
         
     // 캐릭터 정보
     @ObservedObject var characterViewModel: CharacterViewModel
+    
+    // 로그인 상태를 관리하는 변수 (Binding으로 받음)
+    @ObservedObject var viewModel: LoginViewModel // LoginViewModel의 인스턴스를 받음
+    @Binding var isLoggedIn: Bool
 
     @State private var isAlarmExpanded = false // Alarm 섹션의 확장 상태를 관리하는 변수
     @State private var isRunningAlertEnabled = false // 러닝 닭달 알림 스위치 상태
@@ -123,7 +127,18 @@ struct SideMenuView: View {
             Spacer()
             Button(action: {
                 print("Logout clicked")
-                // Logout 버튼 클릭 시 동작 추가
+                // 로그아웃 처리 메서드 호출
+                viewModel.logout { success in
+                    if success {
+                        DispatchQueue.main.async {
+                            isLoggedIn = false
+                            viewModel.resetState()
+                        }
+                        print("로그아웃 되었습니다.")
+                    } else {
+                        print("로그아웃 실패")
+                    }
+                }
             }) {
                 HStack {
                     Text("Logout")
@@ -148,13 +163,13 @@ struct SideMenuView: View {
     }
 }
 
-#Preview {
-    let mockCharacterViewModel = CharacterViewModel()
-    // 미리보기에서 테스트할 데이터를 설정해줍니다.
-    mockCharacterViewModel.loginId = "Tamago01"
-    mockCharacterViewModel.experience = 5000
-    mockCharacterViewModel.evolutionLevel = 3
-    mockCharacterViewModel.characterImages = ["fire_dragon_1", "fire_dragon_2", "fire_dragon_3", "fire_dragon_4"]
-    
-    return SideMenuView(characterViewModel: mockCharacterViewModel)
-}
+//#Preview {
+//    let mockCharacterViewModel = CharacterViewModel()
+//    // 미리보기에서 테스트할 데이터를 설정해줍니다.
+//    mockCharacterViewModel.loginId = "Tamago01"
+//    mockCharacterViewModel.experience = 5000
+//    mockCharacterViewModel.evolutionLevel = 3
+//    mockCharacterViewModel.characterImages = ["fire_dragon_1", "fire_dragon_2", "fire_dragon_3", "fire_dragon_4"]
+//    
+//    return SideMenuView(characterViewModel: mockCharacterViewModel)
+//}

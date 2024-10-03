@@ -18,12 +18,12 @@ struct MainView: View {
     // 캐릭터 정보
     @StateObject var characterViewModel = CharacterViewModel()
 
-    
-
     @State private var currentImageIndex = 0
     @State private var isShowingMenu = false
-    
     @State private var isShowingStartRunning = false // StartRunning
+    
+    @EnvironmentObject var viewModel: LoginViewModel
+    @Binding var isLoggedIn: Bool // isLoggedIn 바인딩
 
     var body: some View {
         ZStack(alignment: .leading) {
@@ -173,12 +173,11 @@ struct MainView: View {
                     }
             }
             
-            SideMenuView(characterViewModel: characterViewModel)
-                .frame(width: UIScreen.main.bounds.width * 0.7)
-                .background(Color.white)
-                .offset(x: isShowingMenu ? 0 : -UIScreen.main.bounds.width * 0.7)
-                
-        }
+            SideMenuView(characterViewModel: characterViewModel, viewModel: viewModel, isLoggedIn: $isLoggedIn)
+               .frame(width: UIScreen.main.bounds.width * 0.7)
+               .background(Color.white)
+               .offset(x: isShowingMenu ? 0 : -UIScreen.main.bounds.width * 0.7)
+       }
         .onAppear {
             
             // 주간 러닝 데이터 불러오기
@@ -197,6 +196,6 @@ struct MainView: View {
     }
 }
 
-#Preview {
-    MainView()
-}
+//#Preview {
+//    MainView()
+//}

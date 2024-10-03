@@ -178,14 +178,17 @@ class UserService {
                         let sessionIDValue = String(sessionID.split(separator: "=")[1])
                         // 세션 ID 저장
                         UserDefaults.standard.set(sessionIDValue, forKey: "sessionID")
+                        completion(true, sessionIDValue) // 로그인 성공 시 세션 ID 반환
+                        return
                     }
                 }
-                completion(true, nil) // 로그인 성공
+                completion(false, "Session ID not found") // 세션 ID가 발견되지 않음
             } else {
                 completion(false, "Login failed") // 로그인 실패
             }
         }.resume()
     }
+
     
     // 세션 ID 확인 메서드 추가
     func checkSessionID(_ sessionID: String, completion: @escaping (Bool) -> Void) {
@@ -224,8 +227,33 @@ class UserService {
         }.resume()
     }
     
+    
+    // 로그아웃
+    func logout(completion: @escaping (Bool) -> Void) {
+        guard let sessionID = UserDefaults.standard.string(forKey: "sessionID"),
+              let url = URL(string: "\(baseURL)/user/logout") else {
+            completion(false)
+            return
+        }
 
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("JSESSIONID=\(sessionID)", forHTTPHeaderField: "Cookie")
 
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Logout Error: \(error)")
+                completion(false)
+                return
+            }
+
+            if let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }.resume()
+    }
 
     
     // 비밀번호 재설정 - 이메일 요청 메서드

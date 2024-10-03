@@ -36,8 +36,8 @@ struct StartView: View {
                 }
                 .foregroundColor(.black)
                 .padding(.bottom, 5)
-                                
-                NavigationLink(destination: LoginView()) {
+                
+                NavigationLink(destination: LoginView(isLoggedIn: $isLoggedIn)) {
                     Image(buttonImage[1])
                         .resizable()
                         .frame(width: 240, height: 50) // 이미지 크기 조정

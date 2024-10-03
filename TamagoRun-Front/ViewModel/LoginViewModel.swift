@@ -8,10 +8,12 @@
 import Foundation
 
 class LoginViewModel: ObservableObject {
+    
     @Published var loginId: String
     @Published var password: String = ""
     @Published var isLoginSuccessful: Bool = false // 로그인 성공 여부를 나타내는 변수
     @Published var errorMessage: String? = nil
+    @Published var sessionID: String? = nil // 세션 ID를 저장할 변수 추가
     
     // 비밀번호 재설정 관련 상태
     @Published var email: String = ""
@@ -25,22 +27,85 @@ class LoginViewModel: ObservableObject {
     @Published var confirmPassword: String = ""
     @Published var passwordResetError: String? = nil
     
+    // 로그 아웃 관리
+    @Published var isCheckingSession: Bool = true  // 세션을 확인 중인 상태를 관리
+    @Published var isLoggedIn: Bool = false        // 로그인 상태를 관리
+    
+    // 로그아웃 시 호출할 초기화 메서드
+    func resetState() {
+        DispatchQueue.main.async {
+            self.loginId = ""
+            self.password = ""
+            self.isLoginSuccessful = false
+            self.errorMessage = nil
+            self.sessionID = nil
+        }
+    }
+
+
+    let userService = UserService()
+    
     init(loginId: String = "") {
         self.loginId = loginId
     }
     
+    func checkSession() {
+        if let storedSessionID = UserDefaults.standard.string(forKey: "sessionID") {
+            // 서버와의 통신으로 세션 확인
+            userService.checkSessionID(storedSessionID) { isValid in
+                DispatchQueue.main.async {
+                    self.isCheckingSession = false
+                    if isValid {
+                        self.isLoggedIn = true
+                    } else {
+                        UserDefaults.standard.removeObject(forKey: "sessionID")
+                        self.isLoggedIn = false
+                    }
+                }
+            }
+        } else {
+            // 세션이 없으면 바로 확인 완료
+            DispatchQueue.main.async {
+                self.isCheckingSession = false
+                self.isLoggedIn = false
+            }
+        }
+    }
     
     // 로그인 메서드
     func login() {
-        UserService.shared.login(id: loginId, password: password) { [weak self] success, error in
+        UserService.shared.login(id: loginId, password: password) { [weak self] success, sessionID in
             DispatchQueue.main.async {
                 if success {
-                    self?.isLoginSuccessful = true // 로그인 성공
-                    self?.errorMessage = nil
+                    self?.isLoginSuccessful = true
+                    self?.isLoggedIn = true
+                    self?.sessionID = sessionID // 로그인 성공 시 세션 ID 저장
+                    // 세션 ID를 UserDefaults에 저장
+                        if let sessionID = sessionID {
+                            UserDefaults.standard.set(sessionID, forKey: "sessionID")
+                        }
+                    // 로그인 성공 시 MainView로 이동하도록 알리기
+                    self?.errorMessage = nil // 오류 메시지 초기화
                 } else {
                     self?.isLoginSuccessful = false
-                    self?.errorMessage = error
+                    self?.errorMessage = sessionID ?? "로그인에 실패했습니다." // 세션 ID가 nil인 경우 오류 메시지 사용
                 }
+            }
+        }
+    }
+    
+    // 로그아웃 처리 메서드
+    func logout(completion: @escaping (Bool) -> Void) {
+        UserService.shared.logout { success in
+            if success {
+                // 로그아웃 성공 시 세션 ID 제거
+                UserDefaults.standard.removeObject(forKey: "sessionID")
+                // 상태 초기화
+                self.resetState()
+                completion(true)
+            } else {
+                print("Logout failed")
+                completion(false)
             }
         }
     }

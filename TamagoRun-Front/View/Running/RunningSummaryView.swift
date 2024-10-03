@@ -17,6 +17,8 @@ struct RunningSummaryView: View {
     
     @State private var isMainViewActive = false
     @Environment(\.presentationMode) var presentationMode
+    
+    @EnvironmentObject var viewModel: LoginViewModel
 
     var body: some View {
         VStack {
@@ -132,7 +134,7 @@ struct RunningSummaryView: View {
                     // MainView로 직접 이동하는 로직
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                        let window = windowScene.windows.first {
-                        window.rootViewController = UIHostingController(rootView: MainView())
+                        window.rootViewController = UIHostingController(rootView: MainView(isLoggedIn: $viewModel.isLoggedIn))
                         window.makeKeyAndVisible()
                     }
                 }) {
@@ -146,7 +148,7 @@ struct RunningSummaryView: View {
         }
         .navigationBarBackButtonHidden(true)
         .fullScreenCover(isPresented: $isMainViewActive) {
-            MainView() // MainView를 완전히 덮어쓰도록 fullScreenCover를 사용합니다.
+            MainView(isLoggedIn: $viewModel.isLoggedIn) // MainView를 완전히 덮어쓰도록 fullScreenCover를 사용합니다.
         }
     }
 }

@@ -9,9 +9,11 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @StateObject private var viewModel = LoginViewModel() // 뷰 모델 사용
+    @EnvironmentObject var viewModel: LoginViewModel
     @Environment(\.presentationMode) var presentationMode
-    @State private var navigateToMainView: Bool = false // MainView로 이동하기 위한 상태 변수ㅋ
+    @Binding var isLoggedIn: Bool // 로그인 상태 바인딩
+    
+    @State private var navigateToMainView = false // 네비게이션 상태 관리 변수 추가
     
     let btList = ["email_bt", "ok_bt"]
     
@@ -22,7 +24,7 @@ struct LoginView: View {
                 
                 Text("Login")
                     .font(.custom("DungGeunMo", size: 40))
-                    .padding(.bottom, 40)
+                    .padding(.bottom, 20)
                 
                 // 로그인 입력 필드
                 TextField("ID", text: $viewModel.loginId)
@@ -46,8 +48,10 @@ struct LoginView: View {
                 Button(action: {
                     viewModel.login() // 로그인 함수 호출
                     if viewModel.isLoginSuccessful {
-                        // 로그인 성공 시 MainView로 이동하기 위해 상태 변수 변경
-                        navigateToMainView = true
+                        // 로그인 성공 시 로그인 상태 변경
+                        isLoggedIn = true
+                        UserDefaults.standard.set(viewModel.sessionID, forKey: "sessionID") // 세션 저장
+                        navigateToMainView = true // 네비게이션 상태 변경
                     }
                 }) {
                     Image(btList[1])
@@ -81,19 +85,20 @@ struct LoginView: View {
             // MainView로의 네비게이션 설정
             .fullScreenCover(isPresented: $navigateToMainView) {
                 NavigationStack {
-                    MainView()
+                    MainView(isLoggedIn: $isLoggedIn)
+                        .environmentObject(viewModel) // 환경 객체로 넘겨줌
                 }
             }
             .onChange(of: viewModel.isLoginSuccessful) {
-                if viewModel.isLoginSuccessful {
-                    navigateToMainView = true
-                }
+                navigateToMainView = true
             }
         }
         .navigationBarBackButtonHidden(true) // 이 줄을 추가하여 파란색 "< Back" 버튼을 숨깁니다.
     }
 }
 
+
 #Preview {
-    LoginView()
+    LoginView(isLoggedIn: .constant(false))
 }
+

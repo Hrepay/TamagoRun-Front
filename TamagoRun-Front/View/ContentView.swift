@@ -9,7 +9,6 @@ import SwiftUI
 import CoreData
 import NMapsMap
 
-
 struct ContentView: View {
     @State private var sessionID: String? = UserDefaults.standard.string(forKey: "sessionID")
     @State private var isLoggedIn: Bool = false
@@ -21,22 +20,27 @@ struct ContentView: View {
     @ObservedObject private var locationManager = LocationManager()
     @ObservedObject var runningData = RunningData() // RunningData 인스턴스
     
+    // 로그인 처리
+    @EnvironmentObject var viewModel: LoginViewModel
+
     var body: some View {
-        if isCheckingSession {
-            // 세션 확인 중일 때 로딩 스피너 표시
-            ProgressView("Checking session...")
-                .onAppear {
-                    checkSession()
-                }
-        } else {
-            if isLoggedIn {
-                MainView()
+        Group {
+            if viewModel.isCheckingSession {
+                ProgressView("Checking session...")
+                    .onAppear {
+                        viewModel.checkSession()
+                    }
+            } else if viewModel.isLoggedIn {
+                MainView(isLoggedIn: $viewModel.isLoggedIn)
+                    .environmentObject(viewModel)
             } else {
-                StartView(isLoggedIn: $isLoggedIn)
+                StartView(isLoggedIn: $viewModel.isLoggedIn)
+                    .environmentObject(viewModel)
                     .edgesIgnoringSafeArea(.all)
-           }
+            }
         }
     }
+
     
     // 세션 확인을 위한 메서드 추출
     private func checkSession() {
