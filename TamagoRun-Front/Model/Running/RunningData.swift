@@ -10,7 +10,8 @@ import SwiftUI
 import Combine
 
 class RunningData: ObservableObject {
-    @Published var distance: Double = 0
-    @Published var calories: Int = 0
+    @Published var distance: Double = 0.0
     @Published var pace: String = "00:00"
+    @Published var calories: Int = 0
+    @Published var elapsedTime: TimeInterval = 0.0
 }

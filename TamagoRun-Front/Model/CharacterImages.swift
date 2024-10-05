@@ -16,9 +16,9 @@ struct CharacterImages {
             1: [ // 크리쳐 1 (불)
                 1: ["fire_dragon_111_1", "fire_dragon_111_2", "fire_dragon_111_3", "fire_dragon_111_4"],
                 2: ["fire_dragon_112_1", "fire_dragon_112_2", "fire_dragon_112_3", "fire_dragon_112_4"],
-                3: ["sander_132_1", "sander_132_2", "sander_132_3", "sander_132_4"]
+                3: ["thunder_122_1", "thunder_122_2", "thunder_122_3", "thunder_122_4"]
             ],
-            2: [ // 크리쳐 2 (물)
+            2: [ // 크리쳐 2 (번개)
                 1: ["fire_dragon_111_1", "fire_dragon_111_2", "fire_dragon_111_3", "fire_dragon_111_4"],
                 2: ["fire_dragon_112_1", "fire_dragon_112_2", "fire_dragon_112_3", "fire_dragon_112_4"],
                 3: ["fire_dragon_113_1", "fire_dragon_113_2", "fire_dragon_113_3", "fire_dragon_113_4"]
@@ -44,14 +44,6 @@ struct CharacterImages {
                 "egg_06",
                 "egg_07",
                 "egg_08"
-//                "sander_113_1",
-//                "sander_113_2",
-//                "sander_113_3",
-//                "sander_113_4"
-//                "fire_dragon_111_1",
-//                "fire_dragon_111_2",
-//                "fire_dragon_111_3",
-//                "fire_dragon_111_4",
             ]
         }
         

@@ -10,28 +10,36 @@ import NMapsMap
 import CoreLocation
 
 struct RunningView: View {
-    @StateObject var runningData = RunningData() // RunningData 객체 생성
+    
+    @StateObject var runningData = RunningData()
+    
     @State private var coordinates: [NMGLatLng] = []
     @State private var mapView: NMFMapView? = nil
     @State private var startTime: Date? // 러닝 시작 시간
     @State private var timer: Timer? // 타이머
-    
     @State private var runningTime: String = "00:00:00" // 러닝 시간
     @State private var isRunningFinished = false // 러닝 종료 상태
     @State private var offsetY: CGFloat = 0 // 슬라이드 제스처를 위한 offset
-
+    
+    @StateObject private var viewModel: RunningViewModel
+    
+    init() {
+        let runningData = RunningData()
+        let coordinates: [NMGLatLng] = []
+        _viewModel = StateObject(wrappedValue: RunningViewModel(runningData: runningData, coordinates: coordinates))
+    }
+    
     var body: some View {
         NavigationStack {
             ZStack {
                 MapView(coordinates: $coordinates, mapView: $mapView, runningData: runningData)
+
                     .edgesIgnoringSafeArea(.all)
                 
-                // GeometryReader를 사용하여 화면의 크기를 가져옴
                 GeometryReader { geometry in
                     VStack {
                         Spacer()
                         
-                        // 슬라이드 핸들 및 하단 메뉴
                         VStack {
                             RoundedRectangle(cornerRadius: 3)
                                 .fill(Color.gray.opacity(0.3))
@@ -69,10 +77,34 @@ struct RunningView: View {
                                 }
                                 .padding(.bottom, 20)
                                 
-                                // Stop 버튼
                                 Button(action: {
-                                    stopRunning()
-                                    isRunningFinished = true // 러닝 종료 상태로 변경
+                                    stopRunning()  // 타이머를 먼저 멈추고 데이터를 업데이트한 후
+                                    
+                                    // ViewModel 업데이트
+                                    viewModel.updateRunningData(runningData)
+                                    viewModel.updateCoordinates(coordinates)
+                                    
+                                    // HealthKit에 데이터 저장
+                                    let paceComponents = runningData.pace.split(separator: ":")
+                                    let paceMinutes = Double(paceComponents[0]) ?? 0
+                                    let paceSeconds = Double(paceComponents[1]) ?? 0
+                                    let paceInMinutesPerKm = paceMinutes + (paceSeconds / 60.0)
+                                    
+                                    HealthKitManager.shared.saveRunningWorkout(
+                                        distance: runningData.distance * 1000, // km를 m로 변환
+                                        time: runningData.elapsedTime * 60, // 분을 초로 변환
+                                        calories: Double(runningData.calories),
+                                        pace: paceInMinutesPerKm
+                                    ) { success, error in
+                                        if success {
+                                            print("러닝 데이터가 성공적으로 HealthKit에 저장되었습니다.")
+                                        } else {
+                                            print("HealthKit 데이터 저장 실패: \(error?.localizedDescription ?? "알 수 없는 오류")")
+                                        }
+                                    }
+                                    
+                                    isRunningFinished = true
+                                    viewModel.uploadRunningData()
                                 }) {
                                     Text("Stop!")
                                         .font(.custom("DungGeunMo", size: 28))
@@ -125,7 +157,6 @@ struct RunningView: View {
                     .edgesIgnoringSafeArea(.bottom)
                 }
                 
-                // 러닝 종료 시 RunningSummaryView로 이동
                 NavigationLink(value: "RunningSummaryView") {
                     EmptyView()
                 }
@@ -142,25 +173,28 @@ struct RunningView: View {
             .onAppear {
                 startRunning()
             }
+            .onDisappear {
+                stopRunning() // RunningView가 사라질 때 타이머 및 상태 정리
+            }
         }
     }
     
     func startRunning() {
-        startTime = Date() // 러닝 시작 시간 설정
-        
-        // 타이머 시작 (1초마다 실행)
+        startTime = Date()
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            updateRunningTime()
+            updateRunningTime()  // 화면에 보여질 시간도 업데이트
         }
     }
     
     func stopRunning() {
         timer?.invalidate() // 타이머 정지
+        timer = nil
+        startTime = nil
+        updateRunningTime() // 러닝 시간 최종 업데이트
     }
     
     func updateRunningTime() {
-        guard let start = startTime else { return }
-        
+        guard let start = startTime, !isRunningFinished else { return }
         let elapsedTime = Date().timeIntervalSince(start)
         let hours = Int(elapsedTime) / 3600
         let minutes = Int(elapsedTime) / 60 % 60
@@ -168,11 +202,6 @@ struct RunningView: View {
         runningTime = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
     }
 }
-
-
-
-
-
 
 
 #Preview {

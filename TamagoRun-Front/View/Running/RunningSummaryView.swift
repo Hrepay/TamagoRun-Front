@@ -134,7 +134,10 @@ struct RunningSummaryView: View {
                     // MainView로 직접 이동하는 로직
                     if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
                        let window = windowScene.windows.first {
-                        window.rootViewController = UIHostingController(rootView: MainView(isLoggedIn: $viewModel.isLoggedIn))
+                        window.rootViewController = UIHostingController(
+                            rootView: MainView(isLoggedIn: $viewModel.isLoggedIn)
+                                .environmentObject(viewModel)
+                        )
                         window.makeKeyAndVisible()
                     }
                 }) {
@@ -148,7 +151,8 @@ struct RunningSummaryView: View {
         }
         .navigationBarBackButtonHidden(true)
         .fullScreenCover(isPresented: $isMainViewActive) {
-            MainView(isLoggedIn: $viewModel.isLoggedIn) // MainView를 완전히 덮어쓰도록 fullScreenCover를 사용합니다.
+            MainView(isLoggedIn: $viewModel.isLoggedIn)
+                .environmentObject(viewModel)
         }
     }
 }
@@ -159,14 +163,16 @@ struct NaverMapView: UIViewRepresentable {
     func makeUIView(context: Context) -> NMFMapView {
         let mapView = NMFMapView()
 
-        // 첫 번째 좌표를 기준으로 카메라 이동
+        // 첫 번째 좌표를 기준으로 카메라 이동 및 줌 레벨 설정
         if let firstCoordinate = coordinates.first {
-            let cameraUpdate = NMFCameraUpdate(scrollTo: firstCoordinate)
+            let cameraPosition = NMFCameraPosition(firstCoordinate, zoom: 15.0) // 줌 레벨 15로 설정
+            let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
+            cameraUpdate.animation = .easeIn
             mapView.moveCamera(cameraUpdate)
         }
 
         // 좌표를 이용하여 경로 그리기
-        let path = NMGLineString(points: coordinates.map { $0 as AnyObject }) // 좌표 배열을 올바르게 변환
+        let path = NMGLineString(points: coordinates.map { $0 as AnyObject })
         if let polylineOverlay = NMFPolylineOverlay(path) {
             polylineOverlay.mapView = mapView
         }
@@ -174,30 +180,9 @@ struct NaverMapView: UIViewRepresentable {
         return mapView
     }
 
+
     func updateUIView(_ uiView: NMFMapView, context: Context) {
         // 만약 coordinates가 업데이트된다면 여기서 uiView를 갱신할 수 있습니다.
-    }
-}
-
-
-struct StatView: View {
-    var label: String
-    var value: String
-    
-    var body: some View {
-        VStack {
-            Text(label)
-                .font(.custom("DungGeunMo", size: 14))
-            
-            Text(value)
-                .font(.custom("DungGeunMo", size: 24))
-                .padding()
-                .frame(width: 120, height: 60) // 크기를 고정하여 딱 맞게 수정
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10).stroke()
-                )
-        }
-        .frame(width: 140, height: 100) // 각 StatView의 전체 크기를 고정
     }
 }
 

@@ -12,6 +12,8 @@
 		070C941D2CA943B7007C92C6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C941C2CA943B7007C92C6 /* LocationManager.swift */; };
 		070C94202CA94647007C92C6 /* RunningSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C941F2CA94647007C92C6 /* RunningSummaryView.swift */; };
 		070C94212CA94647007C92C6 /* RunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C941E2CA94647007C92C6 /* RunningView.swift */; };
+		07123C952CB1070200DBFA63 /* RunningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07123C942CB1070100DBFA63 /* RunningViewModel.swift */; };
+		07123C972CB107E200DBFA63 /* RunningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07123C962CB107E200DBFA63 /* RunningService.swift */; };
 		07551A452CA1348B00EAF936 /* DungGeunMo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07551A392CA1348B00EAF936 /* DungGeunMo.otf */; };
 		07551A462CA1348B00EAF936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07551A3D2CA1348B00EAF936 /* Assets.xcassets */; };
 		07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A362CA1348B00EAF936 /* TextFieldModifier.swift */; };
@@ -66,6 +68,8 @@
 		070C941C2CA943B7007C92C6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		070C941E2CA94647007C92C6 /* RunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningView.swift; sourceTree = "<group>"; };
 		070C941F2CA94647007C92C6 /* RunningSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSummaryView.swift; sourceTree = "<group>"; };
+		07123C942CB1070100DBFA63 /* RunningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningViewModel.swift; sourceTree = "<group>"; };
+		07123C962CB107E200DBFA63 /* RunningService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningService.swift; sourceTree = "<group>"; };
 		07551A362CA1348B00EAF936 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
 		07551A392CA1348B00EAF936 /* DungGeunMo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DungGeunMo.otf; sourceTree = "<group>"; };
 		07551A3D2CA1348B00EAF936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -128,6 +132,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		07123C922CAFF03600DBFA63 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				07551A5A2CA13AE900EAF936 /* UserService.swift */,
+				07551A632CA14E2F00EAF936 /* KeychainHelper.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		07123C932CAFF04400DBFA63 /* Running */ = {
+			isa = PBXGroup;
+			children = (
+				070C941C2CA943B7007C92C6 /* LocationManager.swift */,
+				077ADFD72CA935FA00003481 /* RunningData.swift */,
+				07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */,
+				07123C962CB107E200DBFA63 /* RunningService.swift */,
+			);
+			path = Running;
+			sourceTree = "<group>";
+		};
 		07551A372CA1348B00EAF936 /* CssCustom */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,11 +163,8 @@
 		07551A382CA1348B00EAF936 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				077ADFD72CA935FA00003481 /* RunningData.swift */,
-				07551A5A2CA13AE900EAF936 /* UserService.swift */,
-				07551A632CA14E2F00EAF936 /* KeychainHelper.swift */,
-				07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */,
-				070C941C2CA943B7007C92C6 /* LocationManager.swift */,
+				07123C932CAFF04400DBFA63 /* Running */,
+				07123C922CAFF03600DBFA63 /* User */,
 				07D4545B2CAA96BE009FD782 /* CharacterImages.swift */,
 				07D454612CABE65B009FD782 /* MainPageDto.swift */,
 			);
@@ -176,6 +197,7 @@
 				07551A5C2CA13B2400EAF936 /* SignUpViewModel.swift */,
 				07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */,
 				07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */,
+				07123C942CB1070100DBFA63 /* RunningViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -458,6 +480,7 @@
 				07D4545C2CAA96BE009FD782 /* CharacterImages.swift in Sources */,
 				07551A4A2CA1348B00EAF936 /* Persistence.swift in Sources */,
 				07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */,
+				07123C972CB107E200DBFA63 /* RunningService.swift in Sources */,
 				07C5FB932CA39EF000BC0079 /* SideMenuView.swift in Sources */,
 				07D454622CABE65B009FD782 /* MainPageDto.swift in Sources */,
 				07551A4B2CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld in Sources */,
@@ -465,6 +488,7 @@
 				07D4545E2CAA9C5A009FD782 /* CharacterViewModel.swift in Sources */,
 				070C94202CA94647007C92C6 /* RunningSummaryView.swift in Sources */,
 				070C94212CA94647007C92C6 /* RunningView.swift in Sources */,
+				07123C952CB1070200DBFA63 /* RunningViewModel.swift in Sources */,
 				07551A542CA13AD200EAF936 /* LoginView.swift in Sources */,
 				07F1A5F82CA596F00001BF50 /* AppDelegate.swift in Sources */,
 				07551A552CA13AD200EAF936 /* StartView.swift in Sources */,

@@ -8,7 +8,6 @@
 import Foundation
 import HealthKit
 
-// HealthKitManager 클래스
 class HealthKitManager {
     static let shared = HealthKitManager()
     let healthStore = HKHealthStore()
@@ -180,20 +179,10 @@ extension HealthKitManager {
             return
         }
         
-        let endDate = calendar.date(byAdding: .day, value: 7, to: startOfWeek) ?? now
-        
-        // 운동 타입은 달리기로 한정
-        let workoutType = HKObjectType.workoutType()
-        let predicate = HKQuery.predicateForSamples(withStart: startOfWeek, end: endDate, options: .strictStartDate)
-        
-        let query = HKSampleQuery(sampleType: workoutType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (_, samples, error) in
-            guard let workouts = samples as? [HKWorkout], error == nil else {
-                DispatchQueue.main.async {
-                    completion(runningData)
-                }
-                return
-            }
-            
+//        let endDate = calendar.date(byAdding: .day, value: 7, to: startOfWeek) ?? now
+
+        // `fetchRunningWorkouts` 메서드로 러닝 기록만 가져오기
+        self.fetchRunningWorkouts { workouts in
             // 각 운동 기록의 날짜를 분석하여 주간 데이터에 반영
             for workout in workouts {
                 let workoutDate = workout.startDate
@@ -209,8 +198,91 @@ extension HealthKitManager {
                 completion(runningData)
             }
         }
+    }
+}
+
+extension HealthKitManager {
+    // 러닝 운동 기록만 가져오는 메서드
+    func fetchRunningWorkouts(completion: @escaping ([HKWorkout]) -> Void) {
+        let workoutType = HKObjectType.workoutType()
         
+        // 운동 타입이 러닝인 경우에 대한 필터
+        let predicate = HKQuery.predicateForWorkouts(with: .running)
+
+        let query = HKSampleQuery(sampleType: workoutType, predicate: predicate, limit: HKObjectQueryNoLimit, sortDescriptors: nil) { (query, samples, error) in
+            guard let workouts = samples as? [HKWorkout], error == nil else {
+                DispatchQueue.main.async {
+                    completion([])
+                }
+                return
+            }
+            
+            // 메인 쓰레드에서 러닝 운동 기록을 반환
+            DispatchQueue.main.async {
+                completion(workouts)
+            }
+        }
+
         healthStore.execute(query)
     }
 }
 
+extension HealthKitManager {
+    func saveRunningWorkout(distance: Double, time: TimeInterval, calories: Double, pace: Double, completion: @escaping (Bool, Error?) -> Void) {
+        // Workout Configuration 설정
+        let configuration = HKWorkoutConfiguration()
+        configuration.activityType = .running
+
+        // Workout Builder 생성
+        let workoutBuilder = HKWorkoutBuilder(healthStore: healthStore, configuration: configuration, device: .local())
+
+        // 운동 시작 시간을 현재 시점에서 운동 시간만큼 뺀 시점으로 설정
+        let startDate = Date().addingTimeInterval(-time)
+        let endDate = Date()
+
+        // Workout Builder 세션 시작
+        workoutBuilder.beginCollection(withStart: startDate) { (success, error) in
+            if !success {
+                completion(false, error)
+                return
+            }
+
+            // 거리 데이터 생성
+            let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
+            let distanceSample = HKQuantitySample(type: HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!, quantity: distanceQuantity, start: startDate, end: endDate)
+
+            // 칼로리 데이터 생성
+            let energyQuantity = HKQuantity(unit: HKUnit.kilocalorie(), doubleValue: calories)
+            let energySample = HKQuantitySample(type: HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!, quantity: energyQuantity, start: startDate, end: endDate)
+
+            // 페이스 데이터 생성 (초/미터 단위로 변환)
+            let paceQuantity = HKQuantity(unit: HKUnit.second().unitDivided(by: .meter()), doubleValue: pace / 60.0)
+            let paceSample = HKQuantitySample(type: HKQuantityType.quantityType(forIdentifier: .runningSpeed)!, quantity: paceQuantity, start: startDate, end: endDate)
+
+            // Workout Builder에 샘플 추가
+            workoutBuilder.add([distanceSample, energySample, paceSample]) { (success, error) in
+                if !success {
+                    completion(false, error)
+                    return
+                }
+
+                // Workout 세션 종료 및 저장
+                workoutBuilder.endCollection(withEnd: endDate) { (success, error) in
+                    if !success {
+                        completion(false, error)
+                        return
+                    }
+
+                    // Workout을 생성하고 저장
+                    workoutBuilder.finishWorkout { (workout, error) in
+                        if let error = error {
+                            completion(false, error)
+                        } else {
+                            completion(true, nil)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
