@@ -352,3 +352,62 @@ extension HealthKitManager {
         healthStore.execute(query)
     }
 }
+
+// 월 통계
+extension HealthKitManager {
+    struct MonthlyRunningData {
+        let date: Date
+        let distance: Double
+        let calories: Double
+        let duration: TimeInterval
+        let pace: Double
+    }
+    
+    func fetchMonthlyRunningStats(forYear year: Int = Calendar.current.component(.year, from: Date()), completion: @escaping ([MonthlyRunningData]) -> Void) {
+        let calendar = Calendar.current
+        
+        // 해당 년도의 시작과 끝 날짜 설정
+        guard let startOfYear = calendar.date(from: DateComponents(year: year, month: 1, day: 1)),
+              let endOfYear = calendar.date(from: DateComponents(year: year, month: 12, day: 31)) else {
+            completion([])
+            return
+        }
+        
+        // HealthKit에서 러닝 데이터 쿼리
+        let workoutType = HKObjectType.workoutType()
+        let predicate = HKQuery.predicateForWorkouts(with: .running)
+        let datePredicate = HKQuery.predicateForSamples(withStart: startOfYear, end: endOfYear, options: .strictStartDate)
+        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: [predicate, datePredicate])
+        
+        let query = HKSampleQuery(
+            sampleType: workoutType,
+            predicate: compoundPredicate,
+            limit: HKObjectQueryNoLimit,
+            sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)]
+        ) { (_, samples, error) in
+            guard let workouts = samples as? [HKWorkout], error == nil else {
+                DispatchQueue.main.async {
+                    completion([])
+                }
+                return
+            }
+            
+            let runningData = workouts.map { workout in
+                MonthlyRunningData(
+                    date: workout.startDate,
+                    distance: workout.totalDistance?.doubleValue(for: .meter()) ?? 0 / 1000,
+                    calories: workout.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0,
+                    duration: workout.duration,
+                    pace: (workout.duration / 60) / (workout.totalDistance?.doubleValue(for: .meter()) ?? 1 / 1000)
+                )
+            }
+            
+            DispatchQueue.main.async {
+                completion(runningData)
+            }
+        }
+        
+        healthStore.execute(query)
+    }
+}
+

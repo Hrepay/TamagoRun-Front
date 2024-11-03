@@ -22,6 +22,7 @@
 		07540AF42CD79378001E4E9E /* WeeklyRunningGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AF32CD79378001E4E9E /* WeeklyRunningGraphView.swift */; };
 		07540AF82CD7A493001E4E9E /* MonthRunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AF72CD7A493001E4E9E /* MonthRunData.swift */; };
 		07540AFA2CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AF92CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift */; };
+		07540AFC2CD7C2EC001E4E9E /* RunningStatsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AFB2CD7C2EC001E4E9E /* RunningStatsContainerView.swift */; };
 		07551A452CA1348B00EAF936 /* DungGeunMo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07551A392CA1348B00EAF936 /* DungGeunMo.otf */; };
 		07551A462CA1348B00EAF936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07551A3D2CA1348B00EAF936 /* Assets.xcassets */; };
 		07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A362CA1348B00EAF936 /* TextFieldModifier.swift */; };
@@ -91,6 +92,7 @@
 		07540AF32CD79378001E4E9E /* WeeklyRunningGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyRunningGraphView.swift; sourceTree = "<group>"; };
 		07540AF72CD7A493001E4E9E /* MonthRunData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthRunData.swift; sourceTree = "<group>"; };
 		07540AF92CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRunningViewModel.swift; sourceTree = "<group>"; };
+		07540AFB2CD7C2EC001E4E9E /* RunningStatsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningStatsContainerView.swift; sourceTree = "<group>"; };
 		07551A362CA1348B00EAF936 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
 		07551A392CA1348B00EAF936 /* DungGeunMo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DungGeunMo.otf; sourceTree = "<group>"; };
 		07551A3D2CA1348B00EAF936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				07540AE82CD78401001E4E9E /* MonthlyRunningGraphView.swift */,
 				07540AF12CD792DD001E4E9E /* StatisticRow.swift */,
 				07540AF32CD79378001E4E9E /* WeeklyRunningGraphView.swift */,
+				07540AFB2CD7C2EC001E4E9E /* RunningStatsContainerView.swift */,
 			);
 			path = statisticsView;
 			sourceTree = "<group>";
@@ -564,6 +567,7 @@
 				07D3B1C52CBF77690084886C /* MissionView.swift in Sources */,
 				07551A492CA1348B00EAF936 /* ContentView.swift in Sources */,
 				07D4545C2CAA96BE009FD782 /* CharacterImages.swift in Sources */,
+				07540AFC2CD7C2EC001E4E9E /* RunningStatsContainerView.swift in Sources */,
 				07551A4A2CA1348B00EAF936 /* Persistence.swift in Sources */,
 				07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */,
 				07123C972CB107E200DBFA63 /* RunningService.swift in Sources */,

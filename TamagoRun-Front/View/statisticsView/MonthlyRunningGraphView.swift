@@ -63,7 +63,7 @@ struct MonthlyRunningGraphView: View {
         }
         .padding(.horizontal, 30)
         .onAppear {
-            viewModel.loadSampleData()
+            viewModel.loadMonthlyData()
         }
     }
  }
