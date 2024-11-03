@@ -14,6 +14,14 @@
 		070C94212CA94647007C92C6 /* RunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C941E2CA94647007C92C6 /* RunningView.swift */; };
 		07123C952CB1070200DBFA63 /* RunningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07123C942CB1070100DBFA63 /* RunningViewModel.swift */; };
 		07123C972CB107E200DBFA63 /* RunningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07123C962CB107E200DBFA63 /* RunningService.swift */; };
+		07540AE22CD678E3001E4E9E /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AE12CD678E3001E4E9E /* MyPageView.swift */; };
+		07540AE92CD78401001E4E9E /* MonthlyRunningGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AE82CD78401001E4E9E /* MonthlyRunningGraphView.swift */; };
+		07540AEB2CD790D4001E4E9E /* WeekRunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AEA2CD790D4001E4E9E /* WeekRunData.swift */; };
+		07540AED2CD790ED001E4E9E /* WeeklyRunningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AEC2CD790ED001E4E9E /* WeeklyRunningViewModel.swift */; };
+		07540AF22CD792DD001E4E9E /* StatisticRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AF12CD792DD001E4E9E /* StatisticRow.swift */; };
+		07540AF42CD79378001E4E9E /* WeeklyRunningGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AF32CD79378001E4E9E /* WeeklyRunningGraphView.swift */; };
+		07540AF82CD7A493001E4E9E /* MonthRunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AF72CD7A493001E4E9E /* MonthRunData.swift */; };
+		07540AFA2CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AF92CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift */; };
 		07551A452CA1348B00EAF936 /* DungGeunMo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07551A392CA1348B00EAF936 /* DungGeunMo.otf */; };
 		07551A462CA1348B00EAF936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07551A3D2CA1348B00EAF936 /* Assets.xcassets */; };
 		07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A362CA1348B00EAF936 /* TextFieldModifier.swift */; };
@@ -36,6 +44,11 @@
 		07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */; };
 		07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */; };
 		07C5FB932CA39EF000BC0079 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB922CA39EF000BC0079 /* SideMenuView.swift */; };
+		07D3B1C22CBF77690084886C /* MissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3B1C02CBF77690084886C /* MissionCell.swift */; };
+		07D3B1C32CBF77690084886C /* PlusMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3B1BE2CBF77690084886C /* PlusMenuView.swift */; };
+		07D3B1C42CBF77690084886C /* MissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3B1C12CBF77690084886C /* MissionListView.swift */; };
+		07D3B1C52CBF77690084886C /* MissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3B1BF2CBF77690084886C /* MissionView.swift */; };
+		07D3B1C72CBF77910084886C /* CalenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D3B1C62CBF77910084886C /* CalenderView.swift */; };
 		07D4545C2CAA96BE009FD782 /* CharacterImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4545B2CAA96BE009FD782 /* CharacterImages.swift */; };
 		07D4545E2CAA9C5A009FD782 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */; };
 		07D454622CABE65B009FD782 /* MainPageDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D454612CABE65B009FD782 /* MainPageDto.swift */; };
@@ -70,6 +83,14 @@
 		070C941F2CA94647007C92C6 /* RunningSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSummaryView.swift; sourceTree = "<group>"; };
 		07123C942CB1070100DBFA63 /* RunningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningViewModel.swift; sourceTree = "<group>"; };
 		07123C962CB107E200DBFA63 /* RunningService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningService.swift; sourceTree = "<group>"; };
+		07540AE12CD678E3001E4E9E /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
+		07540AE82CD78401001E4E9E /* MonthlyRunningGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRunningGraphView.swift; sourceTree = "<group>"; };
+		07540AEA2CD790D4001E4E9E /* WeekRunData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRunData.swift; sourceTree = "<group>"; };
+		07540AEC2CD790ED001E4E9E /* WeeklyRunningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyRunningViewModel.swift; sourceTree = "<group>"; };
+		07540AF12CD792DD001E4E9E /* StatisticRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticRow.swift; sourceTree = "<group>"; };
+		07540AF32CD79378001E4E9E /* WeeklyRunningGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyRunningGraphView.swift; sourceTree = "<group>"; };
+		07540AF72CD7A493001E4E9E /* MonthRunData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthRunData.swift; sourceTree = "<group>"; };
+		07540AF92CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRunningViewModel.swift; sourceTree = "<group>"; };
 		07551A362CA1348B00EAF936 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
 		07551A392CA1348B00EAF936 /* DungGeunMo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DungGeunMo.otf; sourceTree = "<group>"; };
 		07551A3D2CA1348B00EAF936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -96,6 +117,11 @@
 		07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPermissionView.swift; sourceTree = "<group>"; };
 		07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
 		07C5FB922CA39EF000BC0079 /* SideMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuView.swift; sourceTree = "<group>"; };
+		07D3B1BE2CBF77690084886C /* PlusMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlusMenuView.swift; sourceTree = "<group>"; };
+		07D3B1BF2CBF77690084886C /* MissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionView.swift; sourceTree = "<group>"; };
+		07D3B1C02CBF77690084886C /* MissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionCell.swift; sourceTree = "<group>"; };
+		07D3B1C12CBF77690084886C /* MissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionListView.swift; sourceTree = "<group>"; };
+		07D3B1C62CBF77910084886C /* CalenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderView.swift; sourceTree = "<group>"; };
 		07D4545B2CAA96BE009FD782 /* CharacterImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImages.swift; sourceTree = "<group>"; };
 		07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		07D454612CABE65B009FD782 /* MainPageDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageDto.swift; sourceTree = "<group>"; };
@@ -135,7 +161,7 @@
 		07123C922CAFF03600DBFA63 /* User */ = {
 			isa = PBXGroup;
 			children = (
-				07551A5A2CA13AE900EAF936 /* UserService.swift */,
+				07D4545B2CAA96BE009FD782 /* CharacterImages.swift */,
 				07551A632CA14E2F00EAF936 /* KeychainHelper.swift */,
 			);
 			path = User;
@@ -145,11 +171,55 @@
 			isa = PBXGroup;
 			children = (
 				070C941C2CA943B7007C92C6 /* LocationManager.swift */,
-				077ADFD72CA935FA00003481 /* RunningData.swift */,
 				07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */,
-				07123C962CB107E200DBFA63 /* RunningService.swift */,
+				07540AEA2CD790D4001E4E9E /* WeekRunData.swift */,
 			);
 			path = Running;
+			sourceTree = "<group>";
+		};
+		0730A5092CB3A5BF0011809F /* APIService */ = {
+			isa = PBXGroup;
+			children = (
+				07123C962CB107E200DBFA63 /* RunningService.swift */,
+				07551A5A2CA13AE900EAF936 /* UserService.swift */,
+			);
+			path = APIService;
+			sourceTree = "<group>";
+		};
+		07540AE52CD69023001E4E9E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				07540AE12CD678E3001E4E9E /* MyPageView.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		07540AEE2CD791DF001E4E9E /* statistics */ = {
+			isa = PBXGroup;
+			children = (
+				077ADFD72CA935FA00003481 /* RunningData.swift */,
+				07540AF72CD7A493001E4E9E /* MonthRunData.swift */,
+			);
+			path = statistics;
+			sourceTree = "<group>";
+		};
+		07540AEF2CD791F1001E4E9E /* statisticsView */ = {
+			isa = PBXGroup;
+			children = (
+				07540AE82CD78401001E4E9E /* MonthlyRunningGraphView.swift */,
+				07540AF12CD792DD001E4E9E /* StatisticRow.swift */,
+				07540AF32CD79378001E4E9E /* WeeklyRunningGraphView.swift */,
+			);
+			path = statisticsView;
+			sourceTree = "<group>";
+		};
+		07540AF02CD79208001E4E9E /* statisticsViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				07540AEC2CD790ED001E4E9E /* WeeklyRunningViewModel.swift */,
+				07540AF92CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift */,
+			);
+			path = statisticsViewModel;
 			sourceTree = "<group>";
 		};
 		07551A372CA1348B00EAF936 /* CssCustom */ = {
@@ -163,9 +233,10 @@
 		07551A382CA1348B00EAF936 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				07540AEE2CD791DF001E4E9E /* statistics */,
+				0730A5092CB3A5BF0011809F /* APIService */,
 				07123C932CAFF04400DBFA63 /* Running */,
 				07123C922CAFF03600DBFA63 /* User */,
-				07D4545B2CAA96BE009FD782 /* CharacterImages.swift */,
 				07D454612CABE65B009FD782 /* MainPageDto.swift */,
 			);
 			path = Model;
@@ -183,6 +254,8 @@
 			isa = PBXGroup;
 			children = (
 				07551A3E2CA1348B00EAF936 /* ContentView.swift */,
+				07540AEF2CD791F1001E4E9E /* statisticsView */,
+				07540AE52CD69023001E4E9E /* User */,
 				077ADFCE2CA9355300003481 /* Running */,
 				07C5FB7B2CA2A3DD00BC0079 /* Health */,
 				07551A602CA14B3900EAF936 /* Main */,
@@ -194,6 +267,7 @@
 		07551A3C2CA1348B00EAF936 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				07540AF02CD79208001E4E9E /* statisticsViewModel */,
 				07551A5C2CA13B2400EAF936 /* SignUpViewModel.swift */,
 				07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */,
 				07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */,
@@ -240,6 +314,11 @@
 			children = (
 				07551A612CA14B3C00EAF936 /* MainView.swift */,
 				07C5FB922CA39EF000BC0079 /* SideMenuView.swift */,
+				07D3B1C62CBF77910084886C /* CalenderView.swift */,
+				07D3B1BE2CBF77690084886C /* PlusMenuView.swift */,
+				07D3B1BF2CBF77690084886C /* MissionView.swift */,
+				07D3B1C02CBF77690084886C /* MissionCell.swift */,
+				07D3B1C12CBF77690084886C /* MissionListView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -475,7 +554,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				07540AE22CD678E3001E4E9E /* MyPageView.swift in Sources */,
 				07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */,
+				07D3B1C22CBF77690084886C /* MissionCell.swift in Sources */,
+				07540AF22CD792DD001E4E9E /* StatisticRow.swift in Sources */,
+				07D3B1C72CBF77910084886C /* CalenderView.swift in Sources */,
+				07D3B1C32CBF77690084886C /* PlusMenuView.swift in Sources */,
+				07D3B1C42CBF77690084886C /* MissionListView.swift in Sources */,
+				07D3B1C52CBF77690084886C /* MissionView.swift in Sources */,
 				07551A492CA1348B00EAF936 /* ContentView.swift in Sources */,
 				07D4545C2CAA96BE009FD782 /* CharacterImages.swift in Sources */,
 				07551A4A2CA1348B00EAF936 /* Persistence.swift in Sources */,
@@ -492,20 +578,26 @@
 				07551A542CA13AD200EAF936 /* LoginView.swift in Sources */,
 				07F1A5F82CA596F00001BF50 /* AppDelegate.swift in Sources */,
 				07551A552CA13AD200EAF936 /* StartView.swift in Sources */,
+				07540AED2CD790ED001E4E9E /* WeeklyRunningViewModel.swift in Sources */,
 				07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */,
 				07551A562CA13AD200EAF936 /* forgotPasswordView.swift in Sources */,
 				070632332CA69C00001F884B /* StartRunning.swift in Sources */,
+				07540AFA2CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift in Sources */,
 				07551A5B2CA13AE900EAF936 /* UserService.swift in Sources */,
 				07F1A5FA2CA5983C0001BF50 /* MapView.swift in Sources */,
+				07540AF42CD79378001E4E9E /* WeeklyRunningGraphView.swift in Sources */,
 				07551A572CA13AD200EAF936 /* EmailView.swift in Sources */,
 				07551A5E2CA13B2400EAF936 /* SignUpViewModel.swift in Sources */,
+				07540AF82CD7A493001E4E9E /* MonthRunData.swift in Sources */,
 				07551A642CA14E2F00EAF936 /* KeychainHelper.swift in Sources */,
 				07551A5F2CA13B2400EAF936 /* LoginViewModel.swift in Sources */,
 				077ADFD82CA935FA00003481 /* RunningData.swift in Sources */,
 				070C941D2CA943B7007C92C6 /* LocationManager.swift in Sources */,
 				07551A582CA13AD200EAF936 /* SignUpView.swift in Sources */,
+				07540AE92CD78401001E4E9E /* MonthlyRunningGraphView.swift in Sources */,
 				07551A622CA14B3C00EAF936 /* MainView.swift in Sources */,
 				07551A592CA13AD200EAF936 /* ResetPasswordView.swift in Sources */,
+				07540AEB2CD790D4001E4E9E /* WeekRunData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

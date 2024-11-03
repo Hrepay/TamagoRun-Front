@@ -21,8 +21,8 @@ class RunningService {
                 
         let data: [String: Any] = [
             "sessionId": sessionId,
-            "dailyRunningTime": runningData.elapsedTime,
-            "dailyAveragePace": runningData.pace,
+            "dailyRunningTime": Int(runningData.elapsedTime),  // 초 단위로 보냄
+            "dailyAveragePace": Int(runningData.pace),  // 초 단위의 페이스를 Int로 변환
             "dailyCalorie": runningData.calories,
             "dailyDistance": runningData.distance,
             "coordinates": coordinates.map { ["x": $0.lat, "y": $0.lng] }

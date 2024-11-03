@@ -11,7 +11,7 @@ import Combine
 
 class RunningData: ObservableObject {
     @Published var distance: Double = 0.0
-    @Published var pace: String = "00:00"
+    @Published var pace: Int = 0  // 초 단위로 변경
     @Published var calories: Int = 0
     @Published var elapsedTime: TimeInterval = 0.0
 }

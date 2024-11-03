@@ -7,7 +7,6 @@
 
 import Foundation
 
-// CharacterImages.swift
 struct CharacterImages {
     // 캐릭터 이미지를 저장하는 딕셔너리
     static let characterImagePaths: [Int: [Int: [Int: [String]]]] = [
@@ -16,7 +15,7 @@ struct CharacterImages {
             1: [ // 크리쳐 1 (불)
                 1: ["fire_dragon_111_1", "fire_dragon_111_2", "fire_dragon_111_3", "fire_dragon_111_4"],
                 2: ["fire_dragon_112_1", "fire_dragon_112_2", "fire_dragon_112_3", "fire_dragon_112_4"],
-                3: ["thunder_122_1", "thunder_122_2", "thunder_122_3", "thunder_122_4"]
+                3: ["thunder_121_1", "thunder_121_2", "thunder_121_3", "thunder_121_4"]
             ],
             2: [ // 크리쳐 2 (번개)
                 1: ["fire_dragon_111_1", "fire_dragon_111_2", "fire_dragon_111_3", "fire_dragon_111_4"],

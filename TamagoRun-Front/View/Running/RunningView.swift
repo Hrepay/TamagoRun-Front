@@ -69,7 +69,7 @@ struct RunningView: View {
                                     }
                                     
                                     VStack {
-                                        Text(runningData.pace)
+                                        Text(formatPace(runningData.pace))
                                             .font(.custom("DungGeunMo", size: 35))
                                         Text("(/km)")
                                             .font(.custom("DungGeunMo", size: 14))
@@ -80,19 +80,12 @@ struct RunningView: View {
                                 Button(action: {
                                     stopRunning()  // 타이머를 먼저 멈추고 데이터를 업데이트한 후
                                     
-                                    // ViewModel 업데이트
-                                    viewModel.updateRunningData(runningData)
-                                    viewModel.updateCoordinates(coordinates)
-                                    
-                                    // HealthKit에 데이터 저장
-                                    let paceComponents = runningData.pace.split(separator: ":")
-                                    let paceMinutes = Double(paceComponents[0]) ?? 0
-                                    let paceSeconds = Double(paceComponents[1]) ?? 0
-                                    let paceInMinutesPerKm = paceMinutes + (paceSeconds / 60.0)
+                                    /// HealthKit에 데이터 저장
+                                    let paceInMinutesPerKm = Double(runningData.pace) / 60.0 // 초를 분으로 변환
                                     
                                     HealthKitManager.shared.saveRunningWorkout(
                                         distance: runningData.distance * 1000, // km를 m로 변환
-                                        time: runningData.elapsedTime * 60, // 분을 초로 변환
+                                        time: runningData.elapsedTime,
                                         calories: Double(runningData.calories),
                                         pace: paceInMinutesPerKm
                                     ) { success, error in
@@ -103,8 +96,7 @@ struct RunningView: View {
                                         }
                                     }
                                     
-                                    isRunningFinished = true
-                                    viewModel.uploadRunningData()
+                                    
                                 }) {
                                     Text("Stop!")
                                         .font(.custom("DungGeunMo", size: 28))
@@ -190,8 +182,10 @@ struct RunningView: View {
         timer?.invalidate() // 타이머 정지
         timer = nil
         startTime = nil
+        mapView = nil
         updateRunningTime() // 러닝 시간 최종 업데이트
     }
+    
     
     func updateRunningTime() {
         guard let start = startTime, !isRunningFinished else { return }
@@ -200,6 +194,12 @@ struct RunningView: View {
         let minutes = Int(elapsedTime) / 60 % 60
         let seconds = Int(elapsedTime) % 60
         runningTime = String(format: "%02d:%02d:%02d", hours, minutes, seconds)
+    }
+    
+    func formatPace(_ paceInSeconds: Int) -> String {
+        let minutes = Int(paceInSeconds) / 60
+        let seconds = Int(paceInSeconds) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 }
 

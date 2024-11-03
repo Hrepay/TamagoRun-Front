@@ -11,6 +11,7 @@ import CoreLocation
 
 // 사실은 컨트롤러..
 struct MapView: UIViewControllerRepresentable {
+    
     @Binding var coordinates: [NMGLatLng]
     @Binding var mapView: NMFMapView?
     @ObservedObject var runningData: RunningData // RunningData를 전달받음
@@ -89,10 +90,8 @@ struct MapView: UIViewControllerRepresentable {
             }
             lastUpdateTime = now
 
-            // 현재 위치
             let currentLatLng = NMGLatLng(lat: location.coordinate.latitude, lng: location.coordinate.longitude)
 
-            // 사용자의 현재 위치로 카메라 이동
             let cameraUpdate = NMFCameraUpdate(position: NMFCameraPosition(currentLatLng, zoom: 17.0))
             cameraUpdate.animation = .easeIn
             mapView?.moveCamera(cameraUpdate)
@@ -100,45 +99,34 @@ struct MapView: UIViewControllerRepresentable {
             parent.coordinates.append(currentLatLng)
             updatePathOverlay(coordinates: parent.coordinates)
 
-            // 이전 위치가 있는 경우에만 거리 계산
             if let lastLocation = lastLocation {
-                let distanceDelta = location.distance(from: lastLocation) / 1000.0 // m -> km 변환
-
-                // distanceDelta가 너무 작거나 0일 경우 계산을 하지 않음
-                guard distanceDelta > 0.001 else {
-                    self.lastLocation = location
-                    return
-                }
-
-                // 페이스 계산
-                let elapsedTime = now.timeIntervalSince(lastLocation.timestamp) / 60.0 // 분 단위
-                let paceInMinutesPerKm = elapsedTime / distanceDelta
-                let minutes = Int(paceInMinutesPerKm)
-                let seconds = Int((paceInMinutesPerKm - Double(minutes)) * 60)
-
-                // 칼로리 계산 개선
-                let weight = 70.0 // 사용자 체중 (kg) - 실제로는 사용자 입력값을 사용해야 함
-                let met = 7.0 // 달리기의 MET 값 (보통 6-10 사이, 속도에 따라 다름)
-                let timeInHours = parent.runningData.elapsedTime / 60.0 // 누적 시간을 시간 단위로 변환
-                let caloriesBurned = met * weight * timeInHours
-
+                let distanceDelta = location.distance(from: lastLocation) / 1000.0 // m -> km
+                let elapsedTime = now.timeIntervalSince(lastLocation.timestamp)
+                
                 DispatchQueue.main.async {
                     self.parent.runningData.objectWillChange.send()
                     self.parent.runningData.distance += distanceDelta
-                    self.parent.runningData.pace = String(format: "%02d:%02d", minutes, seconds)
-                    self.parent.runningData.calories = Int(caloriesBurned)
                     self.parent.runningData.elapsedTime += elapsedTime
+                    
+                    // Update pace
+                    if self.parent.runningData.distance > 0 {
+                        self.parent.runningData.pace = Int(self.parent.runningData.elapsedTime / self.parent.runningData.distance)
+                    }
+                    
+                    // Update calories
+                    let weight = 65.0 // kg
+                    let met = 7.0 // MET value for running
+                    let timeInSeconds = elapsedTime // 이미 초 단위이므로 시간으로 변환할 필요 없음
+                    let caloriesBurned = (met * weight * timeInSeconds) / 3600.0 // 초 단위로 계산
 
-                    // 로그 출력
-                    print("현재 이동 거리 (km): \(self.parent.runningData.distance)")
-                    print("현재 페이스 (분/킬로미터): \(self.parent.runningData.pace)")
-                    print("현재 칼로리 소모량 (kcal): \(self.parent.runningData.calories)")
-                    print("누적 경과 시간 (분): \(self.parent.runningData.elapsedTime)")
+                    self.parent.runningData.calories += Int(caloriesBurned)
+
+                    
+                    print("Updated - Distance: \(self.parent.runningData.distance), Pace: \(self.parent.runningData.pace), Calories: \(self.parent.runningData.calories), Time: \(self.parent.runningData.elapsedTime)")
                 }
             }
 
             self.lastLocation = location
         }
-
     }
 }

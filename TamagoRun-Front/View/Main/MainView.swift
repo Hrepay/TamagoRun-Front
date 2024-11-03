@@ -26,172 +26,173 @@ struct MainView: View {
     @Binding var isLoggedIn: Bool // isLoggedIn 바인딩
 
     var body: some View {
-        ZStack(alignment: .leading) {
-            VStack {
-                Spacer()
-                // 사이드바
-                HStack {
-                    Button(action: {
-                        withAnimation(.easeOut(duration: 0.1)) {
-                            isShowingMenu.toggle()
-                        }
-                    }) {
-                        Image("side_bar")
-                            .resizable()
-                            .frame(width: 30, height: 25)
-                            .padding()
-                    }
+        NavigationView {
+            ZStack(alignment: .leading) {
+                VStack {
                     Spacer()
-                }
-                
-                Spacer()
-                
-                // 유저 정보
-                VStack {
-                    
-                    // 유저 닉네임
-                    Text(characterViewModel.loginId)
-                        .font(.custom("DungGeunMo", size: 30))
-                        .padding()
-                    
-                    // 캐릭터 경험치
+                    // 사이드바
                     HStack {
-                        Spacer()
-                        Text("\(characterViewModel.experience) / \(characterViewModel.maxExperience)")
-                            .font(.custom("DungGeunMo", size: 20))
+                        Button(action: {
+                            withAnimation(.easeOut(duration: 0.1)) {
+                                isShowingMenu.toggle()
+                            }
+                        }) {
+                            Image("side_bar")
+                                .resizable()
+                                .frame(width: 30, height: 25)
+                                .padding()
+                        }
                         Spacer()
                     }
-
-                    // 경험치 바 게이지
-                    HStack(alignment: .center) {
-                        Text("[")
-                            .font(.custom("DungGeunMo", size: 24))
-                        
-                        ProgressView(value: Double(characterViewModel.experience), total: Double(characterViewModel.maxExperience))
-                            .progressViewStyle(LinearProgressViewStyle(tint: .black))
-                            .frame(width: 200, height: 10)
-                            .padding(.top, 5)
-                        
-                        Text("]")
-                            .font(.custom("DungGeunMo", size: 24))
-                    }
-                    .padding(.horizontal)
                     
-                     
-                    // 캐릭터 정보
+                    Spacer()
+                    
+                    // 유저 정보
                     VStack {
-                        if !characterViewModel.characterImages.isEmpty {
-                            Image(characterViewModel.characterImages[characterViewModel.currentImageIndex])
-                                .resizable()
-                                .frame(width: 170, height: 170)
-                                .onAppear {
-                                    characterViewModel.startImageAnimation()
-                                }
-                                .padding()
-                                .padding(.top, 30)
-                        } else {
-                            Text("캐릭터 이미지 로딩 중...")
-                                .font(.custom("DungGeunMo", size: 10))
-                                .frame(width: 170, height: 170)
-                                .padding()
-                                .padding(.top, 30)
-                        }
-                    }
-                    
-                    // 캐릭터 레벨
-                    Text("level.\(characterViewModel.evolutionLevel)")
-                        .font(.custom("DungGeunMo", size: 20))
-                        .foregroundColor(.gray)
-                }
-                .padding(.bottom)
-                
-                Spacer()
-                
-                VStack {
-                    Text("이번주 기록")
-                        .font(.custom("DungGeunMo", size: 20))
-                        .padding(.bottom)
-                    
-                    HStack {
-                        Spacer()
-                        // 일주일 데이터를 기반으로 sprout_fill 또는 sprout_empty를 표시
-                        ForEach(0..<7, id: \.self) { index in
-                            Image(weeklyRunningData[index] ? sprout[0] : sprout[1])
-                                .resizable()
-                                .frame(width: 35, height: 25)
-                        }
-                        Spacer()
-                    }
-                    .padding()
-                    
-                    Button(action: {
-                        print("캘린더 보기 버튼 클릭")
-                    }) {
+                        
+                        // 유저 닉네임
+                        Text(characterViewModel.loginId)
+                            .font(.custom("DungGeunMo", size: 30))
+                            .padding()
+                        
+                        // 캐릭터 경험치
                         HStack {
-                            Text("캘린더 보기")
-                                .font(.custom("DungGeunMo", size: 17))
-                            Image(systemName: "chevron.up")
-                                .font(.system(size: 20))
+                            Spacer()
+                            Text("\(characterViewModel.experience) / \(characterViewModel.maxExperience)")
+                                .font(.custom("DungGeunMo", size: 20))
+                            Spacer()
+                        }
+                        
+                        // 경험치 바 게이지
+                        HStack(alignment: .center) {
+                            Text("[")
+                                .font(.custom("DungGeunMo", size: 24))
+                            
+                            ProgressView(value: Double(characterViewModel.experience), total: Double(characterViewModel.maxExperience))
+                                .progressViewStyle(LinearProgressViewStyle(tint: .black))
+                                .frame(width: 200, height: 10)
+                                .padding(.top, 5)
+                            
+                            Text("]")
+                                .font(.custom("DungGeunMo", size: 24))
+                        }
+                        .padding(.horizontal)
+                        
+                        
+                        // 캐릭터 정보
+                        VStack {
+                            if !characterViewModel.characterImages.isEmpty {
+                                Image(characterViewModel.characterImages[characterViewModel.currentImageIndex])
+                                    .resizable()
+                                    .frame(width: 170, height: 170)
+                                    .onAppear {
+                                        characterViewModel.startImageAnimation()
+                                    }
+                                    .padding()
+                                    .padding(.top, 30)
+                            } else {
+                                Text("캐릭터 이미지 로딩 중...")
+                                    .font(.custom("DungGeunMo", size: 10))
+                                    .frame(width: 170, height: 170)
+                                    .padding()
+                                    .padding(.top, 30)
+                            }
+                        }
+                        
+                        // 캐릭터 레벨
+                        Text("level.\(characterViewModel.evolutionLevel)")
+                            .font(.custom("DungGeunMo", size: 20))
+                            .foregroundColor(.gray)
+                    }
+                    .padding(.bottom)
+                    
+                    Spacer()
+                    
+                    VStack {
+                        Text("이번주 기록")
+                            .font(.custom("DungGeunMo", size: 20))
+                            .padding(.bottom)
+                        
+                        HStack {
+                            Spacer()
+                            // 일주일 데이터를 기반으로 sprout_fill 또는 sprout_empty를 표시
+                            ForEach(0..<7, id: \.self) { index in
+                                Image(weeklyRunningData[index] ? sprout[0] : sprout[1])
+                                    .resizable()
+                                    .frame(width: 35, height: 25)
+                            }
+                            Spacer()
                         }
                         .padding()
-                        .frame(width: 200, height: 50)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 15)
-                                .stroke(Color.black, lineWidth: 2)
-                        )
-                    }
-                    .foregroundColor(.black)
-                    .padding()
-                    
-                    // 두 번째 버튼: Run
-                    Button(action: {
-                        withAnimation {
-                            isShowingStartRunning = true // Run 버튼 클릭 시 StartRunning 뷰 표시
+                        
+                        // 두 번째 버튼: Run
+                        Button(action: {
+                            withAnimation {
+                                isShowingStartRunning = true // Run 버튼 클릭 시 StartRunning 뷰 표시
+                            }
+                        }) {
+                            Text("Run")
+                                .font(.custom("DungGeunMo", size: 20))
+                                .padding()
+                                .frame(width: 200, height: 50)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .stroke(Color.black, lineWidth: 2)
+                                )
                         }
-                    }) {
-                        Text("Run")
-                            .font(.custom("DungGeunMo", size: 20))
+                        .foregroundColor(.black)
+                        .padding()
+                        
+                        NavigationLink(destination: PlusMenuView()) { // NavigationLink로 변경
+                            HStack {
+                                Text("더보기")
+                                    .font(.custom("DungGeunMo", size: 17))
+                                Image(systemName: "chevron.up")
+                                    .font(.system(size: 20))
+                            }
                             .padding()
                             .frame(width: 200, height: 50)
                             .overlay(
                                 RoundedRectangle(cornerRadius: 15)
                                     .stroke(Color.black, lineWidth: 2)
                             )
-                    }
-                    .foregroundColor(.black)
-                }
-                Spacer()
-            }
-            .padding()
-            if isShowingMenu {
-                Color.black.opacity(0.5)
-                    .edgesIgnoringSafeArea(.all)
-                    .onTapGesture {
-                        withAnimation(.easeInOut(duration: 0.0)) {
-                            isShowingMenu.toggle()
                         }
-                    }
-            }
-            
-            SideMenuView(characterViewModel: characterViewModel, viewModel: viewModel, isLoggedIn: $isLoggedIn)
-               .frame(width: UIScreen.main.bounds.width * 0.7)
-               .background(Color.white)
-               .offset(x: isShowingMenu ? 0 : -UIScreen.main.bounds.width * 0.7)
-       }
-        .onAppear {
-            
-            // 주간 러닝 데이터 불러오기
-            HealthKitManager.shared.fetchWeeklyRunningData { data in
-                DispatchQueue.main.async {
-                    self.weeklyRunningData = data
-                }
-            }
-            
-            characterViewModel.fetchCharacterInfo()
+                        .foregroundColor(.black)
 
-        }
-        .fullScreenCover(isPresented: $isShowingStartRunning) {
-            StartRunning(isPresented: $isShowingStartRunning)
+                    }
+                    Spacer()
+                }
+                .padding()
+                if isShowingMenu {
+                    Color.black.opacity(0.5)
+                        .edgesIgnoringSafeArea(.all)
+                        .onTapGesture {
+                            withAnimation(.easeInOut(duration: 0.0)) {
+                                isShowingMenu.toggle()
+                            }
+                        }
+                }
+                
+                SideMenuView(characterViewModel: characterViewModel, viewModel: viewModel, isLoggedIn: $isLoggedIn)
+                    .frame(width: UIScreen.main.bounds.width * 0.7)
+                    .background(Color.white)
+                    .offset(x: isShowingMenu ? 0 : -UIScreen.main.bounds.width * 0.7)
+            }
+            .onAppear {
+                
+                // 주간 러닝 데이터 불러오기
+                HealthKitManager.shared.fetchWeeklyRunningData { data in
+                    DispatchQueue.main.async {
+                        self.weeklyRunningData = data
+                    }
+                }
+                
+                characterViewModel.fetchCharacterInfo()
+                
+            }
+            .fullScreenCover(isPresented: $isShowingStartRunning) {
+                StartRunning(isPresented: $isShowingStartRunning)
+            }
         }
     }
 }
