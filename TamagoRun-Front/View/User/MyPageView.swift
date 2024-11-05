@@ -8,78 +8,86 @@
 import SwiftUI
 
 struct MyPageView: View {
-    var body: some View {
-        VStack {
-            Spacer()
-            // 상단 마이 페이지
-            Text("My Page")
-                .font(.custom("DungGeunMo", size: 30))
-                .padding(.bottom, 40)
-            
-            // 닉네임 바
-            ZStack {
-                Image("myPage_textField")
-                    .resizable()
-                    .frame(width: 245, height: 50)
-                
-                Text("ID : TamagoRun")
-                    .font(.custom("DungGeunMo", size: 18))
-                    .foregroundColor(.black)
-            }
-            .padding(.bottom, 50)
-
-            
-            // 내 기록
-            ZStack {
-                Text("Record")
-                    .font(.custom("DungGeunMo", size: 30))
-                    .padding(.bottom, 35)
-                
-                Rectangle()
-                    .frame(height: 1) // 밑줄 두께 설정
-                    .foregroundColor(.black) // 밑줄 색상 설정
-                    .frame(maxWidth: 90) // 밑줄 길이 설정
-            }
-            
-            VStack (alignment: .leading) {
-                Text("총 KM")
-                    .font(.custom("DungGeunMo", size: 18))
-                    .foregroundColor(.gray)
-                Text("00.0")
-                    .font(.custom("DungGeunMo", size: 40))
-                    .foregroundColor(.black)
-                    .padding(.bottom,10)
-                
-                Text("총 칼로리")
-                    .font(.custom("DungGeunMo", size: 18))
-                    .foregroundColor(.gray)
-                Text("0")
-                    .font(.custom("DungGeunMo", size: 40))
-                    .foregroundColor(.black)
-                    .padding(.bottom,10)
-                
-                Text("전체 평균 페이스")
-                    .font(.custom("DungGeunMo", size: 18))
-                    .foregroundColor(.gray)
-                Text("0'00''")
-                    .font(.custom("DungGeunMo", size: 40))
-                    .foregroundColor(.black)
-                    .padding(.bottom,10)
-                
-                Text("총 시간")
-                    .font(.custom("DungGeunMo", size: 18))
-                    .foregroundColor(.gray)
-                Text("0:00:00")
-                    .font(.custom("DungGeunMo", size: 40))
-                    .foregroundColor(.black)
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.leading, 50)
-            
-            Spacer()
-        }
-    }
+   @StateObject private var viewModel = MyPageViewModel()
+   @Environment(\.presentationMode) var presentationMode // 추가
+   
+   var body: some View {
+       VStack {
+           // 뒤로가기 버튼을 포함한 상단 바
+           HStack {
+               Button(action: {
+                   presentationMode.wrappedValue.dismiss()
+               }) {
+                   HStack {
+                       Image(systemName: "chevron.left")
+                           .foregroundColor(.black)
+                           .font(.system(size: 20))
+                   }
+               }
+               .padding(.leading)
+               
+               Spacer()
+           }
+           .padding(.top)
+           
+           // 기존 코드
+           Spacer()
+           
+           Text("My Page")
+               .font(.custom("DungGeunMo", size: 30))
+               .padding(.bottom, 40)
+           
+           ZStack {
+               Image("myPage_textField")
+                   .resizable()
+                   .frame(width: 245, height: 50)
+               
+               Text("ID : \(viewModel.userId)")
+                   .font(.custom("DungGeunMo", size: 18))
+                   .foregroundColor(.black)
+           }
+           .padding(.bottom, 50)
+           
+           ZStack {
+               Text("Record")
+                   .font(.custom("DungGeunMo", size: 30))
+                   .padding(.bottom, 35)
+               
+               Rectangle()
+                   .frame(height: 1)
+                   .foregroundColor(.black)
+                   .frame(maxWidth: 90)
+           }
+           
+           if viewModel.isLoading {
+               ProgressView()
+           } else {
+               VStack(alignment: .leading) {
+                   StatisticRow(title: "총 KM", value: viewModel.totalDistance)
+                   StatisticRow(title: "총 칼로리", value: viewModel.totalCalories)
+                   StatisticRow(title: "전체 평균 페이스", value: viewModel.averagePace)
+                   StatisticRow(title: "총 시간", value: viewModel.totalTime)
+               }
+               .frame(maxWidth: .infinity, alignment: .leading)
+               .padding(.leading, 50)
+           }
+           
+           if let errorMessage = viewModel.errorMessage {
+               Text(errorMessage)
+                   .foregroundColor(.red)
+                   .font(.custom("DungGeunMo", size: 16))
+                   .padding(.top, 40)
+           }
+           
+           Spacer()
+       }
+       .onAppear {
+           viewModel.fetchUserRecord()
+       }
+       .navigationBarHidden(true)
+   }
 }
+
 
 #Preview {
     MyPageView()

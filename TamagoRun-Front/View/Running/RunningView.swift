@@ -33,7 +33,6 @@ struct RunningView: View {
         NavigationStack {
             ZStack {
                 MapView(coordinates: $coordinates, mapView: $mapView, runningData: runningData)
-
                     .edgesIgnoringSafeArea(.all)
                 
                 GeometryReader { geometry in
@@ -96,6 +95,8 @@ struct RunningView: View {
                                         }
                                     }
                                     
+                                    isRunningFinished = true
+
                                     
                                 }) {
                                     Text("Stop!")

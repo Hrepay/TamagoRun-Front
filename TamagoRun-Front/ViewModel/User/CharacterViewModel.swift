@@ -16,6 +16,9 @@ class CharacterViewModel: ObservableObject {
     @Published var kindOfCharacter: Int = 0
     @Published var evolutionLevel: Int = 0
     
+    // 캐릭터 움직임 타이머 설정 프로퍼티
+    private var animationTimer: Timer?
+    
     // maxExperience 프로퍼티 추가
     var maxExperience: Int {
         switch evolutionLevel {
@@ -44,12 +47,16 @@ class CharacterViewModel: ObservableObject {
     
     // 타이머를 통해 이미지를 업데이트하는 메서드
     func startImageAnimation() {
-       guard !characterImages.isEmpty else { return }
+        guard !characterImages.isEmpty else { return }
+        
+        animationTimer?.invalidate()
        
-       Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { _ in
-           self.currentImageIndex = (self.currentImageIndex + 1) % self.characterImages.count
-       }
-   }
+        // 새로운 타이머 생성 및 저장
+        animationTimer = Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { [weak self] _ in
+            guard let self = self else { return }
+            self.currentImageIndex = (self.currentImageIndex + 1) % self.characterImages.count
+        }
+    }
     
     func fetchCharacterInfo() {
         UserService.shared.fetchCharacterInfo { [weak self] loginId, experience, species, kindOfCharacter, evolutionLevel in
@@ -65,5 +72,9 @@ class CharacterViewModel: ObservableObject {
                 self.updateCharacterInfo(species: species, kindOfCharacter: kindOfCharacter, evolutionLevel: evolutionLevel)
             }
         }
+    }
+    
+    deinit {
+        animationTimer?.invalidate()
     }
 }

@@ -337,10 +337,10 @@ extension HealthKitManager {
             let runningData = workouts.map { workout in
                 WeeklyRunningData(
                     date: workout.startDate,
-                    distance: workout.totalDistance?.doubleValue(for: .meter()) ?? 0 / 1000, // 미터를 킬로미터로 변환
+                    distance: (workout.totalDistance?.doubleValue(for: .meter()) ?? 0) / 1000,  // 괄호 수정
                     calories: workout.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0,
                     duration: workout.duration,
-                    pace: (workout.duration / 60) / (workout.totalDistance?.doubleValue(for: .meter()) ?? 1 / 1000) // 분/킬로미터
+                    pace: (workout.duration / 60) / ((workout.totalDistance?.doubleValue(for: .meter()) ?? 1) / 1000)
                 )
             }
             
@@ -395,7 +395,7 @@ extension HealthKitManager {
             let runningData = workouts.map { workout in
                 MonthlyRunningData(
                     date: workout.startDate,
-                    distance: workout.totalDistance?.doubleValue(for: .meter()) ?? 0 / 1000,
+                    distance: (workout.totalDistance?.doubleValue(for: .meter()) ?? 0) / 1000,
                     calories: workout.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0,
                     duration: workout.duration,
                     pace: (workout.duration / 60) / (workout.totalDistance?.doubleValue(for: .meter()) ?? 1 / 1000)

@@ -43,13 +43,14 @@ struct CalenderView: View {
                 }) {
                     Image(systemName: "chevron.left")
                         .padding()
+                        .foregroundColor(.black)
                 }
 
                 Spacer()
                 
                 Text(month, formatter: Self.dateFormatter)
                     .font(.custom("DungGeunMo", size: 20))
-                    .padding(.bottom)
+//                    .padding(.bottom)
                 
                 Spacer()
                 
@@ -58,6 +59,7 @@ struct CalenderView: View {
                 }) {
                     Image(systemName: "chevron.right")
                         .padding()
+                        .foregroundColor(.black)
                 }
             }
             

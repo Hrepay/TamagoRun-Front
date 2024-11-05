@@ -23,6 +23,11 @@
 		07540AF82CD7A493001E4E9E /* MonthRunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AF72CD7A493001E4E9E /* MonthRunData.swift */; };
 		07540AFA2CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AF92CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift */; };
 		07540AFC2CD7C2EC001E4E9E /* RunningStatsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AFB2CD7C2EC001E4E9E /* RunningStatsContainerView.swift */; };
+		07540AFE2CD88903001E4E9E /* UserRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AFD2CD88903001E4E9E /* UserRecord.swift */; };
+		07540B002CD8896F001E4E9E /* MainService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AFF2CD8896F001E4E9E /* MainService.swift */; };
+		07540B042CD88B76001E4E9E /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540B032CD88B76001E4E9E /* MyPageViewModel.swift */; };
+		07540B062CD8B520001E4E9E /* FriendsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540B052CD8B520001E4E9E /* FriendsListView.swift */; };
+		07540B082CD90DD2001E4E9E /* FriendEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540B072CD90DD2001E4E9E /* FriendEmptyView.swift */; };
 		07551A452CA1348B00EAF936 /* DungGeunMo.otf in Resources */ = {isa = PBXBuildFile; fileRef = 07551A392CA1348B00EAF936 /* DungGeunMo.otf */; };
 		07551A462CA1348B00EAF936 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 07551A3D2CA1348B00EAF936 /* Assets.xcassets */; };
 		07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A362CA1348B00EAF936 /* TextFieldModifier.swift */; };
@@ -53,6 +58,7 @@
 		07D4545C2CAA96BE009FD782 /* CharacterImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4545B2CAA96BE009FD782 /* CharacterImages.swift */; };
 		07D4545E2CAA9C5A009FD782 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */; };
 		07D454622CABE65B009FD782 /* MainPageDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D454612CABE65B009FD782 /* MainPageDto.swift */; };
+		07D800612CDA108E00002882 /* FriendAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D800602CDA108E00002882 /* FriendAddView.swift */; };
 		07F1A5F82CA596F00001BF50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1A5F72CA596F00001BF50 /* AppDelegate.swift */; };
 		07F1A5FA2CA5983C0001BF50 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1A5F92CA5983C0001BF50 /* MapView.swift */; };
 		FFAEF1E3F6820C9A34E6B8F7 /* Pods_TamagoRun_Front.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79523B75E368641D95CD30E1 /* Pods_TamagoRun_Front.framework */; };
@@ -93,6 +99,11 @@
 		07540AF72CD7A493001E4E9E /* MonthRunData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthRunData.swift; sourceTree = "<group>"; };
 		07540AF92CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRunningViewModel.swift; sourceTree = "<group>"; };
 		07540AFB2CD7C2EC001E4E9E /* RunningStatsContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningStatsContainerView.swift; sourceTree = "<group>"; };
+		07540AFD2CD88903001E4E9E /* UserRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRecord.swift; sourceTree = "<group>"; };
+		07540AFF2CD8896F001E4E9E /* MainService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainService.swift; sourceTree = "<group>"; };
+		07540B032CD88B76001E4E9E /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
+		07540B052CD8B520001E4E9E /* FriendsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsListView.swift; sourceTree = "<group>"; };
+		07540B072CD90DD2001E4E9E /* FriendEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendEmptyView.swift; sourceTree = "<group>"; };
 		07551A362CA1348B00EAF936 /* TextFieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldModifier.swift; sourceTree = "<group>"; };
 		07551A392CA1348B00EAF936 /* DungGeunMo.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = DungGeunMo.otf; sourceTree = "<group>"; };
 		07551A3D2CA1348B00EAF936 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -127,6 +138,7 @@
 		07D4545B2CAA96BE009FD782 /* CharacterImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImages.swift; sourceTree = "<group>"; };
 		07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		07D454612CABE65B009FD782 /* MainPageDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageDto.swift; sourceTree = "<group>"; };
+		07D800602CDA108E00002882 /* FriendAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAddView.swift; sourceTree = "<group>"; };
 		07F1A5F72CA596F00001BF50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07F1A5F92CA5983C0001BF50 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		65A409A71AF44F31D06C6703 /* Pods-TamagoRun-Front.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TamagoRun-Front.debug.xcconfig"; path = "Target Support Files/Pods-TamagoRun-Front/Pods-TamagoRun-Front.debug.xcconfig"; sourceTree = "<group>"; };
@@ -165,6 +177,7 @@
 			children = (
 				07D4545B2CAA96BE009FD782 /* CharacterImages.swift */,
 				07551A632CA14E2F00EAF936 /* KeychainHelper.swift */,
+				07540AFD2CD88903001E4E9E /* UserRecord.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -184,6 +197,7 @@
 			children = (
 				07123C962CB107E200DBFA63 /* RunningService.swift */,
 				07551A5A2CA13AE900EAF936 /* UserService.swift */,
+				07540AFF2CD8896F001E4E9E /* MainService.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -192,6 +206,9 @@
 			isa = PBXGroup;
 			children = (
 				07540AE12CD678E3001E4E9E /* MyPageView.swift */,
+				07540B052CD8B520001E4E9E /* FriendsListView.swift */,
+				07540B072CD90DD2001E4E9E /* FriendEmptyView.swift */,
+				07D800602CDA108E00002882 /* FriendAddView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -223,6 +240,24 @@
 				07540AF92CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift */,
 			);
 			path = statisticsViewModel;
+			sourceTree = "<group>";
+		};
+		07540B012CD88B3A001E4E9E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				07551A5C2CA13B2400EAF936 /* SignUpViewModel.swift */,
+				07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */,
+				07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		07540B022CD88B4A001E4E9E /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				07540B032CD88B76001E4E9E /* MyPageViewModel.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		07551A372CA1348B00EAF936 /* CssCustom */ = {
@@ -270,10 +305,9 @@
 		07551A3C2CA1348B00EAF936 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				07540B022CD88B4A001E4E9E /* Main */,
+				07540B012CD88B3A001E4E9E /* User */,
 				07540AF02CD79208001E4E9E /* statisticsViewModel */,
-				07551A5C2CA13B2400EAF936 /* SignUpViewModel.swift */,
-				07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */,
-				07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */,
 				07123C942CB1070100DBFA63 /* RunningViewModel.swift */,
 			);
 			path = ViewModel;
@@ -566,7 +600,9 @@
 				07D3B1C42CBF77690084886C /* MissionListView.swift in Sources */,
 				07D3B1C52CBF77690084886C /* MissionView.swift in Sources */,
 				07551A492CA1348B00EAF936 /* ContentView.swift in Sources */,
+				07D800612CDA108E00002882 /* FriendAddView.swift in Sources */,
 				07D4545C2CAA96BE009FD782 /* CharacterImages.swift in Sources */,
+				07540B062CD8B520001E4E9E /* FriendsListView.swift in Sources */,
 				07540AFC2CD7C2EC001E4E9E /* RunningStatsContainerView.swift in Sources */,
 				07551A4A2CA1348B00EAF936 /* Persistence.swift in Sources */,
 				07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */,
@@ -575,8 +611,10 @@
 				07D454622CABE65B009FD782 /* MainPageDto.swift in Sources */,
 				07551A4B2CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld in Sources */,
 				07551A4C2CA1348B00EAF936 /* TamagoRun_FrontApp.swift in Sources */,
+				07540B002CD8896F001E4E9E /* MainService.swift in Sources */,
 				07D4545E2CAA9C5A009FD782 /* CharacterViewModel.swift in Sources */,
 				070C94202CA94647007C92C6 /* RunningSummaryView.swift in Sources */,
+				07540B082CD90DD2001E4E9E /* FriendEmptyView.swift in Sources */,
 				070C94212CA94647007C92C6 /* RunningView.swift in Sources */,
 				07123C952CB1070200DBFA63 /* RunningViewModel.swift in Sources */,
 				07551A542CA13AD200EAF936 /* LoginView.swift in Sources */,
@@ -600,8 +638,10 @@
 				07551A582CA13AD200EAF936 /* SignUpView.swift in Sources */,
 				07540AE92CD78401001E4E9E /* MonthlyRunningGraphView.swift in Sources */,
 				07551A622CA14B3C00EAF936 /* MainView.swift in Sources */,
+				07540AFE2CD88903001E4E9E /* UserRecord.swift in Sources */,
 				07551A592CA13AD200EAF936 /* ResetPasswordView.swift in Sources */,
 				07540AEB2CD790D4001E4E9E /* WeekRunData.swift in Sources */,
+				07540B042CD88B76001E4E9E /* MyPageViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

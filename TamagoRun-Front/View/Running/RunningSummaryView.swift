@@ -186,12 +186,12 @@ struct NaverMapView: UIViewRepresentable {
     }
 }
 
-//#Preview {
-//    RunningSummaryView(
-//        totalDistance: 10.03, // 예시 거리
-//        totalTime: "51:23",   // 예시 시간
-//        totalPace: 05'07''", // 예시 페이스
-//        totalCalories: 930,   // 예시 칼로리
-//        coordinates: [NMGLatLng(lat: 37.5665, lng: 126.9780)] // 예시 좌표 (여러 좌표를 넣을 수 있음)
-//    )
-//}
+#Preview {
+    RunningSummaryView(
+        totalDistance: 10.03,    // 예시 거리
+        totalTime: "51:23",      // 예시 시간
+        totalPace: 05_07,      // 예시 페이스
+        totalCalories: 930,      // 예시 칼로리
+        coordinates: [NMGLatLng(lat: 37.5665, lng: 126.9780)] // 예시 좌표
+    )
+}
