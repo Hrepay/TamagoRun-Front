@@ -47,6 +47,12 @@
 		07551A622CA14B3C00EAF936 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A612CA14B3C00EAF936 /* MainView.swift */; };
 		07551A642CA14E2F00EAF936 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07551A632CA14E2F00EAF936 /* KeychainHelper.swift */; };
 		077ADFD82CA935FA00003481 /* RunningData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077ADFD72CA935FA00003481 /* RunningData.swift */; };
+		079491322CDB7A63006FBB14 /* DailyMissionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079491312CDB7A63006FBB14 /* DailyMissionResponse.swift */; };
+		079491342CDB7AB7006FBB14 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079491332CDB7AB7006FBB14 /* Mission.swift */; };
+		079491372CDB7BCD006FBB14 /* DailyMissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079491362CDB7BCD006FBB14 /* DailyMissionListView.swift */; };
+		079491392CDB7BF3006FBB14 /* DailyMissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079491382CDB7BF3006FBB14 /* DailyMissionCell.swift */; };
+		0794913B2CDB7C24006FBB14 /* MissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0794913A2CDB7C24006FBB14 /* MissionViewModel.swift */; };
+		0794913D2CDB7E45006FBB14 /* MissionTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0794913C2CDB7E45006FBB14 /* MissionTab.swift */; };
 		07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */; };
 		07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */; };
 		07C5FB932CA39EF000BC0079 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB922CA39EF000BC0079 /* SideMenuView.swift */; };
@@ -126,6 +132,12 @@
 		078057552C9EBE4200110D93 /* TamagoRun-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TamagoRun-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0780576A2C9EBE4500110D93 /* TamagoRun-FrontTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		078057742C9EBE4500110D93 /* TamagoRun-FrontUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		079491312CDB7A63006FBB14 /* DailyMissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMissionResponse.swift; sourceTree = "<group>"; };
+		079491332CDB7AB7006FBB14 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		079491362CDB7BCD006FBB14 /* DailyMissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMissionListView.swift; sourceTree = "<group>"; };
+		079491382CDB7BF3006FBB14 /* DailyMissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMissionCell.swift; sourceTree = "<group>"; };
+		0794913A2CDB7C24006FBB14 /* MissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewModel.swift; sourceTree = "<group>"; };
+		0794913C2CDB7E45006FBB14 /* MissionTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTab.swift; sourceTree = "<group>"; };
 		07C5FB7A2CA2A29600BC0079 /* TamagoRun-Front.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TamagoRun-Front.entitlements"; sourceTree = "<group>"; };
 		07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPermissionView.swift; sourceTree = "<group>"; };
 		07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
@@ -256,6 +268,7 @@
 			isa = PBXGroup;
 			children = (
 				07540B032CD88B76001E4E9E /* MyPageViewModel.swift */,
+				0794913A2CDB7C24006FBB14 /* MissionViewModel.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -271,11 +284,11 @@
 		07551A382CA1348B00EAF936 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0794912F2CDB7A49006FBB14 /* Main */,
 				07540AEE2CD791DF001E4E9E /* statistics */,
 				0730A5092CB3A5BF0011809F /* APIService */,
 				07123C932CAFF04400DBFA63 /* Running */,
 				07123C922CAFF03600DBFA63 /* User */,
-				07D454612CABE65B009FD782 /* MainPageDto.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -356,6 +369,8 @@
 				07D3B1BF2CBF77690084886C /* MissionView.swift */,
 				07D3B1C02CBF77690084886C /* MissionCell.swift */,
 				07D3B1C12CBF77690084886C /* MissionListView.swift */,
+				079491362CDB7BCD006FBB14 /* DailyMissionListView.swift */,
+				079491382CDB7BF3006FBB14 /* DailyMissionCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -389,6 +404,17 @@
 				078057742C9EBE4500110D93 /* TamagoRun-FrontUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0794912F2CDB7A49006FBB14 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				07D454612CABE65B009FD782 /* MainPageDto.swift */,
+				079491312CDB7A63006FBB14 /* DailyMissionResponse.swift */,
+				079491332CDB7AB7006FBB14 /* Mission.swift */,
+				0794913C2CDB7E45006FBB14 /* MissionTab.swift */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		07C5FB7B2CA2A3DD00BC0079 /* Health */ = {
@@ -598,6 +624,7 @@
 				07D3B1C72CBF77910084886C /* CalenderView.swift in Sources */,
 				07D3B1C32CBF77690084886C /* PlusMenuView.swift in Sources */,
 				07D3B1C42CBF77690084886C /* MissionListView.swift in Sources */,
+				0794913D2CDB7E45006FBB14 /* MissionTab.swift in Sources */,
 				07D3B1C52CBF77690084886C /* MissionView.swift in Sources */,
 				07551A492CA1348B00EAF936 /* ContentView.swift in Sources */,
 				07D800612CDA108E00002882 /* FriendAddView.swift in Sources */,
@@ -618,8 +645,10 @@
 				070C94212CA94647007C92C6 /* RunningView.swift in Sources */,
 				07123C952CB1070200DBFA63 /* RunningViewModel.swift in Sources */,
 				07551A542CA13AD200EAF936 /* LoginView.swift in Sources */,
+				079491372CDB7BCD006FBB14 /* DailyMissionListView.swift in Sources */,
 				07F1A5F82CA596F00001BF50 /* AppDelegate.swift in Sources */,
 				07551A552CA13AD200EAF936 /* StartView.swift in Sources */,
+				079491322CDB7A63006FBB14 /* DailyMissionResponse.swift in Sources */,
 				07540AED2CD790ED001E4E9E /* WeeklyRunningViewModel.swift in Sources */,
 				07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */,
 				07551A562CA13AD200EAF936 /* forgotPasswordView.swift in Sources */,
@@ -628,16 +657,19 @@
 				07551A5B2CA13AE900EAF936 /* UserService.swift in Sources */,
 				07F1A5FA2CA5983C0001BF50 /* MapView.swift in Sources */,
 				07540AF42CD79378001E4E9E /* WeeklyRunningGraphView.swift in Sources */,
+				0794913B2CDB7C24006FBB14 /* MissionViewModel.swift in Sources */,
 				07551A572CA13AD200EAF936 /* EmailView.swift in Sources */,
 				07551A5E2CA13B2400EAF936 /* SignUpViewModel.swift in Sources */,
 				07540AF82CD7A493001E4E9E /* MonthRunData.swift in Sources */,
 				07551A642CA14E2F00EAF936 /* KeychainHelper.swift in Sources */,
 				07551A5F2CA13B2400EAF936 /* LoginViewModel.swift in Sources */,
+				079491392CDB7BF3006FBB14 /* DailyMissionCell.swift in Sources */,
 				077ADFD82CA935FA00003481 /* RunningData.swift in Sources */,
 				070C941D2CA943B7007C92C6 /* LocationManager.swift in Sources */,
 				07551A582CA13AD200EAF936 /* SignUpView.swift in Sources */,
 				07540AE92CD78401001E4E9E /* MonthlyRunningGraphView.swift in Sources */,
 				07551A622CA14B3C00EAF936 /* MainView.swift in Sources */,
+				079491342CDB7AB7006FBB14 /* Mission.swift in Sources */,
 				07540AFE2CD88903001E4E9E /* UserRecord.swift in Sources */,
 				07551A592CA13AD200EAF936 /* ResetPasswordView.swift in Sources */,
 				07540AEB2CD790D4001E4E9E /* WeekRunData.swift in Sources */,

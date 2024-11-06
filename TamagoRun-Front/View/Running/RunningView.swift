@@ -22,6 +22,8 @@ struct RunningView: View {
     @State private var offsetY: CGFloat = 0 // 슬라이드 제스처를 위한 offset
     
     @StateObject private var viewModel: RunningViewModel
+    private let runningService = RunningService()
+
     
     init() {
         let runningData = RunningData()
@@ -77,27 +79,7 @@ struct RunningView: View {
                                 .padding(.bottom, 20)
                                 
                                 Button(action: {
-                                    stopRunning()  // 타이머를 먼저 멈추고 데이터를 업데이트한 후
-                                    
-                                    /// HealthKit에 데이터 저장
-                                    let paceInMinutesPerKm = Double(runningData.pace) / 60.0 // 초를 분으로 변환
-                                    
-                                    HealthKitManager.shared.saveRunningWorkout(
-                                        distance: runningData.distance * 1000, // km를 m로 변환
-                                        time: runningData.elapsedTime,
-                                        calories: Double(runningData.calories),
-                                        pace: paceInMinutesPerKm
-                                    ) { success, error in
-                                        if success {
-                                            print("러닝 데이터가 성공적으로 HealthKit에 저장되었습니다.")
-                                        } else {
-                                            print("HealthKit 데이터 저장 실패: \(error?.localizedDescription ?? "알 수 없는 오류")")
-                                        }
-                                    }
-                                    
-                                    isRunningFinished = true
-
-                                    
+                                    handleStopRunning()
                                 }) {
                                     Text("Stop!")
                                         .font(.custom("DungGeunMo", size: 28))
@@ -171,6 +153,61 @@ struct RunningView: View {
             }
         }
     }
+    
+    // HealthKit 권한 요청 함수 추가
+   private func requestHealthKitAuthorization() {
+       HealthKitManager.shared.requestAuthorization { success, error in
+           if success {
+               print("HealthKit 권한 승인됨")
+           } else {
+               print("HealthKit 권한 요청 실패: \(String(describing: error?.localizedDescription))")
+           }
+       }
+   }
+   
+   // Stop 버튼 처리 함수
+   private func handleStopRunning() {
+       stopRunning()  // 기존 타이머 정지
+       
+       // 먼저 HealthKit 권한 확인
+       guard HealthKitManager.shared.checkAuthorizationStatus() else {
+           print("HealthKit 권한이 없습니다.")
+           return
+       }
+       
+       let paceInMinutesPerKm = Double(runningData.pace) / 60.0
+       
+       // HealthKit에 데이터 저장
+       HealthKitManager.shared.saveRunningWorkout(
+           distance: runningData.distance * 1000, // km를 m로 변환
+           time: runningData.elapsedTime,
+           calories: Double(runningData.calories),
+           pace: paceInMinutesPerKm
+       ) { success, error in
+           if success {
+               print("HealthKit 데이터 저장 성공")
+               // HealthKit 저장 성공 후 서버로 데이터 전송
+               sendDataToServer()
+           } else {
+               print("HealthKit 데이터 저장 실패: \(String(describing: error?.localizedDescription))")
+           }
+       }
+   }
+   
+   // 서버로 데이터 전송하는 함수
+   private func sendDataToServer() {
+       runningService.uploadRunningData(runningData: runningData, coordinates: coordinates) { success in
+           DispatchQueue.main.async {
+               if success {
+                   print("서버 데이터 전송 성공")
+                   isRunningFinished = true  // 성공 후 summary 화면으로 이동
+               } else {
+                   print("서버 데이터 전송 실패")
+                   // 실패 시 사용자에게 알림을 보여줄 수 있습니다
+               }
+           }
+       }
+   }
     
     func startRunning() {
         startTime = Date()

@@ -7,38 +7,40 @@
 
 import SwiftUI
 
-import SwiftUI
-
-enum MissionTab: String, CaseIterable {
-    case daily = "일일"
-    case weekly = "주간"
-    case achievements = "업적"
-}
-
 struct MissionView: View {
+    @StateObject private var viewModel = MissionViewModel()
     @State private var selectedTab = MissionTab.daily
-
+    
     var body: some View {
         VStack(spacing: 16) {
-            // 일일 / 주간 / 업적 탭
             missionTabs
-
-            // 스크롤 가능한 미션 리스트 뷰
-            MissionListView(selectedTab: selectedTab)
-
+            
+            if selectedTab == .daily {
+                DailyMissionListView(viewModel: viewModel)
+            } else {
+                MissionListView(selectedTab: selectedTab)
+            }
+            
             Spacer()
         }
         .padding(.horizontal)
-        .background(Color(.white))
+        .background(Color.white)
         .edgesIgnoringSafeArea(.bottom)
+        .onAppear {
+            if selectedTab == .daily {
+                viewModel.fetchDailyMissions()
+            }
+        }
     }
-
-    // 탭 뷰 컴포넌트
+    
     private var missionTabs: some View {
         HStack(spacing: 16) {
-            ForEach(MissionTab.allCases, id: \.self) { tab in
+            ForEach([MissionTab.daily, .weekly, .achievements], id: \.self) { tab in
                 Button(action: {
                     selectedTab = tab
+                    if tab == .daily {
+                        viewModel.fetchDailyMissions()
+                    }
                 }) {
                     Text(tab.rawValue)
                         .font(.custom("DungGeunMo", size: 18))

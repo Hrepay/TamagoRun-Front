@@ -47,6 +47,7 @@ struct FriendsListView: View {
         VStack {
             Text("Friends")
                 .font(.custom("DungGeunMo", size: 20))
+                .padding(.top, 30)
             
             Spacer()
         }

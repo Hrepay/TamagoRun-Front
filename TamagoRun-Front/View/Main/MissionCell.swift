@@ -8,30 +8,34 @@
 import SwiftUI
 
 struct MissionCell: View {
-    var mission: String
-    var onComplete: () -> Void // 미션을 완료했을 때의 액션
-
+    let title: String
+    var isCompleted: Bool = false
+    var hasReceivedReward: Bool = false
+    
     var body: some View {
-        Button(action: {
-            onComplete() // 미션 완료 시 동작 수행
-        }) {
-            Text(mission)
-                .font(.custom("DungGeunMo", size: 15))
-                .frame(maxWidth: .infinity)
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.black, lineWidth: 1)
-                )
+        HStack {
+            Text(title)
+                .font(.custom("DungGeunMo", size: 16))
+                .strikethrough(isCompleted)
+            
+            Spacer()
+            
+            if isCompleted {
+                Image(systemName: "checkmark.circle.fill")
+                    .foregroundColor(.black)
+            }
         }
-        .buttonStyle(PlainButtonStyle()) // 기본 버튼 스타일을 제거하여 커스텀 스타일 적용
+        .padding()
+        .background(isCompleted ? Color.gray.opacity(0.3) : Color.white)
+        .cornerRadius(8)
     }
 }
 
 #Preview {
-    MissionCell(mission: "하루 5000보 달성하기") {
-        // 미션 완료 시 실행될 동작 (예: 로그 출력)
-        print("미션 완료")
+    VStack(spacing: 16) {
+        MissionCell(title: "하루에 3Km 이상 뛰기", isCompleted: false, hasReceivedReward: false)
+        MissionCell(title: "하루에 5Km 이상 뛰기", isCompleted: true, hasReceivedReward: false)
+        MissionCell(title: "30분동안 뛰기", isCompleted: true, hasReceivedReward: true)
     }
+    .padding()
 }

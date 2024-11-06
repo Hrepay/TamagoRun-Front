@@ -64,105 +64,6 @@ class HealthKitManager {
     }
 }
 
-//// HealthKitManager의 확장 기능
-//extension HealthKitManager {
-//
-//    func saveRunningData(distance: Double, time: TimeInterval, calories: Double, completion: @escaping (Bool, Error?) -> Void) {
-//        // Workout Configuration 설정
-//        let configuration = HKWorkoutConfiguration()
-//        configuration.activityType = .running
-//
-//        // Workout Builder 생성
-//        let workoutBuilder = HKWorkoutBuilder(healthStore: healthStore, configuration: configuration, device: .local())
-//
-//        // 운동 시작 시간을 현재 시점으로 설정
-//        let startDate = Date()
-//
-//        // Workout Builder 세션 시작
-//        workoutBuilder.beginCollection(withStart: startDate) { (success, error) in
-//            if !success {
-//                completion(false, error)
-//                return
-//            }
-//
-//            // 거리 데이터 생성
-//            let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
-//            let distanceSample = HKQuantitySample(type: HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!, quantity: distanceQuantity, start: startDate, end: startDate.addingTimeInterval(time))
-//
-//            // 칼로리 데이터 생성
-//            let energyQuantity = HKQuantity(unit: HKUnit.kilocalorie(), doubleValue: calories)
-//            let energySample = HKQuantitySample(type: HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!, quantity: energyQuantity, start: startDate, end: startDate.addingTimeInterval(time))
-//
-//            // Workout Builder에 샘플 추가
-//            workoutBuilder.add([distanceSample, energySample]) { (success, error) in
-//                if !success {
-//                    completion(false, error)
-//                    return
-//                }
-//
-//                // 운동 종료 시간을 운동 시간 후로 설정
-//                let endDate = startDate.addingTimeInterval(time)
-//                
-//                // Workout 세션 종료 및 저장
-//                workoutBuilder.endCollection(withEnd: endDate) { (success, error) in
-//                    if !success {
-//                        completion(false, error)
-//                        return
-//                    }
-//
-//                    // Workout을 생성하고 저장
-//                    workoutBuilder.finishWorkout { (workout, error) in
-//                        if let error = error {
-//                            completion(false, error)
-//                        } else {
-//                            completion(true, nil)
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    }
-//}
-//
-//// HealthKitManager의 데이터 불러오기 기능 확장
-//extension HealthKitManager {
-//    // 거리, 칼로리, 시간 데이터 가져오기
-//    func fetchRunningData(completion: @escaping (Double, Double, TimeInterval) -> Void) {
-//        let distanceType = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!
-//        let energyType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned)!
-//        let workoutType = HKObjectType.workoutType()
-//
-//        // 거리 쿼리
-//        let distanceQuery = HKStatisticsQuery(quantityType: distanceType, quantitySamplePredicate: nil, options: .cumulativeSum) { _, result, _ in
-//            let distance = result?.sumQuantity()?.doubleValue(for: HKUnit.meter()) ?? 0
-//            
-//            // 칼로리 쿼리
-//            let energyQuery = HKStatisticsQuery(quantityType: energyType, quantitySamplePredicate: nil, options: .cumulativeSum) { _, result, _ in
-//                let calories = result?.sumQuantity()?.doubleValue(for: HKUnit.kilocalorie()) ?? 0
-//                
-//                // 운동 시간 쿼리
-//                let workoutPredicate = HKQuery.predicateForWorkouts(with: .running)
-//                let workoutQuery = HKSampleQuery(sampleType: workoutType, predicate: workoutPredicate, limit: 0, sortDescriptors: nil) { (_, samples, _) in
-//                    var totalTime: TimeInterval = 0
-//                    
-//                    if let workouts = samples as? [HKWorkout] {
-//                        totalTime = workouts.reduce(0) { $0 + $1.duration }
-//                    }
-//                    
-//                    // 메인 쓰레드에서 업데이트
-//                    DispatchQueue.main.async {
-//                        completion(distance, calories, totalTime)
-//                    }
-//                }
-//                
-//                self.healthStore.execute(workoutQuery)
-//            }
-//            self.healthStore.execute(energyQuery)
-//        }
-//        healthStore.execute(distanceQuery)
-//    }
-//}
-
 // 메인 메뉴에서 주간 러닝 데이터 불러오기 ( 새싹 )
 extension HealthKitManager {
     /// 주간 러닝 데이터를 가져오는 메서드
@@ -216,22 +117,59 @@ extension HealthKitManager {
 // 러닝 후 데이터 저장할 때 사용
 extension HealthKitManager {
     func saveRunningWorkout(distance: Double, time: TimeInterval, calories: Double, pace: Double, completion: @escaping (Bool, Error?) -> Void) {
+        // 먼저 모든 필요한 데이터 타입에 대한 권한을 확인
+        guard let distanceType = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning),
+              let energyType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned),
+              let speedType = HKQuantityType.quantityType(forIdentifier: .runningSpeed) else {
+            completion(false, NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Required data types not available"]))
+            return
+        }
+        
+        // 권한 상태 확인
+        let typesToCheck: Set<HKObjectType> = [distanceType, energyType, speedType, HKObjectType.workoutType()]
+        var allAuthorized = true
+        
+        for type in typesToCheck {
+            let status = healthStore.authorizationStatus(for: type)
+            if status != .sharingAuthorized {
+                allAuthorized = false
+                break
+            }
+        }
+        
+        guard allAuthorized else {
+            // 권한이 없는 경우 권한 요청
+            requestAuthorization { success, error in
+                if success {
+                    // 권한 승인 후 다시 저장 시도
+                    self.performWorkoutSave(distance: distance, time: time, calories: calories, pace: pace, completion: completion)
+                } else {
+                    completion(false, error)
+                }
+            }
+            return
+        }
+        
+        // 권한이 있는 경우 바로 저장 진행
+        performWorkoutSave(distance: distance, time: time, calories: calories, pace: pace, completion: completion)
+    }
+    
+    private func performWorkoutSave(distance: Double, time: TimeInterval, calories: Double, pace: Double, completion: @escaping (Bool, Error?) -> Void) {
         let configuration = HKWorkoutConfiguration()
         configuration.activityType = .running
-
+        
         let workoutBuilder = HKWorkoutBuilder(healthStore: healthStore, configuration: configuration, device: .local())
         
         let startDate = Date().addingTimeInterval(-time)
         let endDate = Date()
         
-        // Workout Builder 세션 시작
-        workoutBuilder.beginCollection(withStart: startDate) { (success, error) in
+        workoutBuilder.beginCollection(withStart: startDate) { success, error in
             if !success {
                 completion(false, error)
                 return
             }
             
-            // 거리 데이터 생성 (미터 단위)
+            // 거리 데이터
             let distanceQuantity = HKQuantity(unit: HKUnit.meter(), doubleValue: distance)
             let distanceSample = HKQuantitySample(
                 type: HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!,
@@ -240,7 +178,7 @@ extension HealthKitManager {
                 end: endDate
             )
             
-            // 칼로리 데이터 생성
+            // 칼로리 데이터
             let energyQuantity = HKQuantity(unit: HKUnit.kilocalorie(), doubleValue: calories)
             let energySample = HKQuantitySample(
                 type: HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
@@ -249,9 +187,8 @@ extension HealthKitManager {
                 end: endDate
             )
             
-            // 속도 데이터 생성 (meters per second로 변환)
-            // pace는 min/km로 입력받았으므로 m/s로 변환
-            let speedInMetersPerSecond = 1000 / (pace * 60) // 1000m / (pace * 60초)
+            // 속도 데이터
+            let speedInMetersPerSecond = 1000 / (pace * 60)
             let speedQuantity = HKQuantity(
                 unit: HKUnit.meter().unitDivided(by: HKUnit.second()),
                 doubleValue: speedInMetersPerSecond
@@ -263,26 +200,26 @@ extension HealthKitManager {
                 end: endDate
             )
             
-            // Workout Builder에 샘플 추가
-            workoutBuilder.add([distanceSample, energySample, speedSample]) { (success, error) in
+            // 모든 샘플을 한번에 추가
+            workoutBuilder.add([distanceSample, energySample, speedSample]) { success, error in
                 if !success {
                     completion(false, error)
                     return
                 }
                 
-                // Workout 세션 종료 및 저장
-                workoutBuilder.endCollection(withEnd: endDate) { (success, error) in
+                workoutBuilder.endCollection(withEnd: endDate) { success, error in
                     if !success {
                         completion(false, error)
                         return
                     }
                     
-                    // Workout을 생성하고 저장
-                    workoutBuilder.finishWorkout { (workout, error) in
-                        if let error = error {
-                            completion(false, error)
-                        } else {
-                            completion(true, nil)
+                    workoutBuilder.finishWorkout { workout, error in
+                        DispatchQueue.main.async {
+                            if let error = error {
+                                completion(false, error)
+                            } else {
+                                completion(true, nil)
+                            }
                         }
                     }
                 }
