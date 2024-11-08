@@ -21,6 +21,8 @@ struct RunningView: View {
     @State private var isRunningFinished = false // 러닝 종료 상태
     @State private var offsetY: CGFloat = 0 // 슬라이드 제스처를 위한 offset
     
+    @State private var isRunning: Bool = true  // 추가: 러닝 상태를 나타내는 프로퍼티
+    
     @StateObject private var viewModel: RunningViewModel
     private let runningService = RunningService()
 
@@ -34,8 +36,11 @@ struct RunningView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                MapView(coordinates: $coordinates, mapView: $mapView, runningData: runningData)
-                    .edgesIgnoringSafeArea(.all)
+                MapView(coordinates: $coordinates,
+                          mapView: $mapView,
+                          runningData: runningData,
+                          isRunning: isRunning)  // isRunning 프로퍼티 전달
+                       .edgesIgnoringSafeArea(.all)
                 
                 GeometryReader { geometry in
                     VStack {
@@ -146,6 +151,7 @@ struct RunningView: View {
                 }
             }
             .onAppear {
+                requestHealthKitAuthorization()
                 startRunning()
             }
             .onDisappear {
@@ -154,45 +160,53 @@ struct RunningView: View {
         }
     }
     
-    // HealthKit 권한 요청 함수 추가
-   private func requestHealthKitAuthorization() {
-       HealthKitManager.shared.requestAuthorization { success, error in
-           if success {
-               print("HealthKit 권한 승인됨")
-           } else {
-               print("HealthKit 권한 요청 실패: \(String(describing: error?.localizedDescription))")
-           }
-       }
-   }
+    // HealthKit 권한 요청 함수 수정
+    private func requestHealthKitAuthorization() {
+        HealthKitManager.shared.requestAuthorization { success, error in
+            if success {
+                print("HealthKit 권한 승인됨")
+            } else {
+                print("HealthKit 권한 요청 실패: \(String(describing: error?.localizedDescription))")
+            }
+        }
+    }
    
-   // Stop 버튼 처리 함수
-   private func handleStopRunning() {
-       stopRunning()  // 기존 타이머 정지
-       
-       // 먼저 HealthKit 권한 확인
-       guard HealthKitManager.shared.checkAuthorizationStatus() else {
-           print("HealthKit 권한이 없습니다.")
-           return
-       }
-       
-       let paceInMinutesPerKm = Double(runningData.pace) / 60.0
-       
-       // HealthKit에 데이터 저장
-       HealthKitManager.shared.saveRunningWorkout(
-           distance: runningData.distance * 1000, // km를 m로 변환
-           time: runningData.elapsedTime,
-           calories: Double(runningData.calories),
-           pace: paceInMinutesPerKm
-       ) { success, error in
-           if success {
-               print("HealthKit 데이터 저장 성공")
-               // HealthKit 저장 성공 후 서버로 데이터 전송
-               sendDataToServer()
-           } else {
-               print("HealthKit 데이터 저장 실패: \(String(describing: error?.localizedDescription))")
-           }
-       }
-   }
+    // Stop 버튼 처리 함수 수정
+    private func handleStopRunning() {
+        isRunning = false  // 러닝 상태를 false로 변경
+        stopRunning()  // 기존 타이머 정지
+        
+        // HealthKit 저장 및 서버 전송을 비동기로 처리
+        HealthKitManager.shared.requestAuthorization { success, error in
+            if success {
+                let paceInMinutesPerKm = Double(runningData.pace) / 60.0
+                
+                HealthKitManager.shared.saveRunningWorkout(
+                    distance: runningData.distance * 1000,
+                    time: runningData.elapsedTime,
+                    calories: Double(runningData.calories),
+                    pace: paceInMinutesPerKm
+                ) { success, error in
+                    DispatchQueue.main.async {
+                        if success {
+                            print("HealthKit 데이터 저장 성공")
+                            sendDataToServer()
+                        } else {
+                            print("HealthKit 데이터 저장 실패: \(String(describing: error?.localizedDescription))")
+                            // 에러가 있더라도 summary 화면으로 이동
+                            isRunningFinished = true
+                        }
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    print("HealthKit 권한 없음")
+                    // 권한이 없더라도 summary 화면으로 이동
+                    isRunningFinished = true
+                }
+            }
+        }
+    }
    
    // 서버로 데이터 전송하는 함수
    private func sendDataToServer() {
@@ -217,11 +231,10 @@ struct RunningView: View {
     }
     
     func stopRunning() {
-        timer?.invalidate() // 타이머 정지
+        timer?.invalidate()
         timer = nil
         startTime = nil
-        mapView = nil
-        updateRunningTime() // 러닝 시간 최종 업데이트
+        updateRunningTime()
     }
     
     

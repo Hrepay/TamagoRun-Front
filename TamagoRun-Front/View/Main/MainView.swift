@@ -17,6 +17,8 @@ struct MainView: View {
 
     // 캐릭터 정보
     @StateObject var characterViewModel = CharacterViewModel()
+    // 캐릭터 정보 000일때
+    @State private var showCharacterSelection = false
 
     @State private var currentImageIndex = 0
     @State private var isShowingMenu = false
@@ -24,6 +26,7 @@ struct MainView: View {
     
     @EnvironmentObject var viewModel: LoginViewModel
     @Binding var isLoggedIn: Bool // isLoggedIn 바인딩
+    
 
     var body: some View {
         NavigationView {
@@ -177,9 +180,20 @@ struct MainView: View {
                     .frame(width: UIScreen.main.bounds.width * 0.7)
                     .background(Color.white)
                     .offset(x: isShowingMenu ? 0 : -UIScreen.main.bounds.width * 0.7)
+                
+                // 캐릭터 선택 000
+                if characterViewModel.shouldShowCharacterSelection {
+                    CharacterSelectView(
+                        isPresented: $characterViewModel.shouldShowCharacterSelection,
+                        onCharacterSelected: { success in
+                            if success {
+                                characterViewModel.fetchCharacterInfo()
+                            }
+                        }
+                    )
+                }
             }
             .onAppear {
-                
                 // 주간 러닝 데이터 불러오기
                 HealthKitManager.shared.fetchWeeklyRunningData { data in
                     DispatchQueue.main.async {
@@ -187,8 +201,8 @@ struct MainView: View {
                     }
                 }
                 
+                // 캐릭터 정보 불러오기
                 characterViewModel.fetchCharacterInfo()
-                
             }
             .fullScreenCover(isPresented: $isShowingStartRunning) {
                 StartRunning(isPresented: $isShowingStartRunning)

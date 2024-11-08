@@ -15,6 +15,7 @@ struct MapView: UIViewControllerRepresentable {
     @Binding var coordinates: [NMGLatLng]
     @Binding var mapView: NMFMapView?
     @ObservedObject var runningData: RunningData // RunningData를 전달받음
+    var isRunning: Bool = true  // 추가: 러닝 상태를 나타내는 프로퍼티
     
     func makeUIViewController(context: Context) -> UIViewController {
         let viewController = UIViewController()
@@ -39,11 +40,19 @@ struct MapView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
+        if !isRunning {
+            context.coordinator.stopUpdates()  // 러닝이 중지되면 위치 업데이트도 중지
+        }
         context.coordinator.updatePathOverlay(coordinates: coordinates)
     }
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(self)
+    }
+    
+    func stopLocationUpdates() {
+        // 기존의 복잡한 처리 대신 단순히 위치 업데이트만 중지
+        self.mapView?.positionMode = .disabled
     }
     
     class Coordinator: NSObject, CLLocationManagerDelegate {
@@ -128,5 +137,12 @@ struct MapView: UIViewControllerRepresentable {
 
             self.lastLocation = location
         }
+    }
+}
+
+extension MapView.Coordinator {
+    func stopUpdates() {
+        locationManager.stopUpdatingLocation()
+        locationManager.delegate = nil  // 델리게이트도 해제
     }
 }

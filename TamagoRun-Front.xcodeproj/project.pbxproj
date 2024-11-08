@@ -14,6 +14,7 @@
 		070C94212CA94647007C92C6 /* RunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C941E2CA94647007C92C6 /* RunningView.swift */; };
 		07123C952CB1070200DBFA63 /* RunningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07123C942CB1070100DBFA63 /* RunningViewModel.swift */; };
 		07123C972CB107E200DBFA63 /* RunningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07123C962CB107E200DBFA63 /* RunningService.swift */; };
+		072A7E9A2CDE16EF005574A1 /* CharacterSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072A7E992CDE16EF005574A1 /* CharacterSelectionViewModel.swift */; };
 		07540AE22CD678E3001E4E9E /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AE12CD678E3001E4E9E /* MyPageView.swift */; };
 		07540AE92CD78401001E4E9E /* MonthlyRunningGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AE82CD78401001E4E9E /* MonthlyRunningGraphView.swift */; };
 		07540AEB2CD790D4001E4E9E /* WeekRunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AEA2CD790D4001E4E9E /* WeekRunData.swift */; };
@@ -65,6 +66,11 @@
 		07D4545E2CAA9C5A009FD782 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */; };
 		07D454622CABE65B009FD782 /* MainPageDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D454612CABE65B009FD782 /* MainPageDto.swift */; };
 		07D800612CDA108E00002882 /* FriendAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D800602CDA108E00002882 /* FriendAddView.swift */; };
+		07F1183B2CDC3BE400A43B81 /* WeeklyMissionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1183A2CDC3BE400A43B81 /* WeeklyMissionResponse.swift */; };
+		07F1183F2CDC3D6B00A43B81 /* WeeklyMissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1183E2CDC3D6B00A43B81 /* WeeklyMissionListView.swift */; };
+		07F118412CDC3D8B00A43B81 /* WeeklyMissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F118402CDC3D8B00A43B81 /* WeeklyMissionCell.swift */; };
+		07F118432CDC59D800A43B81 /* AchievementResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F118422CDC59D800A43B81 /* AchievementResponse.swift */; };
+		07F118452CDC5F4300A43B81 /* CharacterSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F118442CDC5F4300A43B81 /* CharacterSelectView.swift */; };
 		07F1A5F82CA596F00001BF50 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1A5F72CA596F00001BF50 /* AppDelegate.swift */; };
 		07F1A5FA2CA5983C0001BF50 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1A5F92CA5983C0001BF50 /* MapView.swift */; };
 		FFAEF1E3F6820C9A34E6B8F7 /* Pods_TamagoRun_Front.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79523B75E368641D95CD30E1 /* Pods_TamagoRun_Front.framework */; };
@@ -96,6 +102,7 @@
 		070C941F2CA94647007C92C6 /* RunningSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSummaryView.swift; sourceTree = "<group>"; };
 		07123C942CB1070100DBFA63 /* RunningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningViewModel.swift; sourceTree = "<group>"; };
 		07123C962CB107E200DBFA63 /* RunningService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningService.swift; sourceTree = "<group>"; };
+		072A7E992CDE16EF005574A1 /* CharacterSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectionViewModel.swift; sourceTree = "<group>"; };
 		07540AE12CD678E3001E4E9E /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		07540AE82CD78401001E4E9E /* MonthlyRunningGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRunningGraphView.swift; sourceTree = "<group>"; };
 		07540AEA2CD790D4001E4E9E /* WeekRunData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRunData.swift; sourceTree = "<group>"; };
@@ -151,6 +158,11 @@
 		07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		07D454612CABE65B009FD782 /* MainPageDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageDto.swift; sourceTree = "<group>"; };
 		07D800602CDA108E00002882 /* FriendAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAddView.swift; sourceTree = "<group>"; };
+		07F1183A2CDC3BE400A43B81 /* WeeklyMissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMissionResponse.swift; sourceTree = "<group>"; };
+		07F1183E2CDC3D6B00A43B81 /* WeeklyMissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMissionListView.swift; sourceTree = "<group>"; };
+		07F118402CDC3D8B00A43B81 /* WeeklyMissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMissionCell.swift; sourceTree = "<group>"; };
+		07F118422CDC59D800A43B81 /* AchievementResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AchievementResponse.swift; path = /Users/hwangs/Downloads/AchievementResponse.swift; sourceTree = "<absolute>"; };
+		07F118442CDC5F4300A43B81 /* CharacterSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectView.swift; sourceTree = "<group>"; };
 		07F1A5F72CA596F00001BF50 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		07F1A5F92CA5983C0001BF50 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		65A409A71AF44F31D06C6703 /* Pods-TamagoRun-Front.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TamagoRun-Front.debug.xcconfig"; path = "Target Support Files/Pods-TamagoRun-Front/Pods-TamagoRun-Front.debug.xcconfig"; sourceTree = "<group>"; };
@@ -221,6 +233,7 @@
 				07540B052CD8B520001E4E9E /* FriendsListView.swift */,
 				07540B072CD90DD2001E4E9E /* FriendEmptyView.swift */,
 				07D800602CDA108E00002882 /* FriendAddView.swift */,
+				07F118442CDC5F4300A43B81 /* CharacterSelectView.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -260,6 +273,7 @@
 				07551A5C2CA13B2400EAF936 /* SignUpViewModel.swift */,
 				07551A5D2CA13B2400EAF936 /* LoginViewModel.swift */,
 				07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */,
+				072A7E992CDE16EF005574A1 /* CharacterSelectionViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -370,7 +384,9 @@
 				07D3B1C02CBF77690084886C /* MissionCell.swift */,
 				07D3B1C12CBF77690084886C /* MissionListView.swift */,
 				079491362CDB7BCD006FBB14 /* DailyMissionListView.swift */,
+				07F1183E2CDC3D6B00A43B81 /* WeeklyMissionListView.swift */,
 				079491382CDB7BF3006FBB14 /* DailyMissionCell.swift */,
+				07F118402CDC3D8B00A43B81 /* WeeklyMissionCell.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -411,8 +427,10 @@
 			children = (
 				07D454612CABE65B009FD782 /* MainPageDto.swift */,
 				079491312CDB7A63006FBB14 /* DailyMissionResponse.swift */,
+				07F1183A2CDC3BE400A43B81 /* WeeklyMissionResponse.swift */,
 				079491332CDB7AB7006FBB14 /* Mission.swift */,
 				0794913C2CDB7E45006FBB14 /* MissionTab.swift */,
+				07F118422CDC59D800A43B81 /* AchievementResponse.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -630,12 +648,15 @@
 				07D800612CDA108E00002882 /* FriendAddView.swift in Sources */,
 				07D4545C2CAA96BE009FD782 /* CharacterImages.swift in Sources */,
 				07540B062CD8B520001E4E9E /* FriendsListView.swift in Sources */,
+				07F1183F2CDC3D6B00A43B81 /* WeeklyMissionListView.swift in Sources */,
 				07540AFC2CD7C2EC001E4E9E /* RunningStatsContainerView.swift in Sources */,
 				07551A4A2CA1348B00EAF936 /* Persistence.swift in Sources */,
 				07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */,
 				07123C972CB107E200DBFA63 /* RunningService.swift in Sources */,
 				07C5FB932CA39EF000BC0079 /* SideMenuView.swift in Sources */,
 				07D454622CABE65B009FD782 /* MainPageDto.swift in Sources */,
+				07F118452CDC5F4300A43B81 /* CharacterSelectView.swift in Sources */,
+				07F1183B2CDC3BE400A43B81 /* WeeklyMissionResponse.swift in Sources */,
 				07551A4B2CA1348B00EAF936 /* TamagoRun_Front.xcdatamodeld in Sources */,
 				07551A4C2CA1348B00EAF936 /* TamagoRun_FrontApp.swift in Sources */,
 				07540B002CD8896F001E4E9E /* MainService.swift in Sources */,
@@ -647,6 +668,7 @@
 				07551A542CA13AD200EAF936 /* LoginView.swift in Sources */,
 				079491372CDB7BCD006FBB14 /* DailyMissionListView.swift in Sources */,
 				07F1A5F82CA596F00001BF50 /* AppDelegate.swift in Sources */,
+				07F118432CDC59D800A43B81 /* AchievementResponse.swift in Sources */,
 				07551A552CA13AD200EAF936 /* StartView.swift in Sources */,
 				079491322CDB7A63006FBB14 /* DailyMissionResponse.swift in Sources */,
 				07540AED2CD790ED001E4E9E /* WeeklyRunningViewModel.swift in Sources */,
@@ -657,7 +679,9 @@
 				07551A5B2CA13AE900EAF936 /* UserService.swift in Sources */,
 				07F1A5FA2CA5983C0001BF50 /* MapView.swift in Sources */,
 				07540AF42CD79378001E4E9E /* WeeklyRunningGraphView.swift in Sources */,
+				07F118412CDC3D8B00A43B81 /* WeeklyMissionCell.swift in Sources */,
 				0794913B2CDB7C24006FBB14 /* MissionViewModel.swift in Sources */,
+				072A7E9A2CDE16EF005574A1 /* CharacterSelectionViewModel.swift in Sources */,
 				07551A572CA13AD200EAF936 /* EmailView.swift in Sources */,
 				07551A5E2CA13B2400EAF936 /* SignUpViewModel.swift in Sources */,
 				07540AF82CD7A493001E4E9E /* MonthRunData.swift in Sources */,

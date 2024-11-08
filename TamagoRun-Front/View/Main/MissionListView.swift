@@ -8,31 +8,64 @@
 import SwiftUI
 
 struct MissionListView: View {
-    let selectedTab: MissionTab
+    @ObservedObject var viewModel: MissionViewModel
+    let missionType: MissionTab
+    
+    var missions: [Mission] {
+        switch missionType {
+        case .daily:
+            return viewModel.dailyMissions
+        case .weekly:
+            return viewModel.weeklyMissions
+        case .achievements:
+            return viewModel.achievements
+        }
+    }
     
     var body: some View {
         ScrollView {
-            VStack(spacing: 10) {
-                ForEach(missions(for: selectedTab), id: \.self) { mission in
-                    MissionCell(title: mission)
+            if viewModel.isLoading {
+                Text("Loading...")
+                    .foregroundColor(.gray)
+                    .frame(maxWidth: .infinity, minHeight: 200)
+                    .padding()
+            } else {
+                VStack(spacing: 10) {
+                    ForEach(missions) { mission in
+                        WeeklyMissionCell(
+                            mission: mission,
+                            canClaim: mission.isCompleted && !mission.hasReceivedReward
+                        )
+                        .onTapGesture {
+                            if mission.isCompleted && !mission.hasReceivedReward {
+                                switch missionType {
+                                case .daily:
+                                    viewModel.claimDailyRewardForMission(mission)
+                                case .weekly:
+                                    viewModel.claimWeeklyRewardForMission(mission)
+                                case .achievements:
+                                    viewModel.claimAchievementReward(mission)
+                                }
+                            }
+                        }
+                    }
                 }
+                .padding()
             }
-            .padding()
         }
         .frame(maxWidth: .infinity)
         .background(Color.gray.opacity(0.1))
         .cornerRadius(10)
         .padding(.horizontal, 10)
-    }
-    
-    private func missions(for tab: MissionTab) -> [String] {
-        switch tab {
-        case .daily:
-            return ["하루에 3Km 이상 뛰기", "하루에 5Km 이상 뛰기", "30분동안 뛰기", "60분동안 뛰기기"]
-        case .weekly:
-            return ["주간 15km 달성", "주간 30km 달성", "주간 2번 이상 러닝", "주간 4번 이상 러닝"]
-        case .achievements:
-            return ["첫 번째 러닝을 완료", "누적 42.195km 달성", "누적 100km 달성", "한달에 반절 이상 러닝", "친구 맺기 10명", "친구 맺기 20명", "친구 맺기 30명"]
+        .onAppear {
+            switch missionType {
+            case .daily:
+                viewModel.fetchDailyMissions()
+            case .weekly:
+                viewModel.fetchWeeklyMissions()
+            case .achievements:
+                break
+            }
         }
     }
 }

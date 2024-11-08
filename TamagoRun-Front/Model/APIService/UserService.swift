@@ -362,6 +362,50 @@ class UserService {
     
     
     // 캐릭터 정보 받기
+//    func fetchCharacterInfo(completion: @escaping (String, Int, Int, Int, Int) -> Void) {
+//        guard let url = URL(string: "\(baseURL)/mainPage/check") else { return }
+//        
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "GET"
+//        
+//        // UserDefaults에서 세션 ID를 가져옴
+//        if let sessionID = UserDefaults.standard.string(forKey: "sessionID") {
+//            request.setValue("JSESSIONID=\(sessionID)", forHTTPHeaderField: "Cookie")
+//        } else {
+//            print("세션 ID를 찾을 수 없습니다. 로그인부터 다시 진행하세요.")
+//            return
+//        }
+//        
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//            if let data = data {
+//                // 서버 응답 데이터를 문자열로 변환하여 출력
+//                if let responseString = String(data: data, encoding: .utf8) {
+//                    print("Response Data: \(responseString)")
+//                }
+//                do {
+//                    // JSON 데이터를 MainPageDto로 디코딩
+//                    let mainPageDto = try JSONDecoder().decode(MainPageDto.self, from: data)
+//                    
+//                    // 받은 데이터를 print로 출력
+//                    print("loginId: \(mainPageDto.loginId)")
+//                    print("experience: \(mainPageDto.experience)")
+//                    print("species: \(mainPageDto.species)")
+//                    print("kindOfCharacter: \(mainPageDto.kindOfCharacter)")
+//                    print("evolutionLevel: \(mainPageDto.evolutionLevel)")
+//                    
+//                    DispatchQueue.main.async {
+//                        completion(mainPageDto.loginId, mainPageDto.experience, mainPageDto.species, mainPageDto.kindOfCharacter, mainPageDto.evolutionLevel)
+//                    }
+//                } catch {
+//                    print("Error decoding JSON: \(error)")
+//                }
+//            } else {
+//                print("Error fetching data: \(error?.localizedDescription ?? "Unknown error")")
+//            }
+//        }.resume()
+//    }
+    
+    // 캐릭터 정보 가져오기
     func fetchCharacterInfo(completion: @escaping (String, Int, Int, Int, Int) -> Void) {
         guard let url = URL(string: "\(baseURL)/mainPage/check") else { return }
         
@@ -369,33 +413,28 @@ class UserService {
         request.httpMethod = "GET"
         
         // UserDefaults에서 세션 ID를 가져옴
-        if let sessionID = UserDefaults.standard.string(forKey: "sessionID") {
-            request.setValue("JSESSIONID=\(sessionID)", forHTTPHeaderField: "Cookie")
-        } else {
+        guard let sessionID = UserDefaults.standard.string(forKey: "sessionID") else {
             print("세션 ID를 찾을 수 없습니다. 로그인부터 다시 진행하세요.")
             return
         }
         
+        request.setValue("JSESSIONID=\(sessionID)", forHTTPHeaderField: "Cookie")
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
-                // 서버 응답 데이터를 문자열로 변환하여 출력
                 if let responseString = String(data: data, encoding: .utf8) {
                     print("Response Data: \(responseString)")
                 }
                 do {
-                    // JSON 데이터를 MainPageDto로 디코딩
                     let mainPageDto = try JSONDecoder().decode(MainPageDto.self, from: data)
                     
-                    // 받은 데이터를 print로 출력
-                    print("loginId: \(mainPageDto.loginId)")
-                    print("experience: \(mainPageDto.experience)")
-                    print("species: \(mainPageDto.species)")
-                    print("kindOfCharacter: \(mainPageDto.kindOfCharacter)")
-                    print("evolutionLevel: \(mainPageDto.evolutionLevel)")
-                    
-                    DispatchQueue.main.async {
-                        completion(mainPageDto.loginId, mainPageDto.experience, mainPageDto.species, mainPageDto.kindOfCharacter, mainPageDto.evolutionLevel)
-                    }
+                    completion(
+                        mainPageDto.loginId,
+                        mainPageDto.experience,
+                        mainPageDto.species,
+                        mainPageDto.kindOfCharacter,
+                        mainPageDto.evolutionLevel
+                    )
                 } catch {
                     print("Error decoding JSON: \(error)")
                 }
@@ -404,8 +443,73 @@ class UserService {
             }
         }.resume()
     }
-
-
+    
+    // 캐릭터 정보 000일때
+    func selectSpecies(species: Int, completion: @escaping (Bool) -> Void) {
+        guard let url = URL(string: "\(baseURL)/character/selectSpecies") else {
+            print("Invalid URL")
+            completion(false)
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        // UserDefaults에서 세션 ID를 가져옴
+        guard let sessionID = UserDefaults.standard.string(forKey: "sessionID") else {
+            print("세션 ID를 찾을 수 없습니다. 로그인부터 다시 진행하세요.")
+            completion(false)
+            return
+        }
+        
+        // 쿠키에 세션 ID 설정
+        request.setValue("JSESSIONID=\(sessionID)", forHTTPHeaderField: "Cookie")
+        
+        // 요청 바디 생성 - 타입을 명시적으로 지정
+        let requestBody: [String: Any] = [
+            "sessionId": sessionID,
+            "species": species
+        ]
+        
+        // 바디를 JSON으로 인코딩
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: requestBody)
+            request.httpBody = jsonData
+        } catch {
+            print("Error encoding request body: \(error)")
+            completion(false)
+            return
+        }
+        
+        // 네트워크 요청 시작
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let error = error {
+                print("Error fetching data: \(error.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+                return
+            }
+            
+            if let data = data {
+                // 서버 응답 데이터를 문자열로 변환하여 출력 (디버깅용)
+                if let responseString = String(data: data, encoding: .utf8) {
+                    print("Response Data: \(responseString)")
+                }
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    DispatchQueue.main.async {
+                        completion((200...299).contains(httpResponse.statusCode))
+                    }
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(false)
+                }
+            }
+        }.resume()
+    }
 }
 
 

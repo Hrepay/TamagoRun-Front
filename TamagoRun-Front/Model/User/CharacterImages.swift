@@ -13,7 +13,7 @@ struct CharacterImages {
 
         1: [ // 크리쳐 종족 100
             1: [ // 크리쳐 1 (불)
-                1: ["fire_dragon_111_1", "fire_dragon_111_2", "fire_dragon_111_3", "fire_dragon_111_4"],
+                1: ["Sun_duck", "Sun_duck", "Sun_duck", "Sun_duck"],
                 2: ["fire_dragon_112_1", "fire_dragon_112_2", "fire_dragon_112_3", "fire_dragon_112_4"],
                 3: ["thunder_121_1", "thunder_121_2", "thunder_121_3", "thunder_121_4"]
             ],

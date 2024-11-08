@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DailyMissionListView: View {
+struct WeeklyMissionListView: View {
     @ObservedObject var viewModel: MissionViewModel
     
     var body: some View {
@@ -18,13 +18,13 @@ struct DailyMissionListView: View {
             } else {
                 VStack(spacing: 10) {
                     ForEach(viewModel.dailyMissions) { mission in
-                        DailyMissionCell(
+                        WeeklyMissionCell(
                             mission: mission,
                             canClaim: mission.isCompleted && !mission.hasReceivedReward
                         )
                         .onTapGesture {
                             if mission.isCompleted && !mission.hasReceivedReward {
-                                viewModel.claimDailyRewardForMission(mission)
+                                viewModel.claimWeeklyRewardForMission(mission)
                             }
                         }
                     }

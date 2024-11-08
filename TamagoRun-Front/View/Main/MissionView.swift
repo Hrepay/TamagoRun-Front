@@ -15,11 +15,7 @@ struct MissionView: View {
         VStack(spacing: 16) {
             missionTabs
             
-            if selectedTab == .daily {
-                DailyMissionListView(viewModel: viewModel)
-            } else {
-                MissionListView(selectedTab: selectedTab)
-            }
+            MissionListView(viewModel: viewModel, missionType: selectedTab)
             
             Spacer()
         }
@@ -38,8 +34,13 @@ struct MissionView: View {
             ForEach([MissionTab.daily, .weekly, .achievements], id: \.self) { tab in
                 Button(action: {
                     selectedTab = tab
-                    if tab == .daily {
+                    switch tab {
+                    case .daily:
                         viewModel.fetchDailyMissions()
+                    case .weekly:
+                        viewModel.fetchWeeklyMissions()
+                    case .achievements:
+                        viewModel.fetchAchievements()
                     }
                 }) {
                     Text(tab.rawValue)

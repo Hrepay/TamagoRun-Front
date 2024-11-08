@@ -1,13 +1,13 @@
 //
-//  MissionCell.swift
-//  TestProject
+//  DailyMissionCell.swift
+//  TamagoRun-Front
 //
-//  Created by 황상환 on 9/17/24.
+//  Created by 황상환 on 11/6/24.
 //
 
 import SwiftUI
 
-struct MissionCell: View {
+struct WeeklyMissionCell: View {
     let mission: Mission
     let canClaim: Bool
     
@@ -15,6 +15,7 @@ struct MissionCell: View {
         HStack {
             Text(mission.title)
                 .font(.custom("DungGeunMo", size: 16))
+                // 완료하고 보상까지 받은 경우에만 취소선 표시
                 .strikethrough(mission.isCompleted && mission.hasReceivedReward)
             
             Spacer()
@@ -34,6 +35,7 @@ struct MissionCell: View {
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 8)
+                // 완료하고 보상까지 받은 경우에만 회색 배경
                 .fill(mission.isCompleted && mission.hasReceivedReward ? Color.gray.opacity(0.3) : Color.white)
         )
         .overlay(
@@ -44,10 +46,5 @@ struct MissionCell: View {
 }
 
 //#Preview {
-//    VStack(spacing: 16) {
-//        MissionCell(title: "하루에 3Km 이상 뛰기", isCompleted: false, hasReceivedReward: false)
-//        MissionCell(title: "하루에 5Km 이상 뛰기", isCompleted: true, hasReceivedReward: false)
-//        MissionCell(title: "30분동안 뛰기", isCompleted: true, hasReceivedReward: true)
-//    }
-//    .padding()
+//    DailyMissionCell()
 //}

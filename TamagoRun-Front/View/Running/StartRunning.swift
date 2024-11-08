@@ -83,9 +83,9 @@ struct StartRunning: View {
     }
 }
 
-#Preview {
-    @State var isPresented = true
-    StartRunning(isPresented: $isPresented)
-}
+//#Preview {
+//    @State var isPresented = true
+//    StartRunning(isPresented: $isPresented)
+//}
 
 

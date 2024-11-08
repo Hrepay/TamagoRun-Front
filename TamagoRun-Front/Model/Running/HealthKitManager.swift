@@ -35,32 +35,61 @@ class HealthKitManager {
         return true // 모든 권한이 부여된 경우 true 반환
     }
     
-    // HealthKit 권한 요청
+    // 필요한 모든 데이터 타입을 한 번에 정의
+    private let typesToShare: Set = [
+        HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+        HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
+        HKQuantityType.quantityType(forIdentifier: .runningSpeed)!,
+        HKObjectType.workoutType()
+    ]
+    
+    private let typesToRead: Set = [
+        HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning)!,
+        HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned)!,
+        HKQuantityType.quantityType(forIdentifier: .runningSpeed)!,
+        HKObjectType.workoutType()
+    ]
+    
+    // 권한 요청 함수 수정
     func requestAuthorization(completion: @escaping (Bool, Error?) -> Void) {
-        // 저장할 데이터 타입 (거리, 시간, 칼로리)
-        guard let distanceType = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning),
-              let energyType = HKObjectType.quantityType(forIdentifier: .activeEnergyBurned) else {
-            completion(false, nil)
+        // 먼저 권한 상태 확인
+        let authorizationStatus = typesToShare.map { healthStore.authorizationStatus(for: $0) }
+        
+        // 이미 모든 권한이 있는지 확인
+        if authorizationStatus.allSatisfy({ $0 == .sharingAuthorized }) {
+            completion(true, nil)
             return
         }
-
-        let workoutType = HKObjectType.workoutType()
-
-        // 공유할 데이터와 읽을 데이터 타입 설정
-        let typesToShare: Set = [distanceType, energyType, workoutType]
-        let typesToRead: Set = [distanceType, energyType, workoutType]
-
-        // HealthKit 권한 요청
+        
+        // 권한 요청
         healthStore.requestAuthorization(toShare: typesToShare, read: typesToRead) { success, error in
             DispatchQueue.main.async {
-                if success {
-                    print("HealthKit 권한 요청 성공")
-                } else {
-                    print("HealthKit 권한 요청 실패: \(String(describing: error?.localizedDescription))")
-                }
                 completion(success, error)
             }
         }
+    }
+    
+    // 데이터 저장 함수 수정
+    func saveRunningWorkout(distance: Double, time: TimeInterval, calories: Double, pace: Double, completion: @escaping (Bool, Error?) -> Void) {
+        // 권한 상태 다시 확인
+        let authorizationStatus = typesToShare.map { healthStore.authorizationStatus(for: $0) }
+        
+        // 모든 필요한 권한이 있는지 확인
+        guard authorizationStatus.allSatisfy({ $0 == .sharingAuthorized }) else {
+            // 권한이 없으면 다시 요청
+            requestAuthorization { [weak self] success, error in
+                guard let self = self, success else {
+                    completion(false, error)
+                    return
+                }
+                // 권한 획득 후 저장 시도
+                self.performWorkoutSave(distance: distance, time: time, calories: calories, pace: pace, completion: completion)
+            }
+            return
+        }
+        
+        // 권한이 있으면 바로 저장
+        performWorkoutSave(distance: distance, time: time, calories: calories, pace: pace, completion: completion)
     }
 }
 
@@ -116,43 +145,6 @@ extension HealthKitManager {
 
 // 러닝 후 데이터 저장할 때 사용
 extension HealthKitManager {
-    func saveRunningWorkout(distance: Double, time: TimeInterval, calories: Double, pace: Double, completion: @escaping (Bool, Error?) -> Void) {
-        // 먼저 모든 필요한 데이터 타입에 대한 권한을 확인
-        guard let distanceType = HKQuantityType.quantityType(forIdentifier: .distanceWalkingRunning),
-              let energyType = HKQuantityType.quantityType(forIdentifier: .activeEnergyBurned),
-              let speedType = HKQuantityType.quantityType(forIdentifier: .runningSpeed) else {
-            completion(false, NSError(domain: "HealthKitError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Required data types not available"]))
-            return
-        }
-        
-        // 권한 상태 확인
-        let typesToCheck: Set<HKObjectType> = [distanceType, energyType, speedType, HKObjectType.workoutType()]
-        var allAuthorized = true
-        
-        for type in typesToCheck {
-            let status = healthStore.authorizationStatus(for: type)
-            if status != .sharingAuthorized {
-                allAuthorized = false
-                break
-            }
-        }
-        
-        guard allAuthorized else {
-            // 권한이 없는 경우 권한 요청
-            requestAuthorization { success, error in
-                if success {
-                    // 권한 승인 후 다시 저장 시도
-                    self.performWorkoutSave(distance: distance, time: time, calories: calories, pace: pace, completion: completion)
-                } else {
-                    completion(false, error)
-                }
-            }
-            return
-        }
-        
-        // 권한이 있는 경우 바로 저장 진행
-        performWorkoutSave(distance: distance, time: time, calories: calories, pace: pace, completion: completion)
-    }
     
     private func performWorkoutSave(distance: Double, time: TimeInterval, calories: Double, pace: Double, completion: @escaping (Bool, Error?) -> Void) {
         let configuration = HKWorkoutConfiguration()

@@ -16,6 +16,9 @@ class CharacterViewModel: ObservableObject {
     @Published var kindOfCharacter: Int = 0
     @Published var evolutionLevel: Int = 0
     
+    // 캐릭터가 000일때
+    @Published var shouldShowCharacterSelection: Bool = false
+    
     // 캐릭터 움직임 타이머 설정 프로퍼티
     private var animationTimer: Timer?
     
@@ -67,6 +70,10 @@ class CharacterViewModel: ObservableObject {
                 self.species = species
                 self.kindOfCharacter = kindOfCharacter
                 self.evolutionLevel = evolutionLevel
+                
+                // 000 체크하여 캐릭터 선택 필요 여부 설정
+                self.shouldShowCharacterSelection =
+                    species == 0 && kindOfCharacter == 0 && evolutionLevel == 0
                 
                 // 캐릭터 이미지를 업데이트
                 self.updateCharacterInfo(species: species, kindOfCharacter: kindOfCharacter, evolutionLevel: evolutionLevel)
