@@ -54,7 +54,9 @@ class MonthlyRunningViewModel: ObservableObject {
     }
     
     var totalDistance: String {
-        String(format: "%.1f", monthlyData.reduce(0) { $0 + $1.distance })
+        // chartDataItems의 모든 거리를 합산
+        let total = chartDataItems.reduce(0) { $0 + $1.distance }
+        return String(format: "%.1f", total)
     }
     
     var totalCalories: String {
@@ -86,12 +88,19 @@ class MonthlyRunningViewModel: ObservableObject {
                 Calendar.current.component(.month, from: $0.date)
             }
             
-            // 각 월의 합계 계산
+            // 각 월의 데이터 합산
             let monthlyStats = groupedByMonth.map { (month, data) -> MonthRunData in
                 let totalDistance = data.reduce(0) { $0 + $1.distance }
                 let totalCalories = data.reduce(0) { $0 + $1.calories }
                 let totalDuration = data.reduce(0) { $0 + $1.duration }
-                let avgPace = data.reduce(0) { $0 + $1.pace } / Double(data.count)
+                
+                // 평균 페이스 계산 수정
+                let avgPace: Double
+                if totalDistance > 0 {
+                    avgPace = totalDuration / 60 / totalDistance // 분/km
+                } else {
+                    avgPace = 0
+                }
                 
                 return MonthRunData(
                     month: month,
@@ -103,7 +112,7 @@ class MonthlyRunningViewModel: ObservableObject {
             }
             
             DispatchQueue.main.async {
-                self?.monthlyData = monthlyStats
+                self?.monthlyData = monthlyStats.sorted(by: { $0.month < $1.month })
             }
         }
     }

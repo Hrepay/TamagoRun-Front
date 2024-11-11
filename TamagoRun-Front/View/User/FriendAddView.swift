@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct FriendAddView: View {
-    @State private var nickname: String = ""
-    @State private var isPressed: Bool = false // 버튼 상태를 관리할 변수 추가
+    @Environment(\.dismiss) private var dismiss
+    @ObservedObject var viewModel: FriendListViewModel
+    @State private var isPressed: Bool = false
     
     var body: some View {
         VStack(spacing: 20) {
@@ -17,45 +18,52 @@ struct FriendAddView: View {
                 .font(.custom("DungGeunMo", size: 20))
                 .padding(.top, 35)
                 .padding(.bottom, 20)
-                
             
-            TextField("닉네임", text: $nickname)
+            TextField("닉네임", text: $viewModel.nickname)
                 .font(.custom("DungGeunMo", size: 20))
                 .padding(20)
                 .background(Color(.systemGray6))
                 .cornerRadius(10)
                 .frame(height: 65)
                 .padding(.horizontal, 40)
-                
-
-
+                .disabled(viewModel.isLoading)
+            
             Button(action: {
-                // 확인 버튼 액션
+                Task {
+                    await viewModel.addFriend()
+                }
             }) {
-                Text("확인")
+                Text(viewModel.isLoading ? "처리중..." : "확인")
                     .font(.custom("DungGeunMo", size: 18))
                     .frame(maxWidth: .infinity)
                     .frame(height: 65)
-                    .background(isPressed ? Color.black : Color(.systemGray6)) // 상태에 따라 배경색 변경
+                    .background(isPressed ? Color.black : Color(.systemGray6))
                     .foregroundColor(isPressed ? Color.white : Color.black)
                     .cornerRadius(10)
             }
             .padding(.horizontal, 40)
-            .buttonStyle(PlainButtonStyle()) // 기본 버튼 스타일 제거
-            .simultaneousGesture( // 터치 제스처 추가
+            .buttonStyle(PlainButtonStyle())
+            .disabled(viewModel.isLoading)
+            .simultaneousGesture(
                 DragGesture(minimumDistance: 0)
-                    .onChanged({ _ in
-                        isPressed = true
-                    })
-                    .onEnded({ _ in
-                        isPressed = false
-                    })
+                    .onChanged({ _ in isPressed = true })
+                    .onEnded({ _ in isPressed = false })
             )
+            
             Spacer()
+        }
+        .alert("알림", isPresented: $viewModel.showAlert) {
+            Button("확인") {
+                if viewModel.alertMessage.contains("추가했습니다") {
+                    dismiss()
+                }
+            }
+        } message: {
+            Text(viewModel.alertMessage)
         }
     }
 }
 
-#Preview {
-    FriendAddView()
-}
+//#Preview {
+//    FriendAddView()
+//}

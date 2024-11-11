@@ -16,7 +16,6 @@ struct WeeklyMissionCell: View {
             Text(mission.title)
                 .font(.custom("DungGeunMo", size: 16))
                 // 완료하고 보상까지 받은 경우에만 취소선 표시
-                .strikethrough(mission.isCompleted && mission.hasReceivedReward)
             
             Spacer()
             

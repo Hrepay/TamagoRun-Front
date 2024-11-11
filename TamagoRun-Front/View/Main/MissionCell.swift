@@ -10,12 +10,10 @@ import SwiftUI
 struct MissionCell: View {
     let mission: Mission
     let canClaim: Bool
-    
     var body: some View {
         HStack {
             Text(mission.title)
                 .font(.custom("DungGeunMo", size: 16))
-                .strikethrough(mission.isCompleted && mission.hasReceivedReward)
             
             Spacer()
             

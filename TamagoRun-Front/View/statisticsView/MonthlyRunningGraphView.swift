@@ -44,7 +44,7 @@ struct MonthlyRunningGraphView: View {
                         }
                     }
                 }
-                .chartYScale(domain: 0...8)
+                .chartYScale(domain: 0...16)
             }
             .padding(.horizontal, 10)
             

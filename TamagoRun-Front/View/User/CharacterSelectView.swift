@@ -36,7 +36,7 @@ struct CharacterSelectView: View {
                     }) {
                         HStack {
                             Text("Creature")
-                                .font(.custom("DungGeunMo", size: 33))
+                                .font(.custom("DungGeunMo", size: 25))
                                 .foregroundStyle(viewModel.selectedRace == "Creature" ? Color.black : Color.gray)
                             
                             Spacer()
@@ -65,7 +65,7 @@ struct CharacterSelectView: View {
                     }) {
                         HStack {
                             Text("Undead")
-                                .font(.custom("DungGeunMo", size: 33))
+                                .font(.custom("DungGeunMo", size: 25))
                                 .foregroundStyle(viewModel.selectedRace == "Undead" ? Color.black : Color.gray)
                             
                             Spacer()
@@ -94,7 +94,7 @@ struct CharacterSelectView: View {
                     }) {
                         HStack {
                             Text("Animal")
-                                .font(.custom("DungGeunMo", size: 33))
+                                .font(.custom("DungGeunMo", size: 25))
                                 .foregroundStyle(viewModel.selectedRace == "Animal" ? Color.black : Color.gray)
                             
                             Spacer()

@@ -282,6 +282,7 @@ class MainService {
         }
     }
     
+    // 업적 보상 체크
     func claimAchievementReward() async throws -> AchievementResponse {
         guard let sessionId = UserDefaults.standard.string(forKey: "sessionID") else {
             throw NetworkError.unauthorized

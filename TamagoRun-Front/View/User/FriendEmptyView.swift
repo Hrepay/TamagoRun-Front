@@ -8,18 +8,11 @@
 import SwiftUI
 
 struct FriendEmptyView: View {
-    
-    // 친추 추가 sheet
-    @State private var showAddBtn = false
+    @Binding var showAddBtn: Bool
     
     var body: some View {
-        VStack{
-            
-            Text("Friends")
-                .font(.custom("DungGeunMo", size: 20))
-            
+        VStack {
             Spacer()
-        
             
             Image("addFriend")
                 .resizable()
@@ -29,7 +22,7 @@ struct FriendEmptyView: View {
             Text("친구를 추가해보세요!")
                 .foregroundColor(.gray)
                 .font(.custom("DungGeunMo", size: 20))
-
+            
             Spacer()
             
             Button(action: {
@@ -45,7 +38,7 @@ struct FriendEmptyView: View {
                 .background(Color.white)
                 .foregroundColor(.black)
                 .cornerRadius(10)
-                .overlay( // 테두리 추가
+                .overlay(
                     RoundedRectangle(cornerRadius: 10)
                         .stroke(Color.black, lineWidth: 1)
                 )
@@ -53,13 +46,9 @@ struct FriendEmptyView: View {
             .padding(.horizontal)
             .padding(.bottom, 30)
         }
-        .sheet(isPresented: $showAddBtn) {
-            FriendAddView()
-                .presentationDetents([.fraction(0.65)])
-        }
     }
 }
 
-#Preview {
-    FriendEmptyView()
-}
+//#Preview {
+//    FriendEmptyView()
+//}

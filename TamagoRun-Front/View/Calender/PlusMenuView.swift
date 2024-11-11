@@ -39,33 +39,37 @@ struct PlusMenuView: View {
                 
                 VStack {
                     Text("Calender")
-                        .font(.custom("DungGeunMo", size: 18))
-                        .padding(.bottom, 20)
+                        .font(.custom("DungGeunMo", size: 20))
+                        .padding(.bottom, 10)
                     
                     // Custom CalendarView를 삽입
                     CalenderView()
                         .frame(maxWidth: .infinity)
                         .frame(height: 300)
                         .background(Color.white)
-                        .cornerRadius(10)
-                        .shadow(radius: 3)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color.black, lineWidth: 1)
+                        )
                         .padding(.horizontal,5)
+                    
                 }
                 
                 // Mission 섹션
                 VStack {
                     Text("Mission")
-                        .font(.custom("DungGeunMo", size: 18))
-                        .padding(.bottom, 10)
+                        .font(.custom("DungGeunMo", size: 20))
+                        .padding(.bottom, 5)
                     
                     HStack {
                         MissionView()
                             .frame(height: 270)
                     }
                     .background(Color.white)
-                    .cornerRadius(10)
-                    .shadow(radius: 2)
-                }
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black, lineWidth: 1)
+                    )                }
                 .padding(5)
                 .cornerRadius(10)
                 
@@ -83,8 +87,12 @@ struct PlusMenuView: View {
                     .padding()
                     .background(Color.white)
                     .foregroundColor(.black)
-                    .cornerRadius(10)
-                    .shadow(radius: 2)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 10)
+                            .stroke(Color.black, lineWidth: 1)
+                    )
+//                    .cornerRadius(10)
+//                    .shadow(radius: 2)
                 }
                 .padding(.horizontal, 5)
             }

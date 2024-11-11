@@ -30,7 +30,7 @@ struct MissionView: View {
     }
     
     private var missionTabs: some View {
-        HStack(spacing: 16) {
+        HStack(spacing: 0) { // spacing을 0으로 설정
             ForEach([MissionTab.daily, .weekly, .achievements], id: \.self) { tab in
                 Button(action: {
                     selectedTab = tab
@@ -52,10 +52,21 @@ struct MissionView: View {
                         .cornerRadius(8)
                 }
                 .padding(.top, 10)
+                
+                // 마지막 탭이 아닌 경우에만 Divider 추가
+                if tab != MissionTab.achievements {
+                    Text("|")
+                        .font(.custom("DungGeunMo", size: 20))
+                        .foregroundColor(.black)
+                        .padding(.horizontal, 5)
+                        .padding(.top, 5)
+                }
             }
         }
         .padding(.horizontal, 16)
     }
+
+
 }
 
 #Preview {

@@ -29,13 +29,14 @@ struct MyPageView: View {
                Spacer()
            }
            .padding(.top)
+           .padding(.bottom,20)
            
-           // 기존 코드
-           Spacer()
            
+           
+           //MARK: - Content
            Text("My Page")
                .font(.custom("DungGeunMo", size: 30))
-               .padding(.bottom, 40)
+               .padding(.bottom, 30)
            
            ZStack {
                Image("myPage_textField")
@@ -46,37 +47,37 @@ struct MyPageView: View {
                    .font(.custom("DungGeunMo", size: 18))
                    .foregroundColor(.black)
            }
-           .padding(.bottom, 50)
            
            ZStack {
-               Text("Record")
-                   .font(.custom("DungGeunMo", size: 30))
-                   .padding(.bottom, 35)
+               Image("Record_box")
+                   .resizable()
+                   .aspectRatio(contentMode: .fit)
                
-               Rectangle()
-                   .frame(height: 1)
-                   .foregroundColor(.black)
-                   .frame(maxWidth: 90)
-           }
-           
-           if viewModel.isLoading {
-               ProgressView()
-           } else {
-               VStack(alignment: .leading) {
-                   StatisticRow(title: "총 KM", value: viewModel.totalDistance)
-                   StatisticRow(title: "총 칼로리", value: viewModel.totalCalories)
-                   StatisticRow(title: "전체 평균 페이스", value: viewModel.averagePace)
-                   StatisticRow(title: "총 시간", value: viewModel.totalTime)
+               VStack {
+                   
+                   // 로딩 중인 경우 ProgressView 표시
+                   if viewModel.isLoading {
+                       ProgressView()
+                   } else {
+                       // 통계 데이터 표시
+                       VStack(alignment: .center, spacing: 8) {
+                           MyStatisticRow(title: "총 KM", value: viewModel.totalDistance)
+                           MyStatisticRow(title: "총 칼로리", value: viewModel.totalCalories)
+                           MyStatisticRow(title: "전체 평균 페이스", value: viewModel.averagePace)
+                           MyStatisticRow(title: "총 시간", value: viewModel.totalTime)
+                       }
+                   }
                }
-               .frame(maxWidth: .infinity, alignment: .leading)
-               .padding(.leading, 50)
+               .frame(maxWidth: .infinity, maxHeight: .infinity)
            }
+           .padding(.horizontal)
+
            
            if let errorMessage = viewModel.errorMessage {
                Text(errorMessage)
                    .foregroundColor(.red)
                    .font(.custom("DungGeunMo", size: 16))
-                   .padding(.top, 40)
+                   .padding(.vertical, 10)
            }
            
            Spacer()

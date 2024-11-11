@@ -340,3 +340,44 @@ extension HealthKitManager {
     }
 }
 
+// HealthKitManager Extension
+extension HealthKitManager {
+    func fetchRunningDataForDateRange(start: Date, end: Date, completion: @escaping ([WeeklyRunningData]) -> Void) {
+        let workoutType = HKObjectType.workoutType()
+        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [
+            HKQuery.predicateForWorkouts(with: .running),
+            HKQuery.predicateForSamples(withStart: start, end: end, options: .strictStartDate)
+        ])
+        
+        let query = HKSampleQuery(
+            sampleType: workoutType,
+            predicate: predicate,
+            limit: HKObjectQueryNoLimit,
+            sortDescriptors: [NSSortDescriptor(key: HKSampleSortIdentifierStartDate, ascending: true)]
+        ) { (_, samples, error) in
+            guard let workouts = samples as? [HKWorkout], error == nil else {
+                DispatchQueue.main.async {
+                    completion([])
+                }
+                return
+            }
+            
+            let runningData = workouts.map { workout in
+                WeeklyRunningData(
+                    date: workout.startDate,
+                    distance: (workout.totalDistance?.doubleValue(for: .meter()) ?? 0) / 1000,
+                    calories: workout.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0,
+                    duration: workout.duration,
+                    pace: (workout.duration / 60) / ((workout.totalDistance?.doubleValue(for: .meter()) ?? 1) / 1000)
+                )
+            }
+            
+            DispatchQueue.main.async {
+                completion(runningData)
+            }
+        }
+        
+        healthStore.execute(query)
+    }
+}
+

@@ -8,48 +8,47 @@
 import SwiftUI
 
 struct SideMenuView: View {
-        
-    // 캐릭터 정보
-    @ObservedObject var characterViewModel: CharacterViewModel
     
-    // 로그인 상태를 관리하는 변수 (Binding으로 받음)
-    @ObservedObject var viewModel: LoginViewModel // LoginViewModel의 인스턴스를 받음
+    @ObservedObject var characterViewModel: CharacterViewModel
+    @ObservedObject var viewModel: LoginViewModel
     @Binding var isLoggedIn: Bool
-
+    @Environment(\.dismiss) private var dismiss
+    @State private var showFriendsList = false
+    
+    @State private var showMyPage = false // MyPage 표시 상태
+    
     @State private var isAlarmExpanded = false // Alarm 섹션의 확장 상태를 관리하는 변수
     @State private var isRunningAlertEnabled = false // 러닝 닭달 알림 스위치 상태
     @State private var isMissionAlertEnabled = false // 미션 알림 스위치 상태
-
+    
+    
     var body: some View {
         NavigationStack {
             VStack(alignment: .leading) {
                 
                 // 닫기 버튼
                 VStack {
-                    // 메뉴 아이템들
+                    Text(characterViewModel.loginId) // 여기에 아이디 표시
+                        .font(.custom("DungGeunMo", size: 20))
+                        .padding(.bottom, 5)
+                        .underline() // 텍스트에 밑줄 추가
+                        .background(Color.white)
+                        .foregroundColor(.black)
+                    
+                    // MyPage 전체화면 버튼
                     Button(action: {
-                        print("My page clicked")
-                        // My page 버튼 클릭 시 동작 추가
+                        showMyPage = true // 버튼을 누르면 showMyPage를 true로 변경
                     }) {
-                        Text(characterViewModel.loginId) // 여기에 아이디 표시
-                            .font(.custom("DungGeunMo", size: 20))
-                            .padding(.bottom, 5)
-                            .underline() // 텍스트에 밑줄 추가
-                            .background(Color.white)
-                            .foregroundColor(.black)
-                    }
-                    // 캐릭터 이미지 표시
-                    NavigationLink(destination: MyPageView()) {
                         HStack {
                             Spacer()
                             if let characterImage = characterViewModel.characterImages.first {
                                 Image(characterImage)
                                     .resizable()
                                     .frame(width: 100, height: 100)
-                                    .clipShape(Circle()) // 이미지를 동그랗게 클립
+                                    .clipShape(Circle())
                                     .padding()
                                     .overlay(
-                                        Circle().stroke(Color.black, lineWidth: 1) // 테두리 추가
+                                        Circle().stroke(Color.black, lineWidth: 1)
                                     )
                                     .padding()
                             } else {
@@ -60,26 +59,19 @@ struct SideMenuView: View {
                             Spacer()
                         }
                     }
-                    .navigationViewStyle(StackNavigationViewStyle())
                     .accentColor(.black)
+                    .fullScreenCover(isPresented: $showMyPage) {
+                        MyPageView() // MyPageView를 전체 화면으로 표시
+                    }
                 }
                 .padding(.top, 50)
                 
-                
-                
-                NavigationLink(destination: FriendsListView()) {
-                    Text("Friends")
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding()
-                        .font(.custom("DungGeunMo", size: 20))
-                        .background(Color.white)
-                        .foregroundColor(.black)
-                }
-                
+                // Friends 버튼 - 전체화면 전환을 위해 수정
                 Button(action: {
-                    print("Collection clicked")
+                    showFriendsList = true
+                    dismiss() // 사이드 메뉴 닫기
                 }) {
-                    Text("Collection")
+                    Text("Friends")
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding()
                         .font(.custom("DungGeunMo", size: 20))
@@ -160,11 +152,17 @@ struct SideMenuView: View {
                 .padding(.bottom, 34) // 아래 여백 추가
                 
             }
-            .background(Color.white) // 메뉴 배경색
+            .background(Color.white)
             .padding()
+            .fullScreenCover(isPresented: $showFriendsList) {
+                NavigationStack {
+                    FriendsListView(isPresented: $showFriendsList)
+                }
+            }
         }
     }
 }
+
 
 #Preview {
     // 미리보기를 위한 가짜 데이터 생성
