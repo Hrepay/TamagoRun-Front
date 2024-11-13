@@ -23,6 +23,8 @@ struct SelectedDateRunningView: View {
         NavigationView {
             VStack {
                 
+                Spacer()
+                
                 Text("\(dateFormatter.string(from: date)) 기록")
                     .font(.custom("DungGeunMo", size: 15))
                     .padding(.top, 40)

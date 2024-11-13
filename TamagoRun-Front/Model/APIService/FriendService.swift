@@ -106,4 +106,32 @@ class FriendService {
        
        return true
     }
+    
+    // 친구 info
+    func getFriendRunningData(friendId: String) async throws -> UserRecord {
+        guard let sessionID = UserDefaults.standard.string(forKey: "sessionID") else {
+            throw NetworkError.unauthorized
+        }
+        
+        // URL string에 직접 쿼리 파라미터 포함
+        guard let url = URL(string: "\(baseURL)/friends/runningData?friendId=\(friendId)") else {
+            throw NetworkError.invalidURL
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.setValue(sessionID, forHTTPHeaderField: "SessionId")
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw NetworkError.invalidResponse
+        }
+        
+        guard httpResponse.statusCode == 200 else {
+            throw NetworkError.failed(httpResponse.statusCode)
+        }
+        
+        return try JSONDecoder().decode(UserRecord.self, from: data)
+    }
 }

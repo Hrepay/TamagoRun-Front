@@ -46,12 +46,13 @@ struct LoginView: View {
                 
                 // 로그인 버튼
                 Button(action: {
-                    viewModel.login() // 로그인 함수 호출
-                    if viewModel.isLoginSuccessful {
-                        // 로그인 성공 시 로그인 상태 변경
-                        isLoggedIn = true
-                        UserDefaults.standard.set(viewModel.sessionID, forKey: "sessionID") // 세션 저장
-                        navigateToMainView = true // 네비게이션 상태 변경
+                    viewModel.login { success in  // 로그인 결과를 기다림
+                        if success {
+                            // 로그인 성공 시 로그인 상태 변경
+                            isLoggedIn = true
+                            UserDefaults.standard.set(viewModel.sessionID, forKey: "sessionID") // 세션 저장
+                            navigateToMainView = true // 네비게이션 상태 변경
+                        }
                     }
                 }) {
                     Image(btList[1])
@@ -71,6 +72,7 @@ struct LoginView: View {
             .navigationBarHidden(true) // 기본 네비게이션 바 숨기기
             .overlay(alignment: .topLeading) { // 커스텀 버튼을 원하는 위치에 배치
                 Button(action: {
+                    viewModel.resetState() // 뒤로가기 시 초기화
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     HStack {
@@ -82,6 +84,7 @@ struct LoginView: View {
                     .padding()
                 }
             }
+            
             // MainView로의 네비게이션 설정
             .fullScreenCover(isPresented: $navigateToMainView) {
                 NavigationStack {
@@ -93,7 +96,7 @@ struct LoginView: View {
                 navigateToMainView = true
             }
         }
-        .navigationBarBackButtonHidden(true) // 이 줄을 추가하여 파란색 "< Back" 버튼을 숨깁니다.
+        .navigationBarBackButtonHidden(true)
     }
 }
 

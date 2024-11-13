@@ -123,12 +123,22 @@ struct MapView: UIViewControllerRepresentable {
                     }
                     
                     // Update calories
-                    let weight = 65.0 // kg
-                    let met = 7.0 // MET value for running
-                    let timeInSeconds = elapsedTime // 이미 초 단위이므로 시간으로 변환할 필요 없음
-                    let caloriesBurned = (met * weight * timeInSeconds) / 3600.0 // 초 단위로 계산
-
-                    self.parent.runningData.calories += Int(caloriesBurned)
+//                    let weight = 65.0 // kg
+//                    let met = 7.0 // MET value for running
+//                    let timeInSeconds = elapsedTime // 이미 초 단위이므로 시간으로 변환할 필요 없음
+//                    let caloriesBurned = (met * weight * timeInSeconds) / 3600.0 // 초 단위로 계산
+//
+//                    self.parent.runningData.calories += Int(caloriesBurned)
+                    // Update calories
+                    let standardWeight = 64.0  // 한국 성인 평균 체중 (kg)
+                    let totalTimeInHours = self.parent.runningData.elapsedTime / 3600.0
+                    let met = 7.0 // 일반적인 조깅/달리기의 MET 값
+                                        
+                    // 칼로리 계산: MET * 체중(kg) * 시간(hour)
+                    let totalCalories = met * standardWeight * totalTimeInHours
+                                        
+                    // 소수점 이하를 버리지 않고 반올림
+                    self.parent.runningData.calories = Int(round(totalCalories))
 
                     
                     print("Updated - Distance: \(self.parent.runningData.distance), Pace: \(self.parent.runningData.pace), Calories: \(self.parent.runningData.calories), Time: \(self.parent.runningData.elapsedTime)")

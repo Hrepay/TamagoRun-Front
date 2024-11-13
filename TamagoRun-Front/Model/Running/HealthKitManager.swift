@@ -283,6 +283,7 @@ extension HealthKitManager {
 }
 
 // 월 통계
+// HealthKitManager.swift
 extension HealthKitManager {
     struct MonthlyRunningData {
         let date: Date
@@ -292,17 +293,23 @@ extension HealthKitManager {
         let pace: Double
     }
     
+    // 페이스 계산을 위한 헬퍼 메서드
+    private func calculatePace(duration: TimeInterval, distance: Double) -> Double {
+        if distance > 0 {
+            return (duration / 60 / distance) / 2  // 분/km
+        }
+        return 0
+    }
+    
     func fetchMonthlyRunningStats(forYear year: Int = Calendar.current.component(.year, from: Date()), completion: @escaping ([MonthlyRunningData]) -> Void) {
         let calendar = Calendar.current
         
-        // 해당 년도의 시작과 끝 날짜 설정
         guard let startOfYear = calendar.date(from: DateComponents(year: year, month: 1, day: 1)),
               let endOfYear = calendar.date(from: DateComponents(year: year, month: 12, day: 31)) else {
             completion([])
             return
         }
         
-        // HealthKit에서 러닝 데이터 쿼리
         let workoutType = HKObjectType.workoutType()
         let predicate = HKQuery.predicateForWorkouts(with: .running)
         let datePredicate = HKQuery.predicateForSamples(withStart: startOfYear, end: endOfYear, options: .strictStartDate)
@@ -322,12 +329,15 @@ extension HealthKitManager {
             }
             
             let runningData = workouts.map { workout in
-                MonthlyRunningData(
+                let distance = (workout.totalDistance?.doubleValue(for: .meter()) ?? 0) / 1000  // 여기서 한 번 계산
+                let pace = self.calculatePace(duration: workout.duration, distance: distance)
+                
+                return MonthlyRunningData(
                     date: workout.startDate,
-                    distance: (workout.totalDistance?.doubleValue(for: .meter()) ?? 0) / 1000,
+                    distance: distance,  // 이미 계산된 distance 사용 (중복 계산 제거)
                     calories: workout.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0,
                     duration: workout.duration,
-                    pace: (workout.duration / 60) / (workout.totalDistance?.doubleValue(for: .meter()) ?? 1 / 1000)
+                    pace: pace
                 )
             }
             

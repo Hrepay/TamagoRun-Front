@@ -116,4 +116,9 @@ class FriendListViewModel: ObservableObject {
         
         await MainActor.run { isLoading = false }
     }
+    
+    // 친구 정보 불러오기
+    func getFriendRunningData(friendId: String) async throws -> UserRecord {
+        return try await friendService.getFriendRunningData(friendId: friendId)
+    }
 }

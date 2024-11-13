@@ -21,6 +21,8 @@
 		0753BB322CE1EA96005531A2 /* FriendListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0753BB312CE1EA96005531A2 /* FriendListViewModel.swift */; };
 		0753BB342CE1F0A9005531A2 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0753BB332CE1F0A9005531A2 /* Friend.swift */; };
 		0753BB362CE22EC4005531A2 /* MyStatisticRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0753BB352CE22EC4005531A2 /* MyStatisticRow.swift */; };
+		0753BB382CE346C1005531A2 /* FriendRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0753BB372CE346C1005531A2 /* FriendRecordView.swift */; };
+		0753BB3E2CE46849005531A2 /* FriendListContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0753BB3D2CE46849005531A2 /* FriendListContentView.swift */; };
 		07540AE22CD678E3001E4E9E /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AE12CD678E3001E4E9E /* MyPageView.swift */; };
 		07540AE92CD78401001E4E9E /* MonthlyRunningGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AE82CD78401001E4E9E /* MonthlyRunningGraphView.swift */; };
 		07540AEB2CD790D4001E4E9E /* WeekRunData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07540AEA2CD790D4001E4E9E /* WeekRunData.swift */; };
@@ -115,6 +117,8 @@
 		0753BB312CE1EA96005531A2 /* FriendListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewModel.swift; sourceTree = "<group>"; };
 		0753BB332CE1F0A9005531A2 /* Friend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		0753BB352CE22EC4005531A2 /* MyStatisticRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyStatisticRow.swift; sourceTree = "<group>"; };
+		0753BB372CE346C1005531A2 /* FriendRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendRecordView.swift; sourceTree = "<group>"; };
+		0753BB3D2CE46849005531A2 /* FriendListContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListContentView.swift; sourceTree = "<group>"; };
 		07540AE12CD678E3001E4E9E /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		07540AE82CD78401001E4E9E /* MonthlyRunningGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonthlyRunningGraphView.swift; sourceTree = "<group>"; };
 		07540AEA2CD790D4001E4E9E /* WeekRunData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeekRunData.swift; sourceTree = "<group>"; };
@@ -251,13 +255,23 @@
 			path = Calender;
 			sourceTree = "<group>";
 		};
-		07540AE52CD69023001E4E9E /* User */ = {
+		0753BB3F2CE4684D005531A2 /* Friends */ = {
 			isa = PBXGroup;
 			children = (
-				07540AE12CD678E3001E4E9E /* MyPageView.swift */,
 				07540B052CD8B520001E4E9E /* FriendsListView.swift */,
 				07540B072CD90DD2001E4E9E /* FriendEmptyView.swift */,
 				07D800602CDA108E00002882 /* FriendAddView.swift */,
+				0753BB372CE346C1005531A2 /* FriendRecordView.swift */,
+				0753BB3D2CE46849005531A2 /* FriendListContentView.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		07540AE52CD69023001E4E9E /* User */ = {
+			isa = PBXGroup;
+			children = (
+				0753BB3F2CE4684D005531A2 /* Friends */,
+				07540AE12CD678E3001E4E9E /* MyPageView.swift */,
 				07F118442CDC5F4300A43B81 /* CharacterSelectView.swift */,
 			);
 			path = User;
@@ -723,8 +737,10 @@
 				070C941D2CA943B7007C92C6 /* LocationManager.swift in Sources */,
 				07551A582CA13AD200EAF936 /* SignUpView.swift in Sources */,
 				07540AE92CD78401001E4E9E /* MonthlyRunningGraphView.swift in Sources */,
+				0753BB3E2CE46849005531A2 /* FriendListContentView.swift in Sources */,
 				07551A622CA14B3C00EAF936 /* MainView.swift in Sources */,
 				079491342CDB7AB7006FBB14 /* Mission.swift in Sources */,
+				0753BB382CE346C1005531A2 /* FriendRecordView.swift in Sources */,
 				07540AFE2CD88903001E4E9E /* UserRecord.swift in Sources */,
 				0753BB2E2CE10199005531A2 /* StatItemView.swift in Sources */,
 				07551A592CA13AD200EAF936 /* ResetPasswordView.swift in Sources */,

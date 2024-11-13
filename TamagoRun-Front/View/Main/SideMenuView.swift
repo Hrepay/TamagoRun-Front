@@ -13,8 +13,8 @@ struct SideMenuView: View {
     @ObservedObject var viewModel: LoginViewModel
     @Binding var isLoggedIn: Bool
     @Environment(\.dismiss) private var dismiss
-    @State private var showFriendsList = false
     
+    @State private var showFriendsList = false // 친구 리스트
     @State private var showMyPage = false // MyPage 표시 상태
     
     @State private var isAlarmExpanded = false // Alarm 섹션의 확장 상태를 관리하는 변수
@@ -26,18 +26,18 @@ struct SideMenuView: View {
         NavigationStack {
             VStack(alignment: .leading) {
                 
-                // 닫기 버튼
+                // 아이디 표시
                 VStack {
                     Text(characterViewModel.loginId) // 여기에 아이디 표시
                         .font(.custom("DungGeunMo", size: 20))
                         .padding(.bottom, 5)
-                        .underline() // 텍스트에 밑줄 추가
+//                        .underline() // 텍스트에 밑줄 추가
                         .background(Color.white)
                         .foregroundColor(.black)
                     
                     // MyPage 전체화면 버튼
                     Button(action: {
-                        showMyPage = true // 버튼을 누르면 showMyPage를 true로 변경
+                        showMyPage = true
                     }) {
                         HStack {
                             Spacer()
@@ -68,7 +68,9 @@ struct SideMenuView: View {
                 
                 // Friends 버튼 - 전체화면 전환을 위해 수정
                 Button(action: {
-                    showFriendsList = true
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        showFriendsList = true
+                    }
                     dismiss() // 사이드 메뉴 닫기
                 }) {
                     Text("Friends")
@@ -155,9 +157,8 @@ struct SideMenuView: View {
             .background(Color.white)
             .padding()
             .fullScreenCover(isPresented: $showFriendsList) {
-                NavigationStack {
-                    FriendsListView(isPresented: $showFriendsList)
-                }
+                // NavigationStack 제거
+                FriendsListView(isPresented: $showFriendsList)
             }
         }
     }

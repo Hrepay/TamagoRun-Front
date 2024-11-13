@@ -48,19 +48,42 @@ class SignUpViewModel: ObservableObject {
         }
     }
     
+    // 이메일 형식 검증 함수
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format:"SELF MATCHES %@", emailRegex)
+        return emailPredicate.evaluate(with: email)
+    }
     
-    func requestVerificationCode() {
+    // 인증코드
+    func requestVerificationCode(completion: @escaping (Bool) -> Void) {
+        // 이메일 형식만 검증
+        guard isValidEmail(email) else {
+            DispatchQueue.main.async {
+                self.showError = true
+                self.errorMessage = "올바른 이메일 형식이 아닙니다."
+                self.alertMessage = "올바른 이메일 형식이 아닙니다."
+                self.showAlert = true
+                completion(false)
+            }
+            return
+        }
+        
+        // 이메일 형식이 맞으면 바로 성공 반환
+        DispatchQueue.main.async {
+            completion(true)
+        }
+        
+        // 백그라운드에서 서버 요청 처리
         UserService.shared.sendVerificationCode(to: email) { [weak self] success in
             DispatchQueue.main.async {
                 if success {
-                    // 인증 코드 요청 성공
                     self?.alertMessage = "인증 코드를 이메일로 보냈습니다."
-                    self?.showAlert = true
                 } else {
-                    // 인증 코드 요청 실패
-                    self?.showError = true
                     self?.errorMessage = "인증 코드를 요청할 수 없습니다."
+                    self?.alertMessage = "인증 코드를 요청할 수 없습니다."
                 }
+                self?.showAlert = true
             }
         }
     }
@@ -80,6 +103,7 @@ class SignUpViewModel: ObservableObject {
         }
     }
     
+    // 회원가입
     func signUp() {
         UserService.shared.signUp(id: id, password: password, email: email) { [weak self] success in
             DispatchQueue.main.async {

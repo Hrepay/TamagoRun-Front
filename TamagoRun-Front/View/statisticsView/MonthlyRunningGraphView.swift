@@ -39,12 +39,12 @@ struct MonthlyRunningGraphView: View {
                 .chartYAxis {
                     AxisMarks { value in
                         AxisValueLabel {
-                            Text("\(value.index * 4) km")
+                            Text("\(value.index * 2) km")
                                 .font(.custom("DungGeunMo", size: 12))
                         }
                     }
                 }
-                .chartYScale(domain: 0...16)
+                .chartYScale(domain: viewModel.chartYScale)
             }
             .padding(.horizontal, 10)
             

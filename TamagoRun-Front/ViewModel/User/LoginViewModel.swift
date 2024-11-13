@@ -39,6 +39,12 @@ class LoginViewModel: ObservableObject {
             self.isLoginSuccessful = false
             self.errorMessage = nil
             self.sessionID = nil
+            self.isCheckingSession = false  // 추가
+            self.isLoggedIn = false        // 추가
+            
+            // UserDefaults 완전 초기화
+            UserDefaults.standard.removeObject(forKey: "sessionID")
+            UserDefaults.standard.synchronize()
         }
     }
 
@@ -73,22 +79,22 @@ class LoginViewModel: ObservableObject {
     }
     
     // 로그인 메서드
-    func login() {
+    func login(completion: @escaping (Bool) -> Void) {
         UserService.shared.login(id: loginId, password: password) { [weak self] success, sessionID in
             DispatchQueue.main.async {
                 if success {
                     self?.isLoginSuccessful = true
                     self?.isLoggedIn = true
-                    self?.sessionID = sessionID // 로그인 성공 시 세션 ID 저장
-                    // 세션 ID를 UserDefaults에 저장
-                        if let sessionID = sessionID {
-                            UserDefaults.standard.set(sessionID, forKey: "sessionID")
-                        }
-                    // 로그인 성공 시 MainView로 이동하도록 알리기
-                    self?.errorMessage = nil // 오류 메시지 초기화
+                    self?.sessionID = sessionID
+                    if let sessionID = sessionID {
+                        UserDefaults.standard.set(sessionID, forKey: "sessionID")
+                    }
+                    self?.errorMessage = nil
+                    completion(true)  // 성공 시 completion 호출
                 } else {
                     self?.isLoginSuccessful = false
-                    self?.errorMessage = sessionID ?? "로그인에 실패했습니다." // 세션 ID가 nil인 경우 오류 메시지 사용
+                    self?.errorMessage = sessionID ?? "로그인에 실패했습니다."
+                    completion(false)  // 실패 시 completion 호출
                 }
             }
         }

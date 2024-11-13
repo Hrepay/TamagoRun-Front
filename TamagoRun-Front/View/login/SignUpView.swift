@@ -47,23 +47,30 @@ struct SignUpView: View {
                 .customTextFieldStyle()
             
             HStack {
-                TextField("Verify Email", text: $viewModel.email)
-                    .customTextFieldStyle()
-                    .padding(.trailing, -40)
-                
-                Button(action: {
-                    // 서버에 인증 코드 전송 요청
-                    viewModel.requestVerificationCode()
-                    showEmailView.toggle() // EmailView 모달을 띄움
-                }) {
-                    Image(btList[0])
-                        .resizable()
-                        .frame(width: 35, height: 35)
-                        .offset(y: -2)
+                    TextField("Verify Email", text: $viewModel.email)
+                        .customTextFieldStyle()
+                        .padding(.trailing, -40)
+                    
+                    Button(action: {
+                        print("Button tapped")  // 디버깅용
+                        viewModel.requestVerificationCode { success in
+                            print("Email validation completed: \(success)")  // 디버깅용
+                            if success {
+                                DispatchQueue.main.async {
+                                    print("Showing sheet")  // 디버깅용
+                                    self.showEmailView = true
+                                }
+                            }
+                        }
+                    }) {
+                        Image(btList[0])
+                            .resizable()
+                            .frame(width: 35, height: 35)
+                            .offset(y: -2)
+                    }
                 }
-            }
-            .padding(.trailing, 40)
-            .padding(.bottom, 30)
+                .padding(.trailing, 40)
+                .padding(.bottom, 30)
             
             if viewModel.showError {
                 Text(viewModel.errorMessage)
@@ -99,13 +106,13 @@ struct SignUpView: View {
             Spacer()
             
         }
+        .sheet(isPresented: $showEmailView) {
+            EmailView(email: $viewModel.email, viewModel: viewModel) // EmailView에 viewModel 주입
+        }
         .onChange(of: viewModel.isSignUpSuccessful) {
             if viewModel.isSignUpSuccessful {
                 presentationMode.wrappedValue.dismiss()
             }
-        }
-        .sheet(isPresented: $showEmailView) {
-            EmailView(email: $viewModel.email, viewModel: viewModel) // EmailView에 viewModel 주입
         }
         .alert(isPresented: $viewModel.showAlert) { // 알림창 띄우기
             Alert(title: Text(viewModel.alertMessage))
@@ -133,7 +140,7 @@ struct SignUpView: View {
 
 
 
-
-#Preview {
-    SignUpView()
-}
+//
+//#Preview {
+//    SignUpView()
+//}

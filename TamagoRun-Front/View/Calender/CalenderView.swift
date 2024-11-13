@@ -13,6 +13,8 @@ struct CalenderView: View {
     @State private var selectedDate: Date? = nil
     @State private var monthlyRunningData: [Date: HealthKitManager.WeeklyRunningData] = [:]
     @State private var showingRunningData = false
+    // 특정 날짜의 데이터를 받아오기
+    @State private var isLoadingData = false
     
     let healthKitManager = HealthKitManager.shared
     
@@ -40,12 +42,12 @@ struct CalenderView: View {
             loadMonthData()
         }
         .sheet(isPresented: $showingRunningData) {
-            if let date = selectedDate {
-                SelectedDateRunningView(
-                    date: date,
-                    runningData: monthlyRunningData[date]
-                )
-            }
+            RunningDataSheet(
+                selectedDate: selectedDate,
+                monthlyRunningData: monthlyRunningData,
+                isLoadingData: isLoadingData,
+                onReload: loadMonthData
+            )
         }
         .onChange(of: month) { oldValue, newValue in
             loadMonthData()
@@ -53,25 +55,20 @@ struct CalenderView: View {
     }
     
     private func loadMonthData() {
-        // 현재 보고 있는 월의 시작일과 종료일 계산
+        isLoadingData = true // 로딩 상태 추가
+        
         let calendar = Calendar.current
         let startOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: month))!
         let endOfMonth = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: startOfMonth)!
         
-        // 해당 월의 데이터만 가져오기
-        fetchMonthlyRunningData(start: startOfMonth, end: endOfMonth)
-    }
-    
-    private func fetchMonthlyRunningData(start: Date, end: Date) {
-        // HealthKit에서 해당 기간의 데이터만 가져오는 함수
-        healthKitManager.fetchRunningDataForDateRange(start: start, end: end) { data in
+        healthKitManager.fetchRunningDataForDateRange(start: startOfMonth, end: endOfMonth) { data in
             DispatchQueue.main.async {
-                // 날짜별로 데이터 정리
                 let dataDict = Dictionary(grouping: data) { item in
                     Calendar.current.startOfDay(for: item.date)
                 }.mapValues { $0.first! }
                 
                 self.monthlyRunningData = dataDict
+                self.isLoadingData = false // 로딩 완료
             }
         }
     }
@@ -94,14 +91,19 @@ struct CalenderView: View {
                         let hasRunningData = monthlyRunningData[date] != nil
                         
                         CellView(day: day,
-                                hasRunningData: hasRunningData,
-                                isSelected: false)  // isSelected 매개변수 추가
-                            .onTapGesture {
-                                if hasRunningData {
-                                    selectedDate = date
+                                 hasRunningData: hasRunningData,
+                                 isSelected: selectedDate != nil && Calendar.current.isDate(date, inSameDayAs: selectedDate!))
+                        .onTapGesture {
+                            if hasRunningData {
+                                selectedDate = date
+                                // 데이터가 실제로 있는지 한번 더 확인
+                                if monthlyRunningData[date] != nil {
                                     showingRunningData = true
+                                } else {
+                                    loadMonthData() // 데이터가 없다면 다시 로드
                                 }
                             }
+                        }
                     }
                 }
             }
@@ -120,7 +122,7 @@ private struct CellView: View {
             Text(String(day))
                 .foregroundColor(textColor)
                 .padding(5)
-                .background(isSelected ? Color.blue.opacity(0.2) : Color.clear)
+                .background(isSelected ? Color.black.opacity(0.2) : Color.clear)
                 .font(.custom("DungGeunMo", size: 18))
                 .clipShape(Circle())
         }
@@ -128,11 +130,11 @@ private struct CellView: View {
     
     private var textColor: Color {
         if isSelected {
-            return .blue
+            return .black
         } else if hasRunningData {
             return .black
         } else {
-            return .gray
+            return Color.gray.opacity(0.6)
         }
     }
 }
@@ -223,6 +225,33 @@ extension CalenderView {
                 }
             }
             .padding(.bottom, 5)
+        }
+    }
+}
+
+// 시트용 별도 뷰 컴포넌트
+struct RunningDataSheet: View {
+    let selectedDate: Date?
+    let monthlyRunningData: [Date: HealthKitManager.WeeklyRunningData]
+    let isLoadingData: Bool
+    let onReload: () -> Void
+    
+    var body: some View {
+        Group {
+            if let date = selectedDate,
+               let data = monthlyRunningData[date] {
+                SelectedDateRunningView(
+                    date: date,
+                    runningData: data
+                )
+            } else {
+                ProgressView()
+                    .onAppear {
+                        if !isLoadingData {
+                            onReload()
+                        }
+                    }
+            }
         }
     }
 }

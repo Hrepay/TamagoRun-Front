@@ -19,6 +19,14 @@ class MonthlyRunningViewModel: ObservableObject {
         let calories: Double
         let duration: TimeInterval
         let pace: Double
+        
+        init(month: Int, monthlyRunningData: [HealthKitManager.MonthlyRunningData]) {
+            self.month = month
+            self.distance = monthlyRunningData.reduce(0) { $0 + $1.distance }  // distance가 이미 km 단위임
+            self.calories = monthlyRunningData.reduce(0) { $0 + $1.calories }
+            self.duration = monthlyRunningData.reduce(0) { $0 + $1.duration }
+            self.pace = monthlyRunningData.isEmpty ? 0 : monthlyRunningData.reduce(0.0) { $0 + $1.pace } / Double(monthlyRunningData.count)
+        }
     }
     
     struct ChartData: Identifiable {
@@ -34,10 +42,10 @@ class MonthlyRunningViewModel: ObservableObject {
     }()
     
     var chartDataItems: [ChartData] {
-        // 1-12월 모든 달에 대한 데이터 생성
         (1...12).map { month in
-            // 해당 월의 데이터가 있으면 사용, 없으면 거리 0으로 설정
             if let monthData = monthlyData.first(where: { $0.month == month }) {
+                // 디버깅을 위한 출력
+                print("Month \(month): Distance = \(monthData.distance)")
                 return ChartData(
                     id: UUID(),
                     monthName: "\(month)",
@@ -54,12 +62,13 @@ class MonthlyRunningViewModel: ObservableObject {
     }
     
     var totalDistance: String {
-        // chartDataItems의 모든 거리를 합산
+        // 모든 월의 거리를 합산
         let total = chartDataItems.reduce(0) { $0 + $1.distance }
         return String(format: "%.1f", total)
     }
-    
+
     var totalCalories: String {
+        // 모든 월의 칼로리를 합산
         String(format: "%.0f", monthlyData.reduce(0) { $0 + $1.calories })
     }
     
@@ -72,6 +81,7 @@ class MonthlyRunningViewModel: ObservableObject {
     }
     
     var totalTime: String {
+        // 모든 월의 시간을 합산
         let total = monthlyData.reduce(0) { $0 + $1.duration }
         let hours = Int(total) / 3600
         let minutes = Int(total) / 60 % 60
@@ -89,31 +99,43 @@ class MonthlyRunningViewModel: ObservableObject {
             }
             
             // 각 월의 데이터 합산
-            let monthlyStats = groupedByMonth.map { (month, data) -> MonthRunData in
-                let totalDistance = data.reduce(0) { $0 + $1.distance }
-                let totalCalories = data.reduce(0) { $0 + $1.calories }
-                let totalDuration = data.reduce(0) { $0 + $1.duration }
-                
-                // 평균 페이스 계산 수정
-                let avgPace: Double
-                if totalDistance > 0 {
-                    avgPace = totalDuration / 60 / totalDistance // 분/km
-                } else {
-                    avgPace = 0
-                }
-                
-                return MonthRunData(
-                    month: month,
-                    distance: totalDistance,
-                    calories: totalCalories,
-                    duration: totalDuration,
-                    pace: avgPace
-                )
+            let monthlyStats = groupedByMonth.map { (month, data) in
+                MonthRunData(month: month, monthlyRunningData: data)
             }
             
             DispatchQueue.main.async {
                 self?.monthlyData = monthlyStats.sorted(by: { $0.month < $1.month })
             }
         }
+    }
+}
+
+// 차트의 최대치를 구하기 위한 메서드
+extension MonthlyRunningViewModel {
+    // 최대 거리를 기반으로 차트 스케일 계산
+    var chartYScale: ClosedRange<Double> {
+        // 모든 월의 데이터 중 최대 거리 찾기
+        let maxDistance = chartDataItems.map { $0.distance }.max() ?? 0
+        
+        if maxDistance == 0 {
+            return 0...4  // 기본 최대값을 16에서 4로 수정
+        }
+        
+        // 최대값을 올림하여 스케일 설정 (4km 단위 대신 더 작은 단위 사용)
+        let scaleMax = ceil(maxDistance * 2) / 2  // 0.5km 단위로 반올림
+        let paddedMax = max(scaleMax + 1, 4)  // 여유 공간을 위해 1km 추가하되 최소값은 4km
+        
+        return 0...paddedMax
+    }
+    
+    // Y축 눈금 간격 계산
+    var yAxisStepSize: Double {
+        let maxScale = chartYScale.upperBound
+        
+        // 스케일에 따른 적절한 간격 설정
+        if maxScale <= 20 { return 4 }      // 20km 이하: 4km 간격
+        else if maxScale <= 40 { return 8 }  // 40km 이하: 8km 간격
+        else if maxScale <= 100 { return 20 } // 100km 이하: 20km 간격
+        else { return 40 }                    // 100km 초과: 40km 간격
     }
 }

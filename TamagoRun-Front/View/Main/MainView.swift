@@ -122,8 +122,10 @@ struct MainView: View {
                             ForEach(0..<7, id: \.self) { index in
                                 Image(weeklyRunningData[index] ? sprout[0] : sprout[1])
                                     .resizable()
-                                    .frame(width: 35, height: 25)
+                                    .frame(width: 30, height: 20)
+                                    .padding(.horizontal, 3)
                             }
+                            
                             Spacer()
                         }
                         .padding()
