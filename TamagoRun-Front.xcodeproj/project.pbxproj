@@ -15,6 +15,7 @@
 		07123C952CB1070200DBFA63 /* RunningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07123C942CB1070100DBFA63 /* RunningViewModel.swift */; };
 		07123C972CB107E200DBFA63 /* RunningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07123C962CB107E200DBFA63 /* RunningService.swift */; };
 		072A7E9A2CDE16EF005574A1 /* CharacterSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072A7E992CDE16EF005574A1 /* CharacterSelectionViewModel.swift */; };
+		072D25622CEC409700E96B54 /* RunningDataFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072D25612CEC409700E96B54 /* RunningDataFormatter.swift */; };
 		0753BB2C2CE10045005531A2 /* SelectedDateRunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0753BB2B2CE10045005531A2 /* SelectedDateRunningView.swift */; };
 		0753BB2E2CE10199005531A2 /* StatItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0753BB2D2CE10199005531A2 /* StatItemView.swift */; };
 		0753BB302CE1E952005531A2 /* FriendService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0753BB2F2CE1E952005531A2 /* FriendService.swift */; };
@@ -62,6 +63,10 @@
 		079491392CDB7BF3006FBB14 /* DailyMissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 079491382CDB7BF3006FBB14 /* DailyMissionCell.swift */; };
 		0794913B2CDB7C24006FBB14 /* MissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0794913A2CDB7C24006FBB14 /* MissionViewModel.swift */; };
 		0794913D2CDB7E45006FBB14 /* MissionTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0794913C2CDB7E45006FBB14 /* MissionTab.swift */; };
+		07C306322CE5DBF800198F45 /* UserCharacterInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C306312CE5DBF800198F45 /* UserCharacterInfoView.swift */; };
+		07C306342CE5DC7900198F45 /* CharacterService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C306332CE5DC7900198F45 /* CharacterService.swift */; };
+		07C306362CE5DCA300198F45 /* EvolutionModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C306352CE5DCA300198F45 /* EvolutionModalView.swift */; };
+		07C3063B2CE5EDE200198F45 /* EvolutionDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C3063A2CE5EDE200198F45 /* EvolutionDto.swift */; };
 		07C5FB7D2CA2A40400BC0079 /* HealthPermissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */; };
 		07C5FB7F2CA2BAAE00BC0079 /* HealthKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */; };
 		07C5FB932CA39EF000BC0079 /* SideMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07C5FB922CA39EF000BC0079 /* SideMenuView.swift */; };
@@ -73,6 +78,14 @@
 		07D4545C2CAA96BE009FD782 /* CharacterImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4545B2CAA96BE009FD782 /* CharacterImages.swift */; };
 		07D4545E2CAA9C5A009FD782 /* CharacterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */; };
 		07D454622CABE65B009FD782 /* MainPageDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D454612CABE65B009FD782 /* MainPageDto.swift */; };
+		07D6FC082CEC802B003F15CD /* RunningLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC072CEC802B003F15CD /* RunningLocation.swift */; };
+		07D6FC0A2CEC8043003F15CD /* DailyRunningRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC092CEC8043003F15CD /* DailyRunningRecord.swift */; };
+		07D6FC0C2CEC80AA003F15CD /* RunningHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC0B2CEC80AA003F15CD /* RunningHistoryViewModel.swift */; };
+		07D6FC102CEC827E003F15CD /* SelectedDateMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC0F2CEC827E003F15CD /* SelectedDateMapView.swift */; };
+		07D6FC1C2CEC98E4003F15CD /* ManualMainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC1B2CEC98E4003F15CD /* ManualMainView.swift */; };
+		07D6FC222CEC9947003F15CD /* Manual1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC212CEC9947003F15CD /* Manual1View.swift */; };
+		07D6FC242CEC995C003F15CD /* Manual2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC232CEC995C003F15CD /* Manual2View.swift */; };
+		07D6FC262CEC995F003F15CD /* Manual3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC252CEC995F003F15CD /* Manual3View.swift */; };
 		07D800612CDA108E00002882 /* FriendAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D800602CDA108E00002882 /* FriendAddView.swift */; };
 		07F1183B2CDC3BE400A43B81 /* WeeklyMissionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1183A2CDC3BE400A43B81 /* WeeklyMissionResponse.swift */; };
 		07F1183F2CDC3D6B00A43B81 /* WeeklyMissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1183E2CDC3D6B00A43B81 /* WeeklyMissionListView.swift */; };
@@ -111,6 +124,7 @@
 		07123C942CB1070100DBFA63 /* RunningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningViewModel.swift; sourceTree = "<group>"; };
 		07123C962CB107E200DBFA63 /* RunningService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningService.swift; sourceTree = "<group>"; };
 		072A7E992CDE16EF005574A1 /* CharacterSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectionViewModel.swift; sourceTree = "<group>"; };
+		072D25612CEC409700E96B54 /* RunningDataFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningDataFormatter.swift; sourceTree = "<group>"; };
 		0753BB2B2CE10045005531A2 /* SelectedDateRunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedDateRunningView.swift; sourceTree = "<group>"; };
 		0753BB2D2CE10199005531A2 /* StatItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatItemView.swift; sourceTree = "<group>"; };
 		0753BB2F2CE1E952005531A2 /* FriendService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendService.swift; sourceTree = "<group>"; };
@@ -155,12 +169,16 @@
 		078057552C9EBE4200110D93 /* TamagoRun-Front.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TamagoRun-Front.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0780576A2C9EBE4500110D93 /* TamagoRun-FrontTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		078057742C9EBE4500110D93 /* TamagoRun-FrontUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TamagoRun-FrontUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		079491312CDB7A63006FBB14 /* DailyMissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMissionResponse.swift; sourceTree = "<group>"; };
-		079491332CDB7AB7006FBB14 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		079491312CDB7A63006FBB14 /* DailyMissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DailyMissionResponse.swift; path = ../Main/DailyMissionResponse.swift; sourceTree = "<group>"; };
+		079491332CDB7AB7006FBB14 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Mission.swift; path = ../Main/Mission.swift; sourceTree = "<group>"; };
 		079491362CDB7BCD006FBB14 /* DailyMissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMissionListView.swift; sourceTree = "<group>"; };
 		079491382CDB7BF3006FBB14 /* DailyMissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyMissionCell.swift; sourceTree = "<group>"; };
 		0794913A2CDB7C24006FBB14 /* MissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionViewModel.swift; sourceTree = "<group>"; };
-		0794913C2CDB7E45006FBB14 /* MissionTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionTab.swift; sourceTree = "<group>"; };
+		0794913C2CDB7E45006FBB14 /* MissionTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MissionTab.swift; path = ../Main/MissionTab.swift; sourceTree = "<group>"; };
+		07C306312CE5DBF800198F45 /* UserCharacterInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCharacterInfoView.swift; sourceTree = "<group>"; };
+		07C306332CE5DC7900198F45 /* CharacterService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterService.swift; sourceTree = "<group>"; };
+		07C306352CE5DCA300198F45 /* EvolutionModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionModalView.swift; sourceTree = "<group>"; };
+		07C3063A2CE5EDE200198F45 /* EvolutionDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvolutionDto.swift; sourceTree = "<group>"; };
 		07C5FB7A2CA2A29600BC0079 /* TamagoRun-Front.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "TamagoRun-Front.entitlements"; sourceTree = "<group>"; };
 		07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthPermissionView.swift; sourceTree = "<group>"; };
 		07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitManager.swift; sourceTree = "<group>"; };
@@ -173,8 +191,16 @@
 		07D4545B2CAA96BE009FD782 /* CharacterImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImages.swift; sourceTree = "<group>"; };
 		07D4545D2CAA9C5A009FD782 /* CharacterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterViewModel.swift; sourceTree = "<group>"; };
 		07D454612CABE65B009FD782 /* MainPageDto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageDto.swift; sourceTree = "<group>"; };
+		07D6FC072CEC802B003F15CD /* RunningLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningLocation.swift; sourceTree = "<group>"; };
+		07D6FC092CEC8043003F15CD /* DailyRunningRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyRunningRecord.swift; sourceTree = "<group>"; };
+		07D6FC0B2CEC80AA003F15CD /* RunningHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningHistoryViewModel.swift; sourceTree = "<group>"; };
+		07D6FC0F2CEC827E003F15CD /* SelectedDateMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedDateMapView.swift; sourceTree = "<group>"; };
+		07D6FC1B2CEC98E4003F15CD /* ManualMainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManualMainView.swift; sourceTree = "<group>"; };
+		07D6FC212CEC9947003F15CD /* Manual1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manual1View.swift; sourceTree = "<group>"; };
+		07D6FC232CEC995C003F15CD /* Manual2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manual2View.swift; sourceTree = "<group>"; };
+		07D6FC252CEC995F003F15CD /* Manual3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manual3View.swift; sourceTree = "<group>"; };
 		07D800602CDA108E00002882 /* FriendAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAddView.swift; sourceTree = "<group>"; };
-		07F1183A2CDC3BE400A43B81 /* WeeklyMissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMissionResponse.swift; sourceTree = "<group>"; };
+		07F1183A2CDC3BE400A43B81 /* WeeklyMissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeeklyMissionResponse.swift; path = ../Main/WeeklyMissionResponse.swift; sourceTree = "<group>"; };
 		07F1183E2CDC3D6B00A43B81 /* WeeklyMissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMissionListView.swift; sourceTree = "<group>"; };
 		07F118402CDC3D8B00A43B81 /* WeeklyMissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMissionCell.swift; sourceTree = "<group>"; };
 		07F118422CDC59D800A43B81 /* AchievementResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AchievementResponse.swift; path = /Users/hwangs/Downloads/AchievementResponse.swift; sourceTree = "<absolute>"; };
@@ -226,9 +252,11 @@
 		07123C932CAFF04400DBFA63 /* Running */ = {
 			isa = PBXGroup;
 			children = (
+				07D6FC062CEC8010003F15CD /* selectedDataRunning */,
 				070C941C2CA943B7007C92C6 /* LocationManager.swift */,
 				07C5FB7E2CA2BAAE00BC0079 /* HealthKitManager.swift */,
 				07540AEA2CD790D4001E4E9E /* WeekRunData.swift */,
+				072D25612CEC409700E96B54 /* RunningDataFormatter.swift */,
 			);
 			path = Running;
 			sourceTree = "<group>";
@@ -240,6 +268,7 @@
 				07551A5A2CA13AE900EAF936 /* UserService.swift */,
 				07540AFF2CD8896F001E4E9E /* MainService.swift */,
 				0753BB2F2CE1E952005531A2 /* FriendService.swift */,
+				07C306332CE5DC7900198F45 /* CharacterService.swift */,
 			);
 			path = APIService;
 			sourceTree = "<group>";
@@ -251,6 +280,7 @@
 				07D3B1C62CBF77910084886C /* CalenderView.swift */,
 				0753BB2B2CE10045005531A2 /* SelectedDateRunningView.swift */,
 				0753BB2D2CE10199005531A2 /* StatItemView.swift */,
+				07D6FC0F2CEC827E003F15CD /* SelectedDateMapView.swift */,
 			);
 			path = Calender;
 			sourceTree = "<group>";
@@ -339,6 +369,7 @@
 		07551A382CA1348B00EAF936 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				07C306392CE5EDCE00198F45 /* PlusMenu */,
 				0794912F2CDB7A49006FBB14 /* Main */,
 				07540AEE2CD791DF001E4E9E /* statistics */,
 				0730A5092CB3A5BF0011809F /* APIService */,
@@ -360,6 +391,8 @@
 			isa = PBXGroup;
 			children = (
 				07551A3E2CA1348B00EAF936 /* ContentView.swift */,
+				07D6FC112CEC97B5003F15CD /* Manual */,
+				07C306302CE5DBE300198F45 /* PlusMenu */,
 				07540AEF2CD791F1001E4E9E /* statisticsView */,
 				07540AE52CD69023001E4E9E /* User */,
 				077ADFCE2CA9355300003481 /* Running */,
@@ -378,6 +411,7 @@
 				07540B012CD88B3A001E4E9E /* User */,
 				07540AF02CD79208001E4E9E /* statisticsViewModel */,
 				07123C942CB1070100DBFA63 /* RunningViewModel.swift */,
+				07D6FC0B2CEC80AA003F15CD /* RunningHistoryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -420,13 +454,8 @@
 			children = (
 				07551A612CA14B3C00EAF936 /* MainView.swift */,
 				07C5FB922CA39EF000BC0079 /* SideMenuView.swift */,
-				07D3B1BF2CBF77690084886C /* MissionView.swift */,
-				07D3B1C02CBF77690084886C /* MissionCell.swift */,
-				07D3B1C12CBF77690084886C /* MissionListView.swift */,
-				079491362CDB7BCD006FBB14 /* DailyMissionListView.swift */,
-				07F1183E2CDC3D6B00A43B81 /* WeeklyMissionListView.swift */,
-				079491382CDB7BF3006FBB14 /* DailyMissionCell.swift */,
-				07F118402CDC3D8B00A43B81 /* WeeklyMissionCell.swift */,
+				07C306312CE5DBF800198F45 /* UserCharacterInfoView.swift */,
+				07C306352CE5DCA300198F45 /* EvolutionModalView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -466,13 +495,35 @@
 			isa = PBXGroup;
 			children = (
 				07D454612CABE65B009FD782 /* MainPageDto.swift */,
+				07C3063A2CE5EDE200198F45 /* EvolutionDto.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		07C306302CE5DBE300198F45 /* PlusMenu */ = {
+			isa = PBXGroup;
+			children = (
+				07D3B1BF2CBF77690084886C /* MissionView.swift */,
+				07D3B1C02CBF77690084886C /* MissionCell.swift */,
+				07D3B1C12CBF77690084886C /* MissionListView.swift */,
+				079491362CDB7BCD006FBB14 /* DailyMissionListView.swift */,
+				07F1183E2CDC3D6B00A43B81 /* WeeklyMissionListView.swift */,
+				079491382CDB7BF3006FBB14 /* DailyMissionCell.swift */,
+				07F118402CDC3D8B00A43B81 /* WeeklyMissionCell.swift */,
+			);
+			path = PlusMenu;
+			sourceTree = "<group>";
+		};
+		07C306392CE5EDCE00198F45 /* PlusMenu */ = {
+			isa = PBXGroup;
+			children = (
 				079491312CDB7A63006FBB14 /* DailyMissionResponse.swift */,
 				07F1183A2CDC3BE400A43B81 /* WeeklyMissionResponse.swift */,
 				079491332CDB7AB7006FBB14 /* Mission.swift */,
 				0794913C2CDB7E45006FBB14 /* MissionTab.swift */,
 				07F118422CDC59D800A43B81 /* AchievementResponse.swift */,
 			);
-			path = Main;
+			path = PlusMenu;
 			sourceTree = "<group>";
 		};
 		07C5FB7B2CA2A3DD00BC0079 /* Health */ = {
@@ -481,6 +532,26 @@
 				07C5FB7C2CA2A40400BC0079 /* HealthPermissionView.swift */,
 			);
 			path = Health;
+			sourceTree = "<group>";
+		};
+		07D6FC062CEC8010003F15CD /* selectedDataRunning */ = {
+			isa = PBXGroup;
+			children = (
+				07D6FC072CEC802B003F15CD /* RunningLocation.swift */,
+				07D6FC092CEC8043003F15CD /* DailyRunningRecord.swift */,
+			);
+			path = selectedDataRunning;
+			sourceTree = "<group>";
+		};
+		07D6FC112CEC97B5003F15CD /* Manual */ = {
+			isa = PBXGroup;
+			children = (
+				07D6FC1B2CEC98E4003F15CD /* ManualMainView.swift */,
+				07D6FC212CEC9947003F15CD /* Manual1View.swift */,
+				07D6FC232CEC995C003F15CD /* Manual2View.swift */,
+				07D6FC252CEC995F003F15CD /* Manual3View.swift */,
+			);
+			path = Manual;
 			sourceTree = "<group>";
 		};
 		D919EFECCD662BBA1DB217A5 /* Pods */ = {
@@ -679,13 +750,19 @@
 				07551A482CA1348B00EAF936 /* TextFieldModifier.swift in Sources */,
 				07D3B1C22CBF77690084886C /* MissionCell.swift in Sources */,
 				07540AF22CD792DD001E4E9E /* StatisticRow.swift in Sources */,
+				07D6FC102CEC827E003F15CD /* SelectedDateMapView.swift in Sources */,
 				07D3B1C72CBF77910084886C /* CalenderView.swift in Sources */,
+				07D6FC082CEC802B003F15CD /* RunningLocation.swift in Sources */,
 				07D3B1C32CBF77690084886C /* PlusMenuView.swift in Sources */,
+				07C306342CE5DC7900198F45 /* CharacterService.swift in Sources */,
 				07D3B1C42CBF77690084886C /* MissionListView.swift in Sources */,
 				0794913D2CDB7E45006FBB14 /* MissionTab.swift in Sources */,
+				07D6FC0A2CEC8043003F15CD /* DailyRunningRecord.swift in Sources */,
 				07D3B1C52CBF77690084886C /* MissionView.swift in Sources */,
 				07551A492CA1348B00EAF936 /* ContentView.swift in Sources */,
+				07D6FC1C2CEC98E4003F15CD /* ManualMainView.swift in Sources */,
 				07D800612CDA108E00002882 /* FriendAddView.swift in Sources */,
+				07C306362CE5DCA300198F45 /* EvolutionModalView.swift in Sources */,
 				07D4545C2CAA96BE009FD782 /* CharacterImages.swift in Sources */,
 				07540B062CD8B520001E4E9E /* FriendsListView.swift in Sources */,
 				07F1183F2CDC3D6B00A43B81 /* WeeklyMissionListView.swift in Sources */,
@@ -704,6 +781,7 @@
 				0753BB362CE22EC4005531A2 /* MyStatisticRow.swift in Sources */,
 				070C94202CA94647007C92C6 /* RunningSummaryView.swift in Sources */,
 				0753BB322CE1EA96005531A2 /* FriendListViewModel.swift in Sources */,
+				07D6FC262CEC995F003F15CD /* Manual3View.swift in Sources */,
 				0753BB2C2CE10045005531A2 /* SelectedDateRunningView.swift in Sources */,
 				07540B082CD90DD2001E4E9E /* FriendEmptyView.swift in Sources */,
 				070C94212CA94647007C92C6 /* RunningView.swift in Sources */,
@@ -711,6 +789,7 @@
 				07123C952CB1070200DBFA63 /* RunningViewModel.swift in Sources */,
 				07551A542CA13AD200EAF936 /* LoginView.swift in Sources */,
 				079491372CDB7BCD006FBB14 /* DailyMissionListView.swift in Sources */,
+				07D6FC222CEC9947003F15CD /* Manual1View.swift in Sources */,
 				07F1A5F82CA596F00001BF50 /* AppDelegate.swift in Sources */,
 				07F118432CDC59D800A43B81 /* AchievementResponse.swift in Sources */,
 				07551A552CA13AD200EAF936 /* StartView.swift in Sources */,
@@ -722,13 +801,16 @@
 				07540AFA2CD7A4C8001E4E9E /* MonthlyRunningViewModel.swift in Sources */,
 				07551A5B2CA13AE900EAF936 /* UserService.swift in Sources */,
 				07F1A5FA2CA5983C0001BF50 /* MapView.swift in Sources */,
+				07D6FC0C2CEC80AA003F15CD /* RunningHistoryViewModel.swift in Sources */,
 				07540AF42CD79378001E4E9E /* WeeklyRunningGraphView.swift in Sources */,
 				07F118412CDC3D8B00A43B81 /* WeeklyMissionCell.swift in Sources */,
 				0794913B2CDB7C24006FBB14 /* MissionViewModel.swift in Sources */,
 				072A7E9A2CDE16EF005574A1 /* CharacterSelectionViewModel.swift in Sources */,
 				07551A572CA13AD200EAF936 /* EmailView.swift in Sources */,
+				07D6FC242CEC995C003F15CD /* Manual2View.swift in Sources */,
 				07551A5E2CA13B2400EAF936 /* SignUpViewModel.swift in Sources */,
 				07540AF82CD7A493001E4E9E /* MonthRunData.swift in Sources */,
+				072D25622CEC409700E96B54 /* RunningDataFormatter.swift in Sources */,
 				07551A642CA14E2F00EAF936 /* KeychainHelper.swift in Sources */,
 				07551A5F2CA13B2400EAF936 /* LoginViewModel.swift in Sources */,
 				0753BB302CE1E952005531A2 /* FriendService.swift in Sources */,
@@ -740,7 +822,9 @@
 				0753BB3E2CE46849005531A2 /* FriendListContentView.swift in Sources */,
 				07551A622CA14B3C00EAF936 /* MainView.swift in Sources */,
 				079491342CDB7AB7006FBB14 /* Mission.swift in Sources */,
+				07C306322CE5DBF800198F45 /* UserCharacterInfoView.swift in Sources */,
 				0753BB382CE346C1005531A2 /* FriendRecordView.swift in Sources */,
+				07C3063B2CE5EDE200198F45 /* EvolutionDto.swift in Sources */,
 				07540AFE2CD88903001E4E9E /* UserRecord.swift in Sources */,
 				0753BB2E2CE10199005531A2 /* StatItemView.swift in Sources */,
 				07551A592CA13AD200EAF936 /* ResetPasswordView.swift in Sources */,

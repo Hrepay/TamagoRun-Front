@@ -52,10 +52,27 @@ struct WeeklyRunningGraphView: View {
             Spacer()
             
             VStack(alignment: .leading) {
-                StatisticRow(title: "총 KM", value: viewModel.totalDistance)
-                StatisticRow(title: "총 칼로리", value: viewModel.totalCalories)
-                StatisticRow(title: "전체 평균 페이스", value: viewModel.averagePace)
-                StatisticRow(title: "총 시간", value: viewModel.totalTime)
+                StatisticRow(
+                    title: "총 KM",
+                    type: .distance,
+                    value: viewModel.totalDistanceValue
+                )
+                StatisticRow(
+                    title: "총 칼로리",
+                    type: .calories,
+                    value: Double(viewModel.totalCaloriesValue)
+                )
+                StatisticRow(
+                    title: "전체 평균 페이스",
+                    type: .pace,
+                    value: Double(viewModel.averagePaceValue)
+                )
+                StatisticRow(
+                    title: "총 시간",
+                    type: .time,
+                    value: viewModel.totalTimeValue
+                )
+
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.leading, 50)

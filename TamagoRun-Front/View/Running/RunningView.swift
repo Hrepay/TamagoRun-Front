@@ -55,27 +55,27 @@ struct RunningView: View {
                             VStack(spacing: 20) {
                                 Spacer()
                                 
-                                Text(runningTime)
+                                Text(RunningDataFormatter.formatDuration(runningData.elapsedTime))
                                     .font(.custom("DungGeunMo", size: 36))
                                     .padding(.bottom, 10)
                                 
                                 HStack(spacing: 40) {
                                     VStack {
-                                        Text("\(runningData.distance >= 0.01 ? String(format: "%.2f", runningData.distance) : "0.00")")
+                                        Text(RunningDataFormatter.formatDistance(runningData.distance))
                                             .font(.custom("DungGeunMo", size: 35))
                                         Text("(Km)")
                                             .font(.custom("DungGeunMo", size: 14))
                                     }
                                     
                                     VStack {
-                                        Text("\(runningData.calories > 0 ? "\(runningData.calories)" : "0")")
+                                        Text(RunningDataFormatter.formatCalories(runningData.calories))
                                             .font(.custom("DungGeunMo", size: 35))
                                         Text("(kcal)")
                                             .font(.custom("DungGeunMo", size: 14))
                                     }
                                     
                                     VStack {
-                                        Text(formatPace(runningData.pace))
+                                        Text(RunningDataFormatter.formatPace(runningData.pace))
                                             .font(.custom("DungGeunMo", size: 35))
                                         Text("(/km)")
                                             .font(.custom("DungGeunMo", size: 14))
@@ -143,7 +143,7 @@ struct RunningView: View {
                 .navigationDestination(isPresented: $isRunningFinished) {
                     RunningSummaryView(
                         totalDistance: runningData.distance,
-                        totalTime: runningTime,
+                        totalTime: runningData.elapsedTime,
                         totalPace: runningData.pace,
                         totalCalories: runningData.calories,
                         coordinates: coordinates

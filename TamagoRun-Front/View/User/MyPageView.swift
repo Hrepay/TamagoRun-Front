@@ -61,10 +61,26 @@ struct MyPageView: View {
                    } else {
                        // 통계 데이터 표시
                        VStack(alignment: .center, spacing: 8) {
-                           MyStatisticRow(title: "총 KM", value: viewModel.totalDistance)
-                           MyStatisticRow(title: "총 칼로리", value: viewModel.totalCalories)
-                           MyStatisticRow(title: "전체 평균 페이스", value: viewModel.averagePace)
-                           MyStatisticRow(title: "총 시간", value: viewModel.totalTime)
+                           MyStatisticRow(
+                               title: "총 KM",
+                               type: .distance,
+                               value: viewModel.totalDistanceValue
+                           )
+                           MyStatisticRow(
+                               title: "총 칼로리",
+                               type: .calories,
+                               value: viewModel.totalCaloriesValue
+                           )
+                           MyStatisticRow(
+                               title: "전체 평균 페이스",
+                               type: .pace,
+                               value: viewModel.averagePaceValue
+                           )
+                           MyStatisticRow(
+                               title: "총 시간",
+                               type: .time,
+                               value: viewModel.totalTimeValue
+                           )
                        }
                    }
                }

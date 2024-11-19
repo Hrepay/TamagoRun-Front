@@ -60,10 +60,10 @@ struct FriendRecordView: View {
                         ProgressView()
                     } else if let record = userRecord {
                         VStack(alignment: .center, spacing: 8) {
-                            MyStatisticRow(title: "총 KM", value: String(format: "%.1f", record.totalRunningDistance))
-                            MyStatisticRow(title: "총 칼로리", value: String(format: "%.0f", record.totalCalorie))
-                            MyStatisticRow(title: "전체 평균 페이스", value: String(format: "%.1f", record.overallAveragePace))
-                            MyStatisticRow(title: "총 시간", value: String(format: "%.0f", record.totalRunningTime))
+                            MyStatisticRow(title: "총 KM", type: .distance, value: Double(record.totalRunningDistance))
+                            MyStatisticRow(title: "총 칼로리", type: .calories, value: Double(record.totalCalorie))
+                            MyStatisticRow(title: "전체 평균 페이스", type: .pace, value: Double(record.overallAveragePace))
+                            MyStatisticRow(title: "총 시간", type: .time, value: Double(record.totalRunningTime))
                         }
                     }
                 }

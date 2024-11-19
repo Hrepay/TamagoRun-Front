@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct RunData: Identifiable {
-    let id = UUID()
-    let date: Date
-    let distance: Double
-}
+//struct RunData: Identifiable {
+//    let id = UUID()
+//    let date: Date
+//    let distance: Double
+//}

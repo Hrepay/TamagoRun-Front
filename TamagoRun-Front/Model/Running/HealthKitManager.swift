@@ -263,13 +263,14 @@ extension HealthKitManager {
             }
             
             // 워크아웃 데이터를 WeeklyRunningData로 변환
-            let runningData = workouts.map { workout in
-                WeeklyRunningData(
+            let runningData = workouts.map { [self] workout in
+                let data = self.processWorkout(workout)
+                return WeeklyRunningData(
                     date: workout.startDate,
-                    distance: (workout.totalDistance?.doubleValue(for: .meter()) ?? 0) / 1000,  // 괄호 수정
-                    calories: workout.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0,
-                    duration: workout.duration,
-                    pace: (workout.duration / 60) / ((workout.totalDistance?.doubleValue(for: .meter()) ?? 1) / 1000)
+                    distance: data.distance,
+                    calories: data.calories,
+                    duration: data.duration,
+                    pace: data.pace
                 )
             }
             
@@ -328,16 +329,14 @@ extension HealthKitManager {
                 return
             }
             
-            let runningData = workouts.map { workout in
-                let distance = (workout.totalDistance?.doubleValue(for: .meter()) ?? 0) / 1000  // 여기서 한 번 계산
-                let pace = self.calculatePace(duration: workout.duration, distance: distance)
-                
+            let runningData = workouts.map { [self] workout in
+                let data = self.processWorkout(workout)
                 return MonthlyRunningData(
                     date: workout.startDate,
-                    distance: distance,  // 이미 계산된 distance 사용 (중복 계산 제거)
-                    calories: workout.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0,
-                    duration: workout.duration,
-                    pace: pace
+                    distance: data.distance,
+                    calories: data.calories,
+                    duration: data.duration,
+                    pace: data.pace
                 )
             }
             
@@ -391,3 +390,26 @@ extension HealthKitManager {
     }
 }
 
+extension HealthKitManager {
+    // 공통으로 사용할 헬퍼 메서드들
+    private func convertToKilometers(_ meters: Double) -> Double {
+        return meters / 1000.0
+    }
+    
+    private func calculatePace(duration: TimeInterval, distanceInKm: Double) -> Double {
+        if distanceInKm > 0 {
+            return duration / 60 / distanceInKm  // 분/km
+        }
+        return 0
+    }
+    
+    private func processWorkout(_ workout: HKWorkout) -> (distance: Double, calories: Double, duration: TimeInterval, pace: Double) {
+        let distanceInMeters = workout.totalDistance?.doubleValue(for: .meter()) ?? 0
+        let distanceInKm = convertToKilometers(distanceInMeters)
+        let calories = workout.totalEnergyBurned?.doubleValue(for: .kilocalorie()) ?? 0
+        let duration = workout.duration
+        let pace = calculatePace(duration: duration, distanceInKm: distanceInKm)
+        
+        return (distanceInKm, calories, duration, pace)
+    }
+}

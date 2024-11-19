@@ -12,6 +12,7 @@ struct SelectedDateRunningView: View {
     let runningData: HealthKitManager.WeeklyRunningData?
     
     @Environment(\.dismiss) private var dismiss
+    @StateObject private var viewModel = RunningHistoryViewModel()
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -38,7 +39,7 @@ struct SelectedDateRunningView: View {
                                 .font(.custom("DungGeunMo", size: 12))
                                 .padding(.bottom, 2)
                             
-                            Text(formatDuration(data.duration))
+                            Text(RunningDataFormatter.formatDuration(data.duration))
                                 .font(.custom("DungGeunMo", size: 20))
                                 .multilineTextAlignment(.leading)
                         }
@@ -55,7 +56,7 @@ struct SelectedDateRunningView: View {
                                 .font(.custom("DungGeunMo", size: 12))
                                 .padding(.bottom, 2)
                             
-                            Text(String(format: "%.1f/km", data.pace))
+                            Text(RunningDataFormatter.formatPace(Int(data.pace)))
                                 .font(.custom("DungGeunMo", size: 20))
                                 .multilineTextAlignment(.leading)
                         }
@@ -77,7 +78,7 @@ struct SelectedDateRunningView: View {
                                 .font(.custom("DungGeunMo", size: 12))
                                 .padding(.bottom, 2)
                             
-                            Text("\(Int(data.calories)) kcal")
+                            Text(RunningDataFormatter.formatPace(Int(data.pace)))
                                 .font(.custom("DungGeunMo", size: 20))
                                 .multilineTextAlignment(.leading)
                         }
@@ -94,7 +95,7 @@ struct SelectedDateRunningView: View {
                                 .font(.custom("DungGeunMo", size: 12))
                                 .padding(.bottom, 2)
                             
-                            Text("\(String(format: "%.2f", data.distance)) km")
+                            Text(RunningDataFormatter.formatDistance(data.distance))
                                 .font(.custom("DungGeunMo", size: 20))
                                 .multilineTextAlignment(.leading)
                         }
@@ -109,10 +110,24 @@ struct SelectedDateRunningView: View {
                     .padding(.horizontal, 16)
                     
                     // 여기에 나중에 지도를 추가할 수 있는 공간
-                    Rectangle()
-                        .fill(Color.gray.opacity(0.1))
-                        .frame(height: 300)
-                        .padding()
+                    if !viewModel.coordinates.isEmpty {
+                        SelectedDateMapView(coordinates: viewModel.coordinates)
+                            .frame(height: 300)
+                            .padding()
+                    } else if viewModel.isLoading {
+                        ProgressView()
+                            .frame(height: 300)
+                            .padding()
+                    } else {
+                        Image("noMap")
+                            .resizable()
+                            .frame(height: 300)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 0)
+                                    .stroke(lineWidth: 1)
+                            )
+                            .padding()
+                    }
                 } else {
                     Text("러닝 데이터가 없습니다")
                         .font(.custom("DungGeunMo", size: 16))
@@ -121,17 +136,9 @@ struct SelectedDateRunningView: View {
                 
                 Spacer()
             }
-//            .navigationBarItems(
-//                leading: Button(action: {
-//                    dismiss()
-//                }) {
-//                    HStack {
-//                        Image(systemName: "chevron.left")
-//                        Text("뒤로")
-//                            .font(.custom("DungGeunMo", size: 15))
-//                    }
-//                }
-//            )
+            .onAppear {
+                viewModel.fetchRunningPath(for: date)
+            }
             .navigationBarBackButtonHidden(true)
         }
     }

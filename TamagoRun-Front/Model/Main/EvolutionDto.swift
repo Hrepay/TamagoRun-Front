@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+struct EvolutionDto: Codable {
+    let species: Int
+    let kindOfCharacter: Int
+    let evolutionLevel: Int
+}

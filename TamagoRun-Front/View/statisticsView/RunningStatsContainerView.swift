@@ -17,12 +17,6 @@ struct RunningStatsContainerView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-//            Picker("통계 기간", selection: $selectedTab) {
-//                Text("주간").tag(0)
-//                Text("월간").tag(1)
-//            }
-//            .pickerStyle(.segmented)
-//            .padding()
             
             TabView(selection: $selectedTab) {
                 WeeklyRunningGraphView()

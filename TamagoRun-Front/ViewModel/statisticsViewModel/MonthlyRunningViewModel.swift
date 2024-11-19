@@ -22,7 +22,11 @@ class MonthlyRunningViewModel: ObservableObject {
         
         init(month: Int, monthlyRunningData: [HealthKitManager.MonthlyRunningData]) {
             self.month = month
-            self.distance = monthlyRunningData.reduce(0) { $0 + $1.distance }  // distance가 이미 km 단위임
+            self.distance = monthlyRunningData.reduce(0) { $0 + $1.distance }
+            print("Month \(month) raw data:")
+            monthlyRunningData.forEach { data in
+                print("  - Date: \(data.date), Distance: \(data.distance)km")
+            }
             self.calories = monthlyRunningData.reduce(0) { $0 + $1.calories }
             self.duration = monthlyRunningData.reduce(0) { $0 + $1.duration }
             self.pace = monthlyRunningData.isEmpty ? 0 : monthlyRunningData.reduce(0.0) { $0 + $1.pace } / Double(monthlyRunningData.count)
@@ -41,52 +45,48 @@ class MonthlyRunningViewModel: ObservableObject {
         return formatter
     }()
     
+    // MonthlyRunningViewModel에서
     var chartDataItems: [ChartData] {
-        (1...12).map { month in
+        return (1...12).map { month in
+            // monthlyData 배열이 비어있을 수 있으므로 안전하게 처리
             if let monthData = monthlyData.first(where: { $0.month == month }) {
-                // 디버깅을 위한 출력
-                print("Month \(month): Distance = \(monthData.distance)")
-                return ChartData(
+                // Optional 바인딩으로 안전하게 처리
+                let chartData = ChartData(
                     id: UUID(),
-                    monthName: "\(month)",
+                    monthName: String(month),  // String 초기화를 명시적으로
                     distance: monthData.distance
                 )
+                print("📊 Month \(month) chart data - Distance: \(monthData.distance)km")
+                return chartData
             } else {
-                return ChartData(
+                // 데이터가 없는 달은 0으로 처리
+                let chartData = ChartData(
                     id: UUID(),
-                    monthName: "\(month)",
-                    distance: 0
+                    monthName: String(month),
+                    distance: 0.0
                 )
+                print("📊 Month \(month) - No data")
+                return chartData
             }
         }
     }
     
-    var totalDistance: String {
-        // 모든 월의 거리를 합산
-        let total = chartDataItems.reduce(0) { $0 + $1.distance }
-        return String(format: "%.1f", total)
-    }
-
-    var totalCalories: String {
-        // 모든 월의 칼로리를 합산
-        String(format: "%.0f", monthlyData.reduce(0) { $0 + $1.calories })
+    // 프로퍼티들 타입 변경
+    var totalDistanceValue: Double {
+        chartDataItems.reduce(0) { $0 + $1.distance }
     }
     
-    var averagePace: String {
+    var totalCaloriesValue: Int {
+        Int(monthlyData.reduce(0) { $0 + $1.calories })
+    }
+    
+    var averagePaceValue: Int {
         let totalPace = monthlyData.reduce(0) { $0 + $1.pace }
-        let avgPace = monthlyData.isEmpty ? 0 : totalPace / Double(monthlyData.count)
-        let minutes = Int(avgPace)
-        let seconds = Int((avgPace - Double(minutes)) * 60)
-        return String(format: "%d'%02d\"", minutes, seconds)
+        return monthlyData.isEmpty ? 0 : Int(totalPace / Double(monthlyData.count))
     }
     
-    var totalTime: String {
-        // 모든 월의 시간을 합산
-        let total = monthlyData.reduce(0) { $0 + $1.duration }
-        let hours = Int(total) / 3600
-        let minutes = Int(total) / 60 % 60
-        let seconds = Int(total) % 60
-        return String(format: "%d:%02d:%02d", hours, minutes, seconds)
+    var totalTimeValue: TimeInterval {
+        monthlyData.reduce(0) { $0 + $1.duration }
     }
     
     func loadMonthlyData() {
@@ -112,30 +112,12 @@ class MonthlyRunningViewModel: ObservableObject {
 
 // 차트의 최대치를 구하기 위한 메서드
 extension MonthlyRunningViewModel {
-    // 최대 거리를 기반으로 차트 스케일 계산
     var chartYScale: ClosedRange<Double> {
-        // 모든 월의 데이터 중 최대 거리 찾기
         let maxDistance = chartDataItems.map { $0.distance }.max() ?? 0
-        
-        if maxDistance == 0 {
-            return 0...4  // 기본 최대값을 16에서 4로 수정
-        }
-        
-        // 최대값을 올림하여 스케일 설정 (4km 단위 대신 더 작은 단위 사용)
-        let scaleMax = ceil(maxDistance * 2) / 2  // 0.5km 단위로 반올림
-        let paddedMax = max(scaleMax + 1, 4)  // 여유 공간을 위해 1km 추가하되 최소값은 4km
-        
-        return 0...paddedMax
-    }
-    
-    // Y축 눈금 간격 계산
-    var yAxisStepSize: Double {
-        let maxScale = chartYScale.upperBound
-        
-        // 스케일에 따른 적절한 간격 설정
-        if maxScale <= 20 { return 4 }      // 20km 이하: 4km 간격
-        else if maxScale <= 40 { return 8 }  // 40km 이하: 8km 간격
-        else if maxScale <= 100 { return 20 } // 100km 이하: 20km 간격
-        else { return 40 }                    // 100km 초과: 40km 간격
+        let adjustedMax = maxDistance * 1.2  // 최대값에 20% 추가
+        let scaleMax = max(1.0, adjustedMax)  // 최소 스케일 1.0
+        print("📈 Adjusted Max distance: \(scaleMax)km")
+        return 0...scaleMax
     }
 }
+

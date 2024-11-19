@@ -360,51 +360,6 @@ class UserService {
        }.resume()
    }
     
-    
-    // 캐릭터 정보 받기
-//    func fetchCharacterInfo(completion: @escaping (String, Int, Int, Int, Int) -> Void) {
-//        guard let url = URL(string: "\(baseURL)/mainPage/check") else { return }
-//        
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "GET"
-//        
-//        // UserDefaults에서 세션 ID를 가져옴
-//        if let sessionID = UserDefaults.standard.string(forKey: "sessionID") {
-//            request.setValue("JSESSIONID=\(sessionID)", forHTTPHeaderField: "Cookie")
-//        } else {
-//            print("세션 ID를 찾을 수 없습니다. 로그인부터 다시 진행하세요.")
-//            return
-//        }
-//        
-//        URLSession.shared.dataTask(with: request) { data, response, error in
-//            if let data = data {
-//                // 서버 응답 데이터를 문자열로 변환하여 출력
-//                if let responseString = String(data: data, encoding: .utf8) {
-//                    print("Response Data: \(responseString)")
-//                }
-//                do {
-//                    // JSON 데이터를 MainPageDto로 디코딩
-//                    let mainPageDto = try JSONDecoder().decode(MainPageDto.self, from: data)
-//                    
-//                    // 받은 데이터를 print로 출력
-//                    print("loginId: \(mainPageDto.loginId)")
-//                    print("experience: \(mainPageDto.experience)")
-//                    print("species: \(mainPageDto.species)")
-//                    print("kindOfCharacter: \(mainPageDto.kindOfCharacter)")
-//                    print("evolutionLevel: \(mainPageDto.evolutionLevel)")
-//                    
-//                    DispatchQueue.main.async {
-//                        completion(mainPageDto.loginId, mainPageDto.experience, mainPageDto.species, mainPageDto.kindOfCharacter, mainPageDto.evolutionLevel)
-//                    }
-//                } catch {
-//                    print("Error decoding JSON: \(error)")
-//                }
-//            } else {
-//                print("Error fetching data: \(error?.localizedDescription ?? "Unknown error")")
-//            }
-//        }.resume()
-//    }
-    
     // 캐릭터 정보 가져오기
     func fetchCharacterInfo(completion: @escaping (String, Int, Int, Int, Int) -> Void) {
         guard let url = URL(string: "\(baseURL)/mainPage/check") else { return }
@@ -423,7 +378,7 @@ class UserService {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let data = data {
                 if let responseString = String(data: data, encoding: .utf8) {
-                    print("Response Data: \(responseString)")
+                    print("this is main -> Response Data: \(responseString)")
                 }
                 do {
                     let mainPageDto = try JSONDecoder().decode(MainPageDto.self, from: data)
@@ -510,9 +465,31 @@ class UserService {
             }
         }.resume()
     }
+    
+    // 선택한 날짜 지도 경로 받아오기
+    func fetchRunningHistory(for date: Date) async throws -> DailyRunningRecord {
+        guard let sessionId = UserDefaults.standard.string(forKey: "sessionID") else {
+            throw URLError(.userAuthenticationRequired)
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateString = dateFormatter.string(from: date)
+        
+        guard let url = URL(string: "\(baseURL)/running/record/\(dateString)") else {
+            throw URLError(.badURL)
+        }
+        
+        var request = URLRequest(url: url)
+        request.addValue(sessionId, forHTTPHeaderField: "SessionId")
+        
+        let (data, response) = try await URLSession.shared.data(for: request)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+              (200...299).contains(httpResponse.statusCode) else {
+            throw URLError(.badServerResponse)
+        }
+        
+        return try JSONDecoder().decode(DailyRunningRecord.self, from: data)
+    }
 }
-
-
-//#Preview {
-//    UserService()
-//}

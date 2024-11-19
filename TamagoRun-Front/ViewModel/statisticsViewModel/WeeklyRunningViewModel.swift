@@ -94,30 +94,22 @@ class WeeklyRunningViewModel: ObservableObject {
         }
     }
     
-    var totalDistance: String {
-        let total = runData.reduce(0) { $0 + $1.distance }
-        return String(format: "%.1f", total)
+    // 프로퍼티들 타입 변경
+    var totalDistanceValue: Double {
+        runData.reduce(0) { $0 + $1.distance }
     }
     
-    var totalCalories: String {
-        let total = runData.reduce(0) { $0 + $1.calories }
-        return String(format: "%.0f", total)
+    var totalCaloriesValue: Int {
+        Int(runData.reduce(0) { $0 + $1.calories })
     }
     
-    var averagePace: String {
+    var averagePaceValue: Int {
         let totalPace = runData.reduce(0) { $0 + $1.pace }
-        let avgPace = runData.isEmpty ? 0 : totalPace / Double(runData.count)
-        let minutes = Int(avgPace)
-        let seconds = Int((avgPace - Double(minutes)) * 60)
-        return String(format: "%d'%02d\"", minutes, seconds)
+        return runData.isEmpty ? 0 : Int(totalPace / Double(runData.count))
     }
     
-    var totalTime: String {
-        let total = runData.reduce(0) { $0 + $1.duration }
-        let hours = Int(total) / 3600
-        let minutes = Int(total) / 60 % 60
-        let seconds = Int(total) % 60
-        return String(format: "%d:%02d:%02d", hours, minutes, seconds)
+    var totalTimeValue: TimeInterval {
+        runData.reduce(0) { $0 + $1.duration }
     }
     
     // MARK: - Public Methods

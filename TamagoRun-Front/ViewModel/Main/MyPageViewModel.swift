@@ -16,27 +16,24 @@ class MyPageViewModel: ObservableObject {
     private let mainService = MainService.shared
 
     // Formatted values for view
-    var totalDistance: String {
-        String(format: "%.1f", userRecord?.totalRunningDistance ?? 0.0)
+    var totalDistanceValue: Double {
+        // userRecord에서 Double 값 반환
+        Double(userRecord?.totalRunningDistance ?? 0)
     }
-
-    var totalCalories: String {
-        String(format: "%.0f", userRecord?.totalCalorie ?? 0.0)
+    
+    var totalCaloriesValue: Double {
+        // userRecord에서 Double 값 반환
+        Double(userRecord?.totalCalorie ?? 0)
     }
-
-    var averagePace: String {
-        let pace = userRecord?.overallAveragePace ?? 0
-        let minutes = Int(pace)
-        let seconds = Int((pace - Double(minutes)) * 60)
-        return String(format: "%d'%02d\"", minutes, seconds)
+    
+    var averagePaceValue: Double {
+        // userRecord에서 Double 값 반환
+        Double(userRecord?.overallAveragePace ?? 0)
     }
-
-    var totalTime: String {
-        let time = userRecord?.totalRunningTime ?? 0
-        let hours = Int(time) / 3600
-        let minutes = Int(time) / 60 % 60
-        let seconds = Int(time) % 60
-        return String(format: "%d:%02d:%02d", hours, minutes, seconds)
+    
+    var totalTimeValue: Double {
+        // userRecord에서 Double 값 반환
+        Double(userRecord?.totalRunningTime ?? 0)
     }
 
     var userId: String {

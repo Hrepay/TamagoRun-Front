@@ -9,15 +9,15 @@ import SwiftUI
 import NMapsMap
 
 struct RunningSummaryView: View {
+    // 타입 수정
     var totalDistance: Double
-    var totalTime: String
+    var totalTime: TimeInterval  // String에서 TimeInterval로 변경
     var totalPace: Int
     var totalCalories: Int
     var coordinates: [NMGLatLng]
     
     @State private var isMainViewActive = false
     @Environment(\.presentationMode) var presentationMode
-    
     @EnvironmentObject var viewModel: LoginViewModel
 
     var body: some View {
@@ -34,7 +34,7 @@ struct RunningSummaryView: View {
                         .font(.custom("DungGeunMo", size: 12))
                         .padding(.bottom, 2)
                     
-                    Text(totalTime)
+                    Text(RunningDataFormatter.formatDuration(totalTime))  // 포맷터 사용
                         .font(.custom("DungGeunMo", size: 20))
                         .multilineTextAlignment(.leading)
                 }
@@ -51,7 +51,7 @@ struct RunningSummaryView: View {
                         .font(.custom("DungGeunMo", size: 12))
                         .padding(.bottom, 2)
                     
-                    Text("\(totalTime)/km")
+                    Text(RunningDataFormatter.formatPace(totalPace))  // 포맷터 사용
                         .font(.custom("DungGeunMo", size: 20))
                         .multilineTextAlignment(.leading)
                 }
@@ -72,7 +72,7 @@ struct RunningSummaryView: View {
                         .font(.custom("DungGeunMo", size: 12))
                         .padding(.bottom, 2)
                     
-                    Text("\(totalCalories) kcal")
+                    Text(RunningDataFormatter.formatCalories(totalCalories))  // 포맷터 사용
                         .font(.custom("DungGeunMo", size: 20))
                         .multilineTextAlignment(.leading)
                 }
@@ -89,7 +89,7 @@ struct RunningSummaryView: View {
                         .font(.custom("DungGeunMo", size: 12))
                         .padding(.bottom, 2)
                     
-                    Text("\(String(format: "%.2f", totalDistance)) km")
+                    Text(RunningDataFormatter.formatDistance(totalDistance))  // 포맷터 사용
                         .font(.custom("DungGeunMo", size: 20))
                         .multilineTextAlignment(.leading)
                 }
@@ -102,6 +102,7 @@ struct RunningSummaryView: View {
                 .padding(.leading, 4)
             }
             .padding(.horizontal, 16)
+
             
             NaverMapView(coordinates: coordinates)
                 .frame(height: 300)
@@ -188,10 +189,10 @@ struct NaverMapView: UIViewRepresentable {
 
 #Preview {
     RunningSummaryView(
-        totalDistance: 10.03,    // 예시 거리
-        totalTime: "51:23",      // 예시 시간
-        totalPace: 05_07,      // 예시 페이스
-        totalCalories: 930,      // 예시 칼로리
-        coordinates: [NMGLatLng(lat: 37.5665, lng: 126.9780)] // 예시 좌표
+        totalDistance: 10.03,          // 거리 (km)
+        totalTime: 3083,               // 시간 (51분 23초 = 3083초)
+        totalPace: 307,                // 페이스 (5분 7초 = 307초)
+        totalCalories: 930,            // 칼로리
+        coordinates: [NMGLatLng(lat: 37.5665, lng: 126.9780)]
     )
 }

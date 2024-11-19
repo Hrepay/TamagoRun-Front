@@ -23,7 +23,7 @@ class CharacterSelectionViewModel: ObservableObject {
         switch selectedRace {
         case "Creature": speciesNumber = 1
         case "Undead": speciesNumber = 2
-        case "Animal": speciesNumber = 3
+        case "Human": speciesNumber = 3
         default:
             errorMessage = "올바르지 않은 종족입니다"
             completion(false)

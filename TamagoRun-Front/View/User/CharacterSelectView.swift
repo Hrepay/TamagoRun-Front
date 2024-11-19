@@ -21,6 +21,7 @@ struct CharacterSelectView: View {
             VStack {
                 Spacer()
                 
+        //MARK: - header
                 VStack {
                     Text("종족")
                         .font(.custom("DungGeunMo", size: 20))
@@ -30,92 +31,82 @@ struct CharacterSelectView: View {
                         .font(.custom("DungGeunMo", size: 12))
                         .foregroundColor(.red)
                         .padding(.bottom)
+                    
+        //MARK: - content
                     // Creature 버튼
                     Button(action: {
                         viewModel.selectedRace = "Creature"
                     }) {
-                        HStack {
+                        VStack {
+                            VStack {
+                                Image("creature_simbol")
+                                    .resizable()
+                                    .frame(width: 100, height: 100)
+                                    .opacity(viewModel.selectedRace == "Creature" ? 1.0 : 0.4)
+                            }
+                            .frame(width: 120, height: 120)
+                            .background(Color.white)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(viewModel.selectedRace == "Creature" ? Color.black : Color.gray, lineWidth: 2)
+                            )
                             Text("Creature")
-                                .font(.custom("DungGeunMo", size: 25))
-                                .foregroundStyle(viewModel.selectedRace == "Creature" ? Color.black : Color.gray)
-                            
-                            Spacer()
-                            
-                            Text("심볼")
                                 .font(.custom("DungGeunMo", size: 20))
-                                .foregroundColor(.gray)
-                                .padding(8)
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(5)
+                                .foregroundColor(viewModel.selectedRace == "Creature" ? .black : .gray)
                         }
-                        .frame(height: 80)
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal)
-                        .background(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(viewModel.selectedRace == "Creature" ? Color.black : Color.gray, lineWidth: 2)
-                        )
                     }
                     .padding(.horizontal, 15)
+                    .padding(.bottom, 10)
                     
-                    // Undead 버튼
-                    Button(action: {
-                        viewModel.selectedRace = "Undead"
-                    }) {
-                        HStack {
-                            Text("Undead")
-                                .font(.custom("DungGeunMo", size: 25))
-                                .foregroundStyle(viewModel.selectedRace == "Undead" ? Color.black : Color.gray)
-                            
-                            Spacer()
-                            
-                            Text("심볼")
-                                .font(.custom("DungGeunMo", size: 20))
-                                .foregroundColor(.gray)
-                                .padding(8)
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(5)
+                    HStack {
+                        // Undead 버튼
+                        Button(action: {
+                            viewModel.selectedRace = "Undead"
+                        }) {
+                            VStack {
+                                VStack {
+                                    Image("undead_simbol")
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                        .opacity(viewModel.selectedRace == "Creature" ? 1.0 : 0.4)
+                                }
+                                .frame(width: 120, height: 120)
+                                .background(Color.white)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(viewModel.selectedRace == "Undead" ? Color.black : Color.gray, lineWidth: 2)
+                                )
+                                Text("Undead")
+                                    .font(.custom("DungGeunMo", size: 20))
+                                    .foregroundColor(viewModel.selectedRace == "Undead" ? .black : .gray)
+                            }
                         }
-                        .frame(height: 80)
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal)
-                        .background(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(viewModel.selectedRace == "Undead" ? Color.black : Color.gray, lineWidth: 2)
-                        )
-                    }
-                    .padding(.horizontal, 15)
-                    
-                    // Animal 버튼
-                    Button(action: {
-                        viewModel.selectedRace = "Animal"
-                    }) {
-                        HStack {
-                            Text("Animal")
-                                .font(.custom("DungGeunMo", size: 25))
-                                .foregroundStyle(viewModel.selectedRace == "Animal" ? Color.black : Color.gray)
-                            
-                            Spacer()
-                            
-                            Text("심볼")
-                                .font(.custom("DungGeunMo", size: 20))
-                                .foregroundColor(.gray)
-                                .padding(8)
-                                .background(Color.gray.opacity(0.2))
-                                .cornerRadius(5)
+                        .padding(.horizontal, 15)
+                        
+                        // Human 버튼
+                        Button(action: {
+                            viewModel.selectedRace = "Human"  // 이전에 "Undead"로 되어있던 버그 수정
+                        }) {
+                            VStack {
+                                VStack {
+                                    Image("human_simbol")
+                                        .resizable()
+                                        .frame(width: 100, height: 100)
+                                        .opacity(viewModel.selectedRace == "Creature" ? 1.0 : 0.4)
+                                }
+                                .frame(width: 120, height: 120)
+                                .background(Color.white)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .stroke(viewModel.selectedRace == "Human" ? Color.black : Color.gray, lineWidth: 2)
+                                )
+                                Text("Human")
+                                    .font(.custom("DungGeunMo", size: 20))
+                                    .foregroundColor(viewModel.selectedRace == "Human" ? .black : .gray)
+                            }
                         }
-                        .frame(height: 80)
-                        .frame(maxWidth: .infinity)
-                        .padding(.horizontal)
-                        .background(Color.white)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10)
-                                .stroke(viewModel.selectedRace == "Animal" ? Color.black : Color.gray, lineWidth: 2)
-                        )
+                        .padding(.horizontal, 15)
                     }
-                    .padding(.horizontal, 15)
                     
                     // 확인 버튼
                     Button(action: {
