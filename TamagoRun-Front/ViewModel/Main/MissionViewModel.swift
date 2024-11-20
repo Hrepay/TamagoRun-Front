@@ -21,8 +21,8 @@ class MissionViewModel: ObservableObject {
     private let dailyMissionTitles = [
         "하루에 3Km 이상 뛰기",
         "하루에 5Km 이상 뛰기",
-        "30분동안 뛰기",
-        "60분동안 뛰기"
+        "하루에 30분동안 뛰기",
+        "하루에 60분동안 뛰기"
     ]
     
     private let weeklyMissionTitles = [
@@ -40,12 +40,12 @@ class MissionViewModel: ObservableObject {
             "누적 42.195km 달성",
             "누적 100km 달성",
             "첫 번째 친구 맺기",
-            "친구 맺기 5명",
-            "친구 맺기 10명",
-            "친구 맺기 15명",
-            "칼로리 1000kcal",
-            "칼로리 2000kcal",
-            "칼로리 3000kcal"
+            "친구 5명 맺기",
+            "친구 10명 맺기",
+            "친구 15명 맺기",
+            "1000kcal 소모",
+            "2000kcal 소모",
+            "3000kcal 소모"
         ]
     
     func fetchDailyMissions() {

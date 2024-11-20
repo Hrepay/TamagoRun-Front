@@ -467,7 +467,7 @@ class UserService {
     }
     
     // 선택한 날짜 지도 경로 받아오기
-    func fetchRunningHistory(for date: Date) async throws -> DailyRunningRecord {
+    func fetchRunningHistory(for date: Date) async throws -> [RunningLocation] {
         guard let sessionId = UserDefaults.standard.string(forKey: "sessionID") else {
             throw URLError(.userAuthenticationRequired)
         }
@@ -490,6 +490,7 @@ class UserService {
             throw URLError(.badServerResponse)
         }
         
-        return try JSONDecoder().decode(DailyRunningRecord.self, from: data)
+        // 배열 형태로 직접 디코딩
+        return try JSONDecoder().decode([RunningLocation].self, from: data)
     }
 }

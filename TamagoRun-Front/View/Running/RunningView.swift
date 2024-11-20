@@ -62,21 +62,21 @@ struct RunningView: View {
                                 HStack(spacing: 40) {
                                     VStack {
                                         Text(RunningDataFormatter.formatDistance(runningData.distance))
-                                            .font(.custom("DungGeunMo", size: 35))
+                                            .font(.custom("DungGeunMo", size: 25))
                                         Text("(Km)")
                                             .font(.custom("DungGeunMo", size: 14))
                                     }
                                     
                                     VStack {
                                         Text(RunningDataFormatter.formatCalories(runningData.calories))
-                                            .font(.custom("DungGeunMo", size: 35))
+                                            .font(.custom("DungGeunMo", size: 25))
                                         Text("(kcal)")
                                             .font(.custom("DungGeunMo", size: 14))
                                     }
                                     
                                     VStack {
                                         Text(RunningDataFormatter.formatPace(runningData.pace))
-                                            .font(.custom("DungGeunMo", size: 35))
+                                            .font(.custom("DungGeunMo", size: 25))
                                         Text("(/km)")
                                             .font(.custom("DungGeunMo", size: 14))
                                     }

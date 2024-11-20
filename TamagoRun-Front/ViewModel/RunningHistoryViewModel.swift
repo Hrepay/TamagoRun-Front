@@ -22,9 +22,9 @@ class RunningHistoryViewModel: ObservableObject {
         
         Task {
             do {
-                let record = try await userService.fetchRunningHistory(for: date)
+                let locations = try await userService.fetchRunningHistory(for: date)
                 DispatchQueue.main.async {
-                    self.coordinates = record.coordinates.map { NMGLatLng(lat: $0.x, lng: $0.y) }
+                    self.coordinates = locations.map { NMGLatLng(lat: $0.x, lng: $0.y) }
                     self.isLoading = false
                 }
             } catch {

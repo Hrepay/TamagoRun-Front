@@ -112,10 +112,10 @@ struct MainView: View {
 //                    .padding(.bottom)
                     
                     UserCharacterInfoView(
-                                            characterViewModel: characterViewModel,
-                                            showEvolutionModal: $showEvolutionModal
-                                        )
-                                        .padding(.bottom)
+                                    characterViewModel: characterViewModel,
+                                    showEvolutionModal: $showEvolutionModal
+                                )
+                                .padding(.bottom)
                     
                     Spacer()
                     
@@ -145,7 +145,7 @@ struct MainView: View {
                             }
                         }) {
                             Text("Run")
-                                .font(.custom("DungGeunMo", size: 20))
+                                .font(.custom("DungGeunMo", size: 22.5))
                                 .padding()
                                 .frame(width: 200, height: 50)
                                 .overlay(
@@ -160,8 +160,7 @@ struct MainView: View {
                             HStack {
                                 Text("더보기")
                                     .font(.custom("DungGeunMo", size: 17))
-                                Image(systemName: "chevron.up")
-                                    .font(.system(size: 20))
+
                             }
                             .padding()
                             .frame(width: 200, height: 50)

@@ -44,7 +44,7 @@ struct StartRunning: View {
                     .font(.custom("DungGeunMo", size: 30))
                     .padding(.bottom, 40)
                 
-                Image("egg_1")
+                Image("egg_run")
                     .resizable()
                     .frame(width: 120, height: 160)
                     .padding(.bottom, 40)

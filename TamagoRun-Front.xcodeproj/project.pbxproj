@@ -319,11 +319,11 @@
 		07540AEF2CD791F1001E4E9E /* statisticsView */ = {
 			isa = PBXGroup;
 			children = (
+				07540AFB2CD7C2EC001E4E9E /* RunningStatsContainerView.swift */,
 				07540AE82CD78401001E4E9E /* MonthlyRunningGraphView.swift */,
+				07540AF32CD79378001E4E9E /* WeeklyRunningGraphView.swift */,
 				07540AF12CD792DD001E4E9E /* StatisticRow.swift */,
 				0753BB352CE22EC4005531A2 /* MyStatisticRow.swift */,
-				07540AF32CD79378001E4E9E /* WeeklyRunningGraphView.swift */,
-				07540AFB2CD7C2EC001E4E9E /* RunningStatsContainerView.swift */,
 			);
 			path = statisticsView;
 			sourceTree = "<group>";

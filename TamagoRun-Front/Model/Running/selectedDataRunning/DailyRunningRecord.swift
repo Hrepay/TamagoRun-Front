@@ -7,10 +7,4 @@
 
 import Foundation
 
-struct DailyRunningRecord: Codable {
-    let coordinates: [RunningLocation]
-    
-    enum CodingKeys: String, CodingKey {
-        case coordinates
-    }
-}
+typealias DailyRunningRecord = [RunningLocation]
