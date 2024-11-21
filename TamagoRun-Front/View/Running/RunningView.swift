@@ -56,29 +56,34 @@ struct RunningView: View {
                                 Spacer()
                                 
                                 Text(RunningDataFormatter.formatDuration(runningData.elapsedTime))
-                                    .font(.custom("DungGeunMo", size: 36))
-                                    .padding(.bottom, 10)
+                                    .font(.custom("DungGeunMo", size: 33))
+                                    .padding(.bottom, 16)
                                 
                                 HStack(spacing: 40) {
                                     VStack {
                                         Text(RunningDataFormatter.formatDistance(runningData.distance))
                                             .font(.custom("DungGeunMo", size: 25))
-                                        Text("(Km)")
-                                            .font(.custom("DungGeunMo", size: 14))
+                                        Text("거리")
+                                            .font(.custom("DungGeunMo", size: 13))
+                                            .foregroundColor(.gray)
                                     }
                                     
                                     VStack {
                                         Text(RunningDataFormatter.formatCalories(runningData.calories))
-                                            .font(.custom("DungGeunMo", size: 25))
-                                        Text("(kcal)")
-                                            .font(.custom("DungGeunMo", size: 14))
+                                            .font(.custom("DungGeunMo", size: 23))
+                                        Text("칼로리")
+                                            .font(.custom("DungGeunMo", size: 13))
+                                            .foregroundColor(.gray)
+
                                     }
                                     
                                     VStack {
                                         Text(RunningDataFormatter.formatPace(runningData.pace))
-                                            .font(.custom("DungGeunMo", size: 25))
-                                        Text("(/km)")
-                                            .font(.custom("DungGeunMo", size: 14))
+                                            .font(.custom("DungGeunMo", size: 23))
+                                        Text("페이스")
+                                            .font(.custom("DungGeunMo", size: 13))
+                                            .foregroundColor(.gray)
+
                                     }
                                 }
                                 .padding(.bottom, 20)

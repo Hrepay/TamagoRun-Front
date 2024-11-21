@@ -16,7 +16,7 @@ struct SelectedDateMapView: UIViewRepresentable {
 
         // 첫 번째 좌표를 기준으로 카메라 이동 및 줌 레벨 설정
         if let firstCoordinate = coordinates.first {
-            let cameraPosition = NMFCameraPosition(firstCoordinate, zoom: 15.0) // 줌 레벨 15로 설정
+            let cameraPosition = NMFCameraPosition(firstCoordinate, zoom: 18.0) // 클수록 확대
             let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
             cameraUpdate.animation = .easeIn
             mapView.moveCamera(cameraUpdate)

@@ -30,7 +30,7 @@ struct ManualMainView: View {
                         .tag(2)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                .frame(height: 500)  // 높이 조절 가능
+                .frame(height: 530)  // 높이 조절 가능
                 
                 // 페이지 인디케이터와 버튼
                 HStack {
@@ -38,7 +38,7 @@ struct ManualMainView: View {
                     HStack(spacing: 8) {
                         ForEach(0..<3) { index in
                             Circle()
-                                .fill(currentPage == index ? Color.blue : Color.gray)
+                                .fill(currentPage == index ? Color.black : Color.gray)
                                 .frame(width: 8, height: 8)
                         }
                     }
@@ -51,12 +51,12 @@ struct ManualMainView: View {
                     }) {
                         Text(currentPage == 2 ? "시작하기" : "건너뛰기")
                             .font(.custom("DungGeunMo", size: 16))
-                            .foregroundColor(.blue)
+                            .foregroundColor(.black)
                             .padding(.horizontal, 20)
                             .padding(.vertical, 10)
                             .background(
                                 RoundedRectangle(cornerRadius: 20)
-                                    .stroke(Color.blue, lineWidth: 1)
+                                    .stroke(Color.black, lineWidth: 1)
                             )
                     }
                 }

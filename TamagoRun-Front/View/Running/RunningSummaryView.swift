@@ -108,24 +108,24 @@ struct RunningSummaryView: View {
                 .frame(height: 300)
                 .padding()
             
-            Button(action: {
-            }) {
-                HStack {
-                    Text("통계")
-                        .font(.custom("DungGeunMo", size: 18))
-                    Spacer()
-                    Image(systemName: "chevron.right")
-                }
-                .padding()
-                .background(Color.white)
-                .foregroundColor(.black)
-                .cornerRadius(10)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 10)
-                        .stroke(Color.black, lineWidth: 1)
-                )
-            }
-            .padding(.horizontal)
+//            Button(action: {
+//            }) {
+//                HStack {
+//                    Text("통계")
+//                        .font(.custom("DungGeunMo", size: 18))
+//                    Spacer()
+//                    Image(systemName: "chevron.right")
+//                }
+//                .padding()
+//                .background(Color.white)
+//                .foregroundColor(.black)
+//                .cornerRadius(10)
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 10)
+//                        .stroke(Color.black, lineWidth: 1)
+//                )
+//            }
+//            .padding(.horizontal)
             
             Spacer()
         }
@@ -146,6 +146,7 @@ struct RunningSummaryView: View {
                         Image(systemName: "chevron.left")
                         Text("뒤로")
                             .font(.custom("DungGeunMo", size: 15))
+                            .foregroundColor(.black)
                     }
                 }
             }
@@ -166,7 +167,7 @@ struct NaverMapView: UIViewRepresentable {
 
         // 첫 번째 좌표를 기준으로 카메라 이동 및 줌 레벨 설정
         if let firstCoordinate = coordinates.first {
-            let cameraPosition = NMFCameraPosition(firstCoordinate, zoom: 15.0) // 줌 레벨 15로 설정
+            let cameraPosition = NMFCameraPosition(firstCoordinate, zoom: 18.0) // 줌 레벨 15로 설정
             let cameraUpdate = NMFCameraUpdate(position: cameraPosition)
             cameraUpdate.animation = .easeIn
             mapView.moveCamera(cameraUpdate)

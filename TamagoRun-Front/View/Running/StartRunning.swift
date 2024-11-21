@@ -46,7 +46,7 @@ struct StartRunning: View {
                 
                 Image("egg_run")
                     .resizable()
-                    .frame(width: 120, height: 160)
+                    .frame(width: 80, height: 100)
                     .padding(.bottom, 40)
                 
                 Button(action: {
@@ -61,6 +61,7 @@ struct StartRunning: View {
             }
             Spacer()
         }
+        .padding(.bottom, 70)
         // RunningView로 넘어가기
         .fullScreenCover(isPresented: $showNextView) {
             RunningView() // RunningView가 매개변수가 없으므로 그대로 호출
@@ -83,9 +84,9 @@ struct StartRunning: View {
     }
 }
 
-//#Preview {
-//    @State var isPresented = true
-//    StartRunning(isPresented: $isPresented)
-//}
+#Preview {
+    @State var isPresented = true
+    StartRunning(isPresented: $isPresented)
+}
 
 

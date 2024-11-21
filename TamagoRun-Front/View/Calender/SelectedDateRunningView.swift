@@ -78,7 +78,7 @@ struct SelectedDateRunningView: View {
                                 .font(.custom("DungGeunMo", size: 12))
                                 .padding(.bottom, 2)
                             
-                            Text(RunningDataFormatter.formatPace(Int(data.pace)))
+                            Text(RunningDataFormatter.formatCalories(Int(data.calories)))
                                 .font(.custom("DungGeunMo", size: 20))
                                 .multilineTextAlignment(.leading)
                         }

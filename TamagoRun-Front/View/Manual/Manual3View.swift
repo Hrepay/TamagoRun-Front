@@ -9,20 +9,25 @@ import SwiftUI
 
 struct Manual3View: View {
     var body: some View {
-        VStack(spacing: 20) {
-            Image("manual_image_1") // 매뉴얼 이미지
-                .resizable()
-                .scaledToFit()
-                .frame(height: 300)
+        VStack(spacing: 25) {
             
-            Text("게임 시작하기")
-                .font(.custom("DungGeunMo", size: 24))
-                .padding(.top)
+            Text("Mission")
+                .font(.custom("DungGeunMo", size: 25))
+                .padding(.bottom, 20)
             
-            Text("캐릭터를 선택하고\n게임을 시작해보세요!")
-                .font(.custom("DungGeunMo", size: 16))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal)
+            Text("Mission\nComplete!")
+                .font(.custom("DungGeunMo", size: 40))
+                .frame(height: 100)
+                .padding(.vertical, 50)
+            
+            VStack {
+                Text("러닝을 통해 미션/업적을 클리어하고 경험치를 획득하여 캐릭터를 진화시켜보세요!")
+                    .font(.custom("DungGeunMo", size: 17))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.bottom, 20)
+            }
+            .padding()
+            
         }
         .padding()
     }
