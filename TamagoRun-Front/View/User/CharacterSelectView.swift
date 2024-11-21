@@ -68,7 +68,7 @@ struct CharacterSelectView: View {
                                     Image("undead_simbol")
                                         .resizable()
                                         .frame(width: 100, height: 100)
-                                        .opacity(viewModel.selectedRace == "Creature" ? 1.0 : 0.4)
+                                        .opacity(viewModel.selectedRace == "Undead" ? 1.0 : 0.4)
                                 }
                                 .frame(width: 120, height: 120)
                                 .background(Color.white)
@@ -92,7 +92,7 @@ struct CharacterSelectView: View {
                                     Image("human_simbol")
                                         .resizable()
                                         .frame(width: 100, height: 100)
-                                        .opacity(viewModel.selectedRace == "Creature" ? 1.0 : 0.4)
+                                        .opacity(viewModel.selectedRace == "Human" ? 1.0 : 0.4)
                                 }
                                 .frame(width: 120, height: 120)
                                 .background(Color.white)

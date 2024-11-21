@@ -86,6 +86,7 @@
 		07D6FC222CEC9947003F15CD /* Manual1View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC212CEC9947003F15CD /* Manual1View.swift */; };
 		07D6FC242CEC995C003F15CD /* Manual2View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC232CEC995C003F15CD /* Manual2View.swift */; };
 		07D6FC262CEC995F003F15CD /* Manual3View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC252CEC995F003F15CD /* Manual3View.swift */; };
+		07D6FC8E2CEEBDE0003F15CD /* ContactDeveloper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6FC8D2CEEBDE0003F15CD /* ContactDeveloper.swift */; };
 		07D800612CDA108E00002882 /* FriendAddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D800602CDA108E00002882 /* FriendAddView.swift */; };
 		07F1183B2CDC3BE400A43B81 /* WeeklyMissionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1183A2CDC3BE400A43B81 /* WeeklyMissionResponse.swift */; };
 		07F1183F2CDC3D6B00A43B81 /* WeeklyMissionListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07F1183E2CDC3D6B00A43B81 /* WeeklyMissionListView.swift */; };
@@ -199,6 +200,7 @@
 		07D6FC212CEC9947003F15CD /* Manual1View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manual1View.swift; sourceTree = "<group>"; };
 		07D6FC232CEC995C003F15CD /* Manual2View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manual2View.swift; sourceTree = "<group>"; };
 		07D6FC252CEC995F003F15CD /* Manual3View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manual3View.swift; sourceTree = "<group>"; };
+		07D6FC8D2CEEBDE0003F15CD /* ContactDeveloper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDeveloper.swift; sourceTree = "<group>"; };
 		07D800602CDA108E00002882 /* FriendAddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendAddView.swift; sourceTree = "<group>"; };
 		07F1183A2CDC3BE400A43B81 /* WeeklyMissionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WeeklyMissionResponse.swift; path = ../Main/WeeklyMissionResponse.swift; sourceTree = "<group>"; };
 		07F1183E2CDC3D6B00A43B81 /* WeeklyMissionListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyMissionListView.swift; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 				07D6FC212CEC9947003F15CD /* Manual1View.swift */,
 				07D6FC232CEC995C003F15CD /* Manual2View.swift */,
 				07D6FC252CEC995F003F15CD /* Manual3View.swift */,
+				07D6FC8D2CEEBDE0003F15CD /* ContactDeveloper.swift */,
 			);
 			path = Manual;
 			sourceTree = "<group>";
@@ -757,6 +760,7 @@
 				07C306342CE5DC7900198F45 /* CharacterService.swift in Sources */,
 				07D3B1C42CBF77690084886C /* MissionListView.swift in Sources */,
 				0794913D2CDB7E45006FBB14 /* MissionTab.swift in Sources */,
+				07D6FC8E2CEEBDE0003F15CD /* ContactDeveloper.swift in Sources */,
 				07D6FC0A2CEC8043003F15CD /* DailyRunningRecord.swift in Sources */,
 				07D3B1C52CBF77690084886C /* MissionView.swift in Sources */,
 				07551A492CA1348B00EAF936 /* ContentView.swift in Sources */,

@@ -12,14 +12,17 @@ struct SideMenuView: View {
     @ObservedObject var characterViewModel: CharacterViewModel
     @ObservedObject var viewModel: LoginViewModel
     @Binding var isLoggedIn: Bool
+    @Binding var showManual: Bool
     @Environment(\.dismiss) private var dismiss
+    @Binding var isShowingMenu: Bool  // 추가
+
     
     @State private var showFriendsList = false // 친구 리스트
     @State private var showMyPage = false // MyPage 표시 상태
-    
     @State private var isAlarmExpanded = false // Alarm 섹션의 확장 상태를 관리하는 변수
-    @State private var isRunningAlertEnabled = false // 러닝 닭달 알림 스위치 상태
+    @State private var isRunningAlertEnabled = false // 러닝 닦달 알림 스위치 상태
     @State private var isMissionAlertEnabled = false // 미션 알림 스위치 상태
+    @State private var isQnA = false
     
     
     var body: some View {
@@ -66,6 +69,20 @@ struct SideMenuView: View {
                 }
                 .padding(.top, 50)
                 
+                // Manual 버튼 추가 (Friends 버튼 위에)
+                Button(action: {
+                    showManual = true
+                    isShowingMenu = false
+                    
+                }) {
+                    Text("Manual")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .font(.custom("DungGeunMo", size: 20))
+                        .background(Color.white)
+                        .foregroundColor(.black)
+                }
+                
                 // Friends 버튼 - 전체화면 전환을 위해 수정
                 Button(action: {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -80,6 +97,19 @@ struct SideMenuView: View {
                         .background(Color.white)
                         .foregroundColor(.black)
                 }
+                
+                Button(action: {
+                    isQnA = true
+                    dismiss() // 사이드 메뉴 닫기
+                }) {
+                    Text("Support")
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
+                        .font(.custom("DungGeunMo", size: 20))
+                        .background(Color.white)
+                        .foregroundColor(.black)
+                }
+                
                 
                 // Alarm 섹션
                 VStack(alignment: .leading) {
@@ -160,23 +190,27 @@ struct SideMenuView: View {
                 // NavigationStack 제거
                 FriendsListView(isPresented: $showFriendsList)
             }
+            .fullScreenCover(isPresented: $isQnA) {
+                ContactDeveloper()
+            }
         }
     }
 }
 
 
-#Preview {
-    // 미리보기를 위한 가짜 데이터 생성
-    let characterViewModel = CharacterViewModel()
-    let loginViewModel = LoginViewModel()
-    
-    // 가짜 데이터 설정
-    characterViewModel.loginId = "TestUser123"
-    characterViewModel.characterImages = ["character_image_1"] // 실제 에셋에 있는 이미지 이름으로 변경하세요
-    
-    return SideMenuView(
-        characterViewModel: characterViewModel,
-        viewModel: loginViewModel,
-        isLoggedIn: .constant(true) // Binding<Bool> 값을 .constant()로 생성
-    )
-}
+//#Preview {
+//    // 미리보기를 위한 가짜 데이터 생성
+//    let characterViewModel = CharacterViewModel()
+//    let loginViewModel = LoginViewModel()
+//    
+//    // 가짜 데이터 설정
+//    characterViewModel.loginId = "TestUser123"
+//    characterViewModel.characterImages = ["character_image_1"] // 실제 에셋에 있는 이미지 이름으로 변경하세요
+//    
+//    return SideMenuView(
+//        characterViewModel: characterViewModel,
+//        viewModel: loginViewModel,
+//        isLoggedIn: .constant(true),
+//        showManual: .constant(false)  // Preview용 showManual 바인딩 추가
+//    )
+//}

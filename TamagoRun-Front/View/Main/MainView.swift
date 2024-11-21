@@ -29,6 +29,9 @@ struct MainView: View {
     
     // 진화 모달
     @State private var showEvolutionModal = false
+    
+    // 메뉴얼 모달
+    @State private var showManual = false
 
     var body: some View {
         NavigationView {
@@ -51,6 +54,7 @@ struct MainView: View {
                     }
                     
                     Spacer()
+    
                     
                     UserCharacterInfoView(
                                     characterViewModel: characterViewModel,
@@ -126,11 +130,6 @@ struct MainView: View {
                         }
                 }
                 
-                SideMenuView(characterViewModel: characterViewModel, viewModel: viewModel, isLoggedIn: $isLoggedIn)
-                    .frame(width: UIScreen.main.bounds.width * 0.7)
-                    .background(Color.white)
-                    .offset(x: isShowingMenu ? 0 : -UIScreen.main.bounds.width * 0.7)
-                
                 // 캐릭터 선택 000
                 if characterViewModel.shouldShowCharacterSelection {
                     CharacterSelectView(
@@ -138,10 +137,23 @@ struct MainView: View {
                         onCharacterSelected: { success in
                             if success {
                                 characterViewModel.fetchCharacterInfo()
+                                
+                                // 최초 실행 시에만 메뉴얼 표시
+                                if !UserDefaults.standard.bool(forKey: "hasShownManual") {
+                                    showManual = true
+                                    UserDefaults.standard.set(true, forKey: "hasShownManual")
+                                }
                             }
                         }
                     )
                 }
+                
+                // 메뉴얼 뷰
+                if showManual {
+                    ManualMainView(isPresented: $showManual)
+                }
+                
+                // 진화 모달
                 if showEvolutionModal {
                     Color.black.opacity(0.5)
                         .edgesIgnoringSafeArea(.all)
@@ -165,6 +177,19 @@ struct MainView: View {
                         }
                     }
                 }
+                
+                SideMenuView(
+                    characterViewModel:
+                    characterViewModel,
+                    viewModel: viewModel,
+                    isLoggedIn: $isLoggedIn,
+                    showManual: $showManual,
+                    isShowingMenu: $isShowingMenu  // 추가
+
+                )
+                .frame(width: UIScreen.main.bounds.width * 0.7)
+                .background(Color.white)
+                .offset(x: isShowingMenu ? 0 : -UIScreen.main.bounds.width * 0.7)
             }
             .onAppear {
                 // 주간 러닝 데이터 불러오기

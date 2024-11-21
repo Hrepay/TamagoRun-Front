@@ -10,6 +10,7 @@ import SwiftUI
 struct ManualMainView: View {
     @State private var currentPage = 0
     @Binding var isPresented: Bool
+    @Environment(\.dismiss) private var dismiss
     
     var body: some View {
         ZStack {
@@ -48,6 +49,7 @@ struct ManualMainView: View {
                     // 건너뛰기/시작하기 버튼
                     Button(action: {
                         isPresented = false
+                        dismiss()
                     }) {
                         Text(currentPage == 2 ? "시작하기" : "건너뛰기")
                             .font(.custom("DungGeunMo", size: 16))

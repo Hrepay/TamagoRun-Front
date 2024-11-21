@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MyPageView: View {
    @StateObject private var viewModel = MyPageViewModel()
-   @Environment(\.presentationMode) var presentationMode // 추가
+   @Environment(\.presentationMode) var presentationMode 
    
    var body: some View {
        VStack {
