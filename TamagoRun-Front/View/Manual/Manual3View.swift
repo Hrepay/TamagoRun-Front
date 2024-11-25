@@ -19,9 +19,13 @@ struct Manual3View: View {
                 .font(.custom("DungGeunMo", size: 40))
                 .frame(height: 100)
                 .padding(.vertical, 50)
+                .multilineTextAlignment(.center)
             
             VStack {
-                Text("러닝을 통해 미션/업적을 클리어하고 경험치를 획득하여 캐릭터를 진화시켜보세요!")
+                Text("1. 러닝을 통해 미션과 업적을 클리어하고 경험치를 획득하여 캐릭터를 진화 시켜보세요!")
+                    .tracking(2)
+                    .lineSpacing(8)
+                    .multilineTextAlignment(.center)
                     .font(.custom("DungGeunMo", size: 17))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.bottom, 20)

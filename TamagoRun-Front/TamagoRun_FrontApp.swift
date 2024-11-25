@@ -40,6 +40,9 @@ struct TamagoRun_FrontApp: App {
                 }
                 
                 checkHealthKitAuthorization()
+                
+                // 알림 권한 요청 추가
+                NotificationManager.shared.requestAuthorization()
             }
             .onChange(of: scenePhase) {
                 if scenePhase == .active {

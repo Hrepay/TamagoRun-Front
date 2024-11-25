@@ -55,7 +55,7 @@ struct RunningView: View {
                             VStack(spacing: 20) {
                                 Spacer()
                                 
-                                Text(RunningDataFormatter.formatDuration(runningData.elapsedTime))
+                                Text(runningTime)
                                     .font(.custom("DungGeunMo", size: 33))
                                     .padding(.bottom, 16)
                                 

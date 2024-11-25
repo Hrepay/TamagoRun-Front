@@ -11,6 +11,11 @@ struct ContactDeveloper: View {
     
     // 뒤로가기
     @Environment(\.presentationMode) var presentationMode
+    
+    @State private var currentIndex = 1
+        
+    let timer = Timer.publish(every: 0.2, on: .main, in: .common).autoconnect()
+    
 
     
     var body: some View {
@@ -35,7 +40,7 @@ struct ContactDeveloper: View {
             
             Spacer()
             
-            Text("Q&A")
+            Text("Support")
                 .font(.custom("DungGeunMo", size: 25))
             
             Spacer()
@@ -45,16 +50,19 @@ struct ContactDeveloper: View {
                     .resizable()
                     .frame(width: 220, height: 150)
                 
-                Text("하이 암 선덕\n오류 발생시 아래\n메일로 문의해주세용\n\nsunduck@sunduck.com")
+                Text("하이 암 선덕\n오류 발생시 아래\n메일로 문의해주세용\n\ndbrdldh11@naver.com")
                     .font(.custom("DungGeunMo", size: 15))
+                    .lineSpacing(5)
                     .multilineTextAlignment(.center)
             }
-            .padding(.bottom, 30)
             
-            Image("Sun_duck")
+            Image("Sun_duck\(currentIndex)")
                 .resizable()
-                .frame(width: 70, height: 80)
+                .frame(width: 170, height: 180)
                 .padding(.bottom, 50)
+                .onReceive(timer) { _ in
+                    currentIndex = currentIndex % 4 + 1
+                }
             
             Spacer()
             Spacer()

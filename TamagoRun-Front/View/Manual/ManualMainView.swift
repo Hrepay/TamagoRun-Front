@@ -31,7 +31,7 @@ struct ManualMainView: View {
                         .tag(2)
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
-                .frame(height: 530)  // 높이 조절 가능
+                .frame(height: 500)  // 높이 조절 가능
                 
                 // 페이지 인디케이터와 버튼
                 HStack {

@@ -20,10 +20,11 @@ struct SideMenuView: View {
     @State private var showFriendsList = false // 친구 리스트
     @State private var showMyPage = false // MyPage 표시 상태
     @State private var isAlarmExpanded = false // Alarm 섹션의 확장 상태를 관리하는 변수
-    @State private var isRunningAlertEnabled = false // 러닝 닦달 알림 스위치 상태
+    @AppStorage("isRunningAlertEnabled") private var isRunningAlertEnabled = false
     @State private var isMissionAlertEnabled = false // 미션 알림 스위치 상태
     @State private var isQnA = false
     
+    @StateObject private var notificationSettings = NotificationSettings() // 알람
     
     var body: some View {
         NavigationStack {
@@ -132,18 +133,14 @@ struct SideMenuView: View {
                     // 터치 시 나타났다 없어지는 효과로 수정
                     if isAlarmExpanded {
                         VStack(alignment: .leading) {
-                            Toggle("러닝 닥달 알림 받기", isOn: $isRunningAlertEnabled)
-                                .font(.custom("DungGeunMo", size: 15))
-                                .padding(.horizontal)
-                            
-                            Toggle("미션 알림", isOn: $isMissionAlertEnabled)
+                            Toggle("러닝 알림 받기", isOn: $notificationSettings.isRunningAlertEnabled)
                                 .font(.custom("DungGeunMo", size: 15))
                                 .padding(.horizontal)
                         }
                         .padding(.leading, 20)
                         .padding(.bottom, 10)
-                        .transition(.opacity) // 부드러운 나타남/사라짐 효과
-                        .animation(.easeInOut(duration: 0.3), value: isAlarmExpanded) // 애니메이션 적용
+                        .transition(.opacity)
+                        .animation(.easeInOut(duration: 0.3), value: isAlarmExpanded)
                     }
                 }
                 

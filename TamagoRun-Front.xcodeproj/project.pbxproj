@@ -12,6 +12,8 @@
 		070C941D2CA943B7007C92C6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C941C2CA943B7007C92C6 /* LocationManager.swift */; };
 		070C94202CA94647007C92C6 /* RunningSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C941F2CA94647007C92C6 /* RunningSummaryView.swift */; };
 		070C94212CA94647007C92C6 /* RunningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070C941E2CA94647007C92C6 /* RunningView.swift */; };
+		070F8EE62CF0A99D0092DD72 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070F8EE52CF0A99D0092DD72 /* NotificationManager.swift */; };
+		070F8EE82CF0A9BD0092DD72 /* NotificationSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 070F8EE72CF0A9BD0092DD72 /* NotificationSettings.swift */; };
 		07123C952CB1070200DBFA63 /* RunningViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07123C942CB1070100DBFA63 /* RunningViewModel.swift */; };
 		07123C972CB107E200DBFA63 /* RunningService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07123C962CB107E200DBFA63 /* RunningService.swift */; };
 		072A7E9A2CDE16EF005574A1 /* CharacterSelectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072A7E992CDE16EF005574A1 /* CharacterSelectionViewModel.swift */; };
@@ -122,6 +124,8 @@
 		070C941C2CA943B7007C92C6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		070C941E2CA94647007C92C6 /* RunningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningView.swift; sourceTree = "<group>"; };
 		070C941F2CA94647007C92C6 /* RunningSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningSummaryView.swift; sourceTree = "<group>"; };
+		070F8EE52CF0A99D0092DD72 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		070F8EE72CF0A9BD0092DD72 /* NotificationSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSettings.swift; sourceTree = "<group>"; };
 		07123C942CB1070100DBFA63 /* RunningViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningViewModel.swift; sourceTree = "<group>"; };
 		07123C962CB107E200DBFA63 /* RunningService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunningService.swift; sourceTree = "<group>"; };
 		072A7E992CDE16EF005574A1 /* CharacterSelectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSelectionViewModel.swift; sourceTree = "<group>"; };
@@ -356,6 +360,7 @@
 			children = (
 				07540B032CD88B76001E4E9E /* MyPageViewModel.swift */,
 				0794913A2CDB7C24006FBB14 /* MissionViewModel.swift */,
+				070F8EE72CF0A9BD0092DD72 /* NotificationSettings.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 			children = (
 				07D454612CABE65B009FD782 /* MainPageDto.swift */,
 				07C3063A2CE5EDE200198F45 /* EvolutionDto.swift */,
+				070F8EE52CF0A99D0092DD72 /* NotificationManager.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -796,6 +802,7 @@
 				07D6FC222CEC9947003F15CD /* Manual1View.swift in Sources */,
 				07F1A5F82CA596F00001BF50 /* AppDelegate.swift in Sources */,
 				07F118432CDC59D800A43B81 /* AchievementResponse.swift in Sources */,
+				070F8EE82CF0A9BD0092DD72 /* NotificationSettings.swift in Sources */,
 				07551A552CA13AD200EAF936 /* StartView.swift in Sources */,
 				079491322CDB7A63006FBB14 /* DailyMissionResponse.swift in Sources */,
 				07540AED2CD790ED001E4E9E /* WeeklyRunningViewModel.swift in Sources */,
@@ -809,6 +816,7 @@
 				07540AF42CD79378001E4E9E /* WeeklyRunningGraphView.swift in Sources */,
 				07F118412CDC3D8B00A43B81 /* WeeklyMissionCell.swift in Sources */,
 				0794913B2CDB7C24006FBB14 /* MissionViewModel.swift in Sources */,
+				070F8EE62CF0A99D0092DD72 /* NotificationManager.swift in Sources */,
 				072A7E9A2CDE16EF005574A1 /* CharacterSelectionViewModel.swift in Sources */,
 				07551A572CA13AD200EAF936 /* EmailView.swift in Sources */,
 				07D6FC242CEC995C003F15CD /* Manual2View.swift in Sources */,
