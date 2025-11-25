@@ -99,7 +99,7 @@ TamagoRun
 -   ### 캐릭터 디자인
 
     ![크리쳐](https://github.com/user-attachments/assets/554a6ac7-8f34-48a5-a87d-b3b9a036b440)
-    ![휴먼](https://github.com/user-attachments/assets/f2ebe17a-c3c1-4c7e-8cb3-b1f1e42b28e3)
+    ![휴먼](https://github.com/user-attachments/assets/6b1c4a22-434d-4d93-a870-e1338cf611ad)
     ![언데드](https://github.com/user-attachments/assets/df75286f-5ea1-48eb-97fb-50bba70b68dc)
 
 
